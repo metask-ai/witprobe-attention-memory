@@ -1,0 +1,387 @@
+{
+ "what": "V4-Flash 请求级端到端组合与非空洞性论证",
+ "model": "DeepSeek-V4-Flash-FP8",
+ "stack": "sglang 0.5.13.post1, tp8+ep8, ctx 65536, disable-cuda-graph + disable-piecewise-cuda-graph; 四条路径同一次运行采集,调用采样 EVERY=8",
+ "caliber": [
+  "单位是**相对见证**(运行时可算),不是 TV —— 折 TV 需逐请求 q 范数",
+  "深度组合按 (C1) 且各段 a=1,故请求级界 = 各层界之和;若某段 a<1(如误差在层间被平均)则该式偏保守",
+  "存储覆盖 43 层,选择器只在 21 层;无选择器的层只计存储"
+ ],
+ "per_layer": {
+  "n": 43,
+  "bound_median": 0.02308856205545897,
+  "bound_min": 0.019110907411983638,
+  "bound_max": 0.02911343861880284,
+  "worst_layer": 42,
+  "rows": [
+   {
+    "layer": 0,
+    "b_store": 0.019110907411983638,
+    "b_select": 0.0,
+    "bound": 0.019110907411983638,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 1,
+    "b_store": 0.020861090202889527,
+    "b_select": 0.0,
+    "bound": 0.020861090202889527,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 2,
+    "b_store": 0.02021391327022565,
+    "b_select": 0.002330707747544815,
+    "bound": 0.022544621017770466,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 3,
+    "b_store": 0.02313344391652841,
+    "b_select": 0.0,
+    "bound": 0.02313344391652841,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 4,
+    "b_store": 0.019530397881093543,
+    "b_select": 0.0018415578932904485,
+    "bound": 0.021371955774383992,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 5,
+    "b_store": 0.022166165349891312,
+    "b_select": 0.0,
+    "bound": 0.022166165349891312,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 6,
+    "b_store": 0.0192698524340638,
+    "b_select": 0.002281462968285404,
+    "bound": 0.021551315402349204,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 7,
+    "b_store": 0.020266663585774107,
+    "b_select": 0.0,
+    "bound": 0.020266663585774107,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 8,
+    "b_store": 0.02094449199309153,
+    "b_select": 0.002034037415661029,
+    "bound": 0.02297852940875256,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 9,
+    "b_store": 0.020338555236077627,
+    "b_select": 0.0,
+    "bound": 0.020338555236077627,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 10,
+    "b_store": 0.02025860323426891,
+    "b_select": 0.0025914573847357907,
+    "bound": 0.0228500606190047,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 11,
+    "b_store": 0.020590355327319013,
+    "b_select": 0.0,
+    "bound": 0.020590355327319013,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 12,
+    "b_store": 0.020425486151494608,
+    "b_select": 0.00211446254111048,
+    "bound": 0.02253994869260509,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 13,
+    "b_store": 0.020342084147510202,
+    "b_select": 0.0,
+    "bound": 0.020342084147510202,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 14,
+    "b_store": 0.021840667141028027,
+    "b_select": 0.0021320828306141183,
+    "bound": 0.023972749971642147,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 15,
+    "b_store": 0.02086895575026966,
+    "b_select": 0.0,
+    "bound": 0.02086895575026966,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 16,
+    "b_store": 0.02113825035463395,
+    "b_select": 0.0022557173202286903,
+    "bound": 0.023393967674862643,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 17,
+    "b_store": 0.02385755364267504,
+    "b_select": 0.0,
+    "bound": 0.02385755364267504,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 18,
+    "b_store": 0.02201804199850202,
+    "b_select": 0.002062678337097168,
+    "bound": 0.024080720335599187,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 19,
+    "b_store": 0.023372219458196217,
+    "b_select": 0.0,
+    "bound": 0.023372219458196217,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 20,
+    "b_store": 0.021669412456734937,
+    "b_select": 0.0019044896115117998,
+    "bound": 0.023573902068246735,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 21,
+    "b_store": 0.02260562749467367,
+    "b_select": 0.0,
+    "bound": 0.02260562749467367,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 22,
+    "b_store": 0.02260009642640044,
+    "b_select": 0.0013432374863482234,
+    "bound": 0.023943333912748662,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 23,
+    "b_store": 0.023101047989004295,
+    "b_select": 0.0,
+    "bound": 0.023101047989004295,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 24,
+    "b_store": 0.021785542325289488,
+    "b_select": 0.001455878922298773,
+    "bound": 0.02324142124758826,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 25,
+    "b_store": 0.02326927249318697,
+    "b_select": 0.0,
+    "bound": 0.02326927249318697,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 26,
+    "b_store": 0.021670042214180583,
+    "b_select": 0.0009578800023491703,
+    "bound": 0.022627922216529754,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 27,
+    "b_store": 0.023172955215690377,
+    "b_select": 0.0,
+    "bound": 0.023172955215690377,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 28,
+    "b_store": 0.020908777416027285,
+    "b_select": 0.0018546478961830707,
+    "bound": 0.022763425312210355,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 29,
+    "b_store": 0.02308856205545897,
+    "b_select": 0.0,
+    "bound": 0.02308856205545897,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 30,
+    "b_store": 0.02264662955508544,
+    "b_select": 0.003949563449888087,
+    "bound": 0.02659619300497353,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 31,
+    "b_store": 0.023454595229332142,
+    "b_select": 0.0,
+    "bound": 0.023454595229332142,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 32,
+    "b_store": 0.01992313288384327,
+    "b_select": 0.0022799203644937546,
+    "bound": 0.022203053248337025,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 33,
+    "b_store": 0.022168712626245212,
+    "b_select": 0.0,
+    "bound": 0.022168712626245212,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 34,
+    "b_store": 0.02085921980078555,
+    "b_select": 0.0012498064272439301,
+    "bound": 0.02210902622802948,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 35,
+    "b_store": 0.02412698733228584,
+    "b_select": 0.0,
+    "bound": 0.02412698733228584,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 36,
+    "b_store": 0.02193626046949182,
+    "b_select": 0.0013457684596972679,
+    "bound": 0.023282028929189087,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 37,
+    "b_store": 0.024228590068516655,
+    "b_select": 0.0,
+    "bound": 0.024228590068516655,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 38,
+    "b_store": 0.022946980742346648,
+    "b_select": 0.002017375026176225,
+    "bound": 0.024964355768522874,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 39,
+    "b_store": 0.021296917961348978,
+    "b_select": 0.0,
+    "bound": 0.021296917961348978,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 40,
+    "b_store": 0.021767068787919713,
+    "b_select": 0.0013526678085327148,
+    "bound": 0.023119736596452427,
+    "tier": "partial",
+    "has_selector": true
+   },
+   {
+    "layer": 41,
+    "b_store": 0.023468436001355508,
+    "b_select": 0.0,
+    "bound": 0.023468436001355508,
+    "tier": "certified",
+    "has_selector": false
+   },
+   {
+    "layer": 42,
+    "b_store": 0.02390064141102408,
+    "b_select": 0.005212797207778759,
+    "bound": 0.02911343861880284,
+    "tier": "partial",
+    "has_selector": true
+   }
+  ]
+ },
+ "request_level": {
+  "bound": 0.9817114045448142,
+  "tier": "partial",
+  "n_layers": 43,
+  "trivial_bound": 43.0,
+  "tightness_vs_trivial": 43.8010598643678,
+  "verdict": "**边缘(实质已接近平凡)**",
+  "headroom_to_trivial": 0.018288595455185797
+ },
+ "findings": {
+  "1_per_layer_nonvacuous": "**单层非空洞**:逐层界中位 0.0231、最大 0.0291(第 42 层),远小于平凡界 1.0",
+  "2_request_level": "请求级判定 = **边缘(实质已接近平凡)**:沿 43 层按 (C1) 组合得 **0.982**(相对见证单位),距平凡上界 1.0 只剩 0.018 的余量。契约比平凡契约紧 44×,但**朴素的深度组合在请求级实质上已经没有信息** —— 单层结论可用,请求级结论不可用",
+  "3_where_the_difficulty_is": "难点不在任何单段,而在**深度**:单段贡献 0.0231 量级,乘以 43 层就顶到 0.98。这与论文1 的'跨层累积才是失效机制'是同一件事,现在用契约语言量化了。",
+  "4_what_would_fix_it": "要让请求级非空洞,需要某段 a<1(层间误差被平均/衰减)。池化的 a_pool≈0.55 正是这类系数,但它作用在池化**之前**的误差上,不在本链条里 —— 层间是否也有这样的衰减,是下一个要测的东西(**推测,未验证**)",
+  "5_honest_reading": "所以本节的正确读法是:**契约演算成功地把难点定位到了深度上**,而不是'我们给出了请求级证书'。前者是真结论且有用(它指出下一步该测层间衰减),后者会是过度声称。"
+ },
+ "superseded": {
+  "date": "2026-07-31",
+  "by": "formal/WitCert/Contract.lean + src/witcert/probe/contracts.py 的度量类型检查",
+  "reason": "本文件的 per_layer / request_level 数字是把**存储侧相对见证**(kv_entry:rel_witness,无量纲比值)与**选择侧全变差**(attn_dist:tv,概率质量)按 a₂·b₁+b₂ 直接相加得到的。加类型后 Chain.then 拒绝这次组合:两个数没有共同单位。此前的口径写的是'不是 TV 界' —— 那句说轻了,它**不属于任何一个度量**。",
+  "what_is_still_valid": "逐段的**单段**读数仍然有效(存储段 b、选择段 b_S 各自在自己的度量里);失效的是**跨对象的组合**与由它得到的请求级数字。",
+  "to_revive": "需要一个已证的 selector→attention 稳定性桥(bridge(kv_entry:rel_witness -> attn_dist:tv, proof=<Lean 定理>)),或改为只报每个对象内部的组合。",
+  "revived_as": "experiments/out/p76_bridged_composition.json(2026-07-31 补桥完成):打分桥 score_bridge + softmax 桥 softmax_tv_bridge,q 范数由 p75 实采"
+ }
+}

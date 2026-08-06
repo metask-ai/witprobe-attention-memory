@@ -1,0 +1,97 @@
+{
+ "arm": "stageb",
+ "arm_knob": "WITCERT_POOL_SWAP_B",
+ "arm_val": "1",
+ "hbm_mib_per_gpu": [
+  119766,
+  122780,
+  122780,
+  122780,
+  122780,
+  122780,
+  122300,
+  122780
+ ],
+ "run_id": "p112b2",
+ "acc": 0.5,
+ "n": 6,
+ "n_error": 0,
+ "valid": true,
+ "witcert_env": {
+  "WITCERT_PROBE_FLUSH": "64",
+  "WITCERT_PROBE": "1",
+  "WITCERT_POOL_SWAP_B": "1",
+  "WITCERT_PACK_EVERY_READ": "0",
+  "WITCERT_PACKSHADOW": "0",
+  "WITCERT_PACKED_KERNEL": "0",
+  "WITCERT_DECODE_SHADOW": "0",
+  "WITCERT_PROBE_EVERY": "8",
+  "WITCERT_DECODE_SHADOW_EVERY": "32",
+  "WITCERT_STAGEB_EMPTY_CACHE": "1",
+  "WITCERT_PROBE_ROWS": "64",
+  "WITCERT_PROBE_FILE": "/tmp/wc_p112b2.json",
+  "WITCERT_PROBE_BANDS": "16",
+  "WITCERT_SHADOW_EVERY": "16",
+  "WITCERT_SM120_ROUTE": "0",
+  "WITCERT_PACKED_C4": "0",
+  "_applied_adapters": "kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-r"
+ },
+ "snapshot": {},
+ "n_rank_files": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n\nQuestion: What is the secret cod",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "1.",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "417026",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "The secret code for word1265 is 435047.",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "417052",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "The secret code for alpha5 is 409. word3",
+   "hit": false,
+   "error": null
+  }
+ ]
+}

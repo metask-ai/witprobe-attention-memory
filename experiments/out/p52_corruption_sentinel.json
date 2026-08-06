@@ -1,0 +1,115 @@
+{
+ "model": "GLM-5.2-W4AFP8",
+ "pool": "fp8_e4m3, 78L, tp8+dp8, page 64",
+ "protocol": "写入后从池读回算见证(逐槽位分带范数,B=8,层0)→ 每 4 次层0写入抽 128 槽位对拍;阈值 |Δ|>0.05·|ref|+0.05;基线 2 条干净探针,随后触发注入 4 槽位置零,再 3 条探针",
+ "ranks": 8,
+ "baseline_alarms_total": 0,
+ "per_rank": {
+  "rank0": {
+   "verify_passes": 26,
+   "l0_calls": 104,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  },
+  "rank1": {
+   "verify_passes": 28,
+   "l0_calls": 112,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  },
+  "rank2": {
+   "verify_passes": 28,
+   "l0_calls": 112,
+   "inject_attempts": 1,
+   "corrupt_injected": [
+    729,
+    256,
+    494,
+    919
+   ],
+   "alarms": [
+    {
+     "l0_call": 56,
+     "n_bad": 1,
+     "n_checked": 128,
+     "max_rel_dev": 1.0,
+     "slots": [
+      919
+     ]
+    },
+    {
+     "l0_call": 104,
+     "n_bad": 1,
+     "n_checked": 128,
+     "max_rel_dev": 1.0,
+     "slots": [
+      729
+     ]
+    }
+   ],
+   "inject_error": null
+  },
+  "rank3": {
+   "verify_passes": 28,
+   "l0_calls": 112,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  },
+  "rank4": {
+   "verify_passes": 28,
+   "l0_calls": 112,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  },
+  "rank5": {
+   "verify_passes": 2,
+   "l0_calls": 9,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  },
+  "rank6": {
+   "verify_passes": 2,
+   "l0_calls": 9,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  },
+  "rank7": {
+   "verify_passes": 2,
+   "l0_calls": 9,
+   "inject_attempts": 0,
+   "corrupt_injected": [],
+   "alarms": [],
+   "inject_error": null
+  }
+ },
+ "summary": {
+  "verify_passes_total": 144,
+  "alarms_total": 2,
+  "false_positive_rate": 0.0,
+  "injected_slots": [
+   729,
+   256,
+   494,
+   919
+  ],
+  "detected_slots": [
+   729,
+   919
+  ],
+  "detection_max_rel_dev": 1.0,
+  "sampling_rate_per_check": "128 槽/次",
+  "note": "无假阳性(干净期全 rank 零告警);注入坏块被逐槽位定位;检出延迟 = 池容量/抽样数 × 校验间隔,为可调观测成本旋钮。工程链:wrapper 先写后观(口径一致)+ 见证逐层(避免跨层覆盖)+ fp8 dtype 安全注入"
+ }
+}

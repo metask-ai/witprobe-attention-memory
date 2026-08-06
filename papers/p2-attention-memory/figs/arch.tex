@@ -1,0 +1,55 @@
+% WitCert 全景架构图(示意,无数据点;数据图纪律不适用)
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize, scale=0.92, every node/.append style={transform shape},
+  box/.style={draw, rounded corners=1.5pt, align=center, inner sep=3.5pt,
+              minimum height=6.5mm},
+  mem/.style={box, fill=gray!12, draw=gray!60, minimum width=25mm},
+  op/.style={box, fill=blue!8, draw=blue!40!gray, minimum width=17mm},
+  cert/.style={box, fill=teal!22, draw=teal!55!black},
+  part/.style={box, fill=orange!25, draw=orange!70!black},
+  emp/.style={box, fill=gray!22, draw=gray!70},
+  arr/.style={-{Stealth[length=2.2mm]}, semithick, gray!45!black}]
+
+% 左列:四类注意力内存
+\node[mem] (dense)  at (0, 3.0) {dense KV};
+\node[mem] (latent) at (0, 2.0) {latent KV (MLA)};
+\node[mem] (sparse) at (0, 1.0) {sparse selector};
+\node[mem] (rec)    at (0, 0.0) {recurrent state};
+\node[align=center, gray!30!black] at (0, 3.85) {\textbf{attention memory}\\[-1pt]\scriptsize four classes, one algebra};
+
+% 中列:三算子管线
+\node[op] (upd) at (3.6, 2.5) {\textsc{update}};
+\node[op] (sel) at (3.6, 1.5) {\textsc{select}};
+\node[op] (rd)  at (3.6, 0.5) {\textsc{read}};
+\node[align=center, gray!30!black] at (3.6, 3.85) {\textbf{operators}\\[-1pt]\scriptsize per-stage local contracts};
+
+\foreach \m in {dense, latent, sparse, rec}{
+  \draw[arr] (\m.east) -- (2.55, 1.5);}
+\draw[arr] (upd) -- (sel);
+\draw[arr] (sel) -- (rd);
+
+% 右列:契约与账本
+\node[cert, minimum width=31mm] (typed)  at (7.6, 2.7)
+  {typed error contract\\[-1pt]\scriptsize wrong metric composition\\[-2pt]\scriptsize rejected at elaboration};
+\node[cert, minimum width=31mm] (ledger) at (7.6, 1.5)
+  {request-level risk ledger\\[-1pt]\scriptsize anytime-valid e-process};
+\node[part, minimum width=31mm] (obs)    at (7.6, 0.3)
+  {runtime observe / fallback\\[-1pt]\scriptsize resident probes, quality oracle};
+\draw[arr] (rd.east) -- (typed.west);
+\draw[arr] (rd.east) -- (ledger.west);
+\draw[arr] (rd.east) -- (obs.west);
+\node[align=center, gray!30!black] at (7.6, 3.85) {\textbf{verification}\\[-1pt]\scriptsize machine-checked $\to$ observed};
+
+% 图例:三级认证色
+\node[cert, minimum width=17mm, minimum height=4.5mm] (l1) at (1.3, -1.05) {\scriptsize certified};
+\node[part, minimum width=22mm, minimum height=4.5mm] (l2) at (3.9, -1.05) {\scriptsize partially certified};
+\node[emp,  minimum width=17mm, minimum height=4.5mm] (l3) at (6.4, -1.05) {\scriptsize empirical};
+\node[gray!30!black, anchor=west] at (7.6, -1.05) {\scriptsize tier decided by the machine, not prose};
+\end{tikzpicture}
+\caption{\textbf{WitCert in one view.} Four attention-memory classes, three
+operators, typed per-stage contracts, a request-level risk ledger, and
+fail-closed runtime observation. Colors mark certification tiers, decided
+by machine-checked artifacts (\S\ref{sec:tiers}), not narrative.}
+\label{fig:arch}
+\end{figure}

@@ -1,0 +1,43 @@
+{
+ "model": "Qwen2.5-7B-Instruct",
+ "S": 4096,
+ "docs": 6,
+ "jaccard_mean": 0.9395833333333333,
+ "jaccard_min": 0.75,
+ "energy_top1": 0.3133155107498169,
+ "energy_top4": 0.5434358716011047,
+ "energy_top8": 0.6744804978370667,
+ "energy_top16": 0.7899282574653625,
+ "coverage_by_m": {
+  "0": {
+   "coverage": 0.5247024016338401,
+   "extra_bytes": 0,
+   "total_bytes": 136,
+   "saving_pct": 46.875
+  },
+  "2": {
+   "coverage": 0.8177083397905032,
+   "extra_bytes": 8,
+   "total_bytes": 144,
+   "saving_pct": 43.75
+  },
+  "4": {
+   "coverage": 0.8428571462631226,
+   "extra_bytes": 16,
+   "total_bytes": 152,
+   "saving_pct": 40.625
+  },
+  "8": {
+   "coverage": 0.9292410795887311,
+   "extra_bytes": 32,
+   "total_bytes": 168,
+   "saving_pct": 34.375
+  },
+  "16": {
+   "coverage": 0.9797619139154752,
+   "extra_bytes": 64,
+   "total_bytes": 200,
+   "saving_pct": 21.875
+  }
+ }
+}

@@ -1,0 +1,31 @@
+{
+  "_note": "论文2 图数据单一来源。每个数字必须同时出现在 main.tex 正文(claims 守卫冻结);test_paper_claims 的 figdata⊆prose 检查强制两者同步。来源口径见各条 source。",
+  "coverage": {
+    "old_radius_pct": 7.8,
+    "new_radius_pct": 67.5,
+    "ratio": 8.7,
+    "violations": 0,
+    "authorized_entries": 1276631,
+    "source": "finite-product radius(main.tex Upgrading the certified object 节;抽签前授权口径)"
+  },
+  "pareto": {
+    "points": [
+      {"retention_pct": 80.1, "tv_bound": 1.54, "vacuous": true,
+       "label": "retention-first (bound vacuous)"},
+      {"retention_pct": 29.3, "tv_bound": 0.86, "vacuous": false,
+       "label": "bound-first"}
+    ],
+    "delta_req": 0.01,
+    "max_request_spend": 0.009984,
+    "source": "request-level ledger 两工作点(main.tex ledger 节;离线重放口径)"
+  },
+  "overhead": {
+    "points": [
+      {"label": "fused, 1/28 layers\n(graph-on)", "layers": 1,
+       "throughput_pct": -0.94, "ttft_p99_pct": -0.14},
+      {"label": "fused, 28/28 layers\n(graph-on)", "layers": 28,
+       "throughput_pct": -10.16, "ttft_p99_pct": null}
+    ],
+    "source": "常驻探针开销(main.tex Overhead 节;bench_serving 口径)"
+  }
+}

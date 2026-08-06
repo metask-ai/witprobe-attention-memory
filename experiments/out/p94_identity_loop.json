@@ -1,0 +1,406 @@
+{
+ "what": "F1/F2:同对象身份闭环(压缩页池认证写 + 槽位状态图)+ 逐请求独立预算",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "同对象:写侧 = item.compress_kv_pool(c4/c128),读侧账本 dequant 的同一缓冲;swa 窗口池的 cwrite 仍在但不参与本闭环计数",
+  "请求身份 rid#seq:非 extend→extend 转换计一次(chunked prefill 连续 extend 属同一请求);串行 batch=1 口径,并发批下该口径失效(显式声明)",
+  "version 口径:串行无驱逐负载,槽位不复用 —— slot_flags 即 (entry,version);有驱逐/复用的负载需要显式 version 计数器,本实验不覆盖",
+  "副本耦合:counter-based 种子 (layer,k) → 8 rank 逐比特同实现;验收为各 rank 账目字段完全一致,δ 按逻辑事件数一次",
+  "首个 compress 写可能先于该批 stash 一步 —— 请求边界最多偏一个 batch(如实报)"
+ ],
+ "arms": {
+  "policy": {
+   "per_request": [
+    {
+     "rid": "boot",
+     "write_side": {
+      "n_compressed": 4709,
+      "n_fallback_exact": 18002,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 0,
+      "n_read_masked": 0,
+      "n_read_kept_exact": 0,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "1#0",
+     "write_side": {
+      "n_compressed": 14,
+      "n_fallback_exact": 70,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 86394,
+      "n_read_masked": 16731,
+      "n_read_kept_exact": 69663,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "2#0",
+     "write_side": {
+      "n_compressed": 5436,
+      "n_fallback_exact": 20986,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 946176,
+      "n_read_masked": 184274,
+      "n_read_kept_exact": 761902,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "3#0",
+     "write_side": {
+      "n_compressed": 8755,
+      "n_fallback_exact": 33919,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 203392,
+      "n_read_kept_exact": 828800,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "4#0",
+     "write_side": {
+      "n_compressed": 5929,
+      "n_fallback_exact": 23785,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 194498,
+      "n_read_kept_exact": 837694,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "5#0",
+     "write_side": {
+      "n_compressed": 4573,
+      "n_fallback_exact": 17006,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 187600,
+      "n_read_kept_exact": 844592,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "6#0",
+     "write_side": {
+      "n_compressed": 4497,
+      "n_fallback_exact": 17102,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 203349,
+      "n_read_kept_exact": 828843,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "7#0",
+     "write_side": {
+      "n_compressed": 6240,
+      "n_fallback_exact": 23474,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 197362,
+      "n_read_kept_exact": 834830,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "8#0",
+     "write_side": {
+      "n_compressed": 8596,
+      "n_fallback_exact": 34058,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 201609,
+      "n_read_kept_exact": 830583,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "9#0",
+     "write_side": {
+      "n_compressed": 105,
+      "n_fallback_exact": 419,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1031168,
+      "n_read_masked": 195212,
+      "n_read_kept_exact": 835956,
+      "n_read_unwritten": 0
+     }
+    }
+   ],
+   "replica_coupling": {
+    "n_ranks_seen": 8,
+    "identical": true,
+    "diff": null
+   }
+  },
+  "dither": {
+   "per_request": [
+    {
+     "rid": "boot",
+     "write_side": {
+      "n_compressed": 11135,
+      "n_fallback_exact": 11576,
+      "delta_spent": 0.009841269841269836,
+      "n_prob_events": 62,
+      "n_authorized": 11135,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 0,
+      "n_read_masked": 0,
+      "n_read_kept_exact": 0,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "1#0",
+     "write_side": {
+      "n_compressed": 58,
+      "n_fallback_exact": 26,
+      "delta_spent": 0.009882352941176465,
+      "n_prob_events": 84,
+      "n_authorized": 58,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 86394,
+      "n_read_masked": 41735,
+      "n_read_kept_exact": 44659,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "2#0",
+     "write_side": {
+      "n_compressed": 10610,
+      "n_fallback_exact": 15812,
+      "delta_spent": 0.009980916030534349,
+      "n_prob_events": 523,
+      "n_authorized": 10610,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 946176,
+      "n_read_masked": 469402,
+      "n_read_kept_exact": 476774,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "3#0",
+     "write_side": {
+      "n_compressed": 17187,
+      "n_fallback_exact": 25487,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 17187,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 416240,
+      "n_read_kept_exact": 615952,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "4#0",
+     "write_side": {
+      "n_compressed": 11898,
+      "n_fallback_exact": 17816,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 11898,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 410267,
+      "n_read_kept_exact": 621925,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "5#0",
+     "write_side": {
+      "n_compressed": 8904,
+      "n_fallback_exact": 12675,
+      "delta_spent": 0.009981684981684981,
+      "n_prob_events": 545,
+      "n_authorized": 8904,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 414530,
+      "n_read_kept_exact": 617662,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "6#0",
+     "write_side": {
+      "n_compressed": 8609,
+      "n_fallback_exact": 12990,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 8609,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 424164,
+      "n_read_kept_exact": 608028,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "7#0",
+     "write_side": {
+      "n_compressed": 11826,
+      "n_fallback_exact": 17888,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 11826,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 409710,
+      "n_read_kept_exact": 622482,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "8#0",
+     "write_side": {
+      "n_compressed": 16701,
+      "n_fallback_exact": 25953,
+      "delta_spent": 0.009981684981684981,
+      "n_prob_events": 545,
+      "n_authorized": 16701,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 408388,
+      "n_read_kept_exact": 623804,
+      "n_read_unwritten": 0
+     }
+    },
+    {
+     "rid": "9#0",
+     "write_side": {
+      "n_compressed": 258,
+      "n_fallback_exact": 266,
+      "delta_spent": 0.009980952380952379,
+      "n_prob_events": 524,
+      "n_authorized": 258,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1031168,
+      "n_read_masked": 401575,
+      "n_read_kept_exact": 629593,
+      "n_read_unwritten": 0
+     }
+    }
+   ],
+   "replica_coupling": {
+    "n_ranks_seen": 8,
+    "identical": true,
+    "diff": null
+   }
+  }
+ },
+ "summary": {
+  "n_requests_ledgered": 10,
+  "all_budgets_independent_ok": true,
+  "max_delta_spent": 0.009982332155477032,
+  "read_of_masked_total": 3396011,
+  "read_events_total": 8256890,
+  "auth_violations": "0/97186",
+  "replica_coupling_identical": true
+ },
+ "findings": {
+  "0_headline": "**同对象身份闭环 + 逐请求预算成立**:10 个请求各自独立记账,max Σδ = 0.009982 ≤ δ_req=0.01(全部通过);读侧 8,256,890 次条目检查中 3,396,011 次命中写侧已掩槽位(n_read_masked>0 = 读到的就是被策略改过的物理条目);预授违约 0/97186;副本耦合:8 个 rank 账目逐字段一致 —— counter-based 种子下8 份副本为同一随机实现,δ 按逻辑事件数一次"
+ },
+ "superseded_by": "p96_identity_v2.json",
+ "superseded_why": "七审:身份机制(stash 站点+seq_len 回落)不完备,账户边界偏批;随机流跨请求复用"
+}

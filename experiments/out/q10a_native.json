@@ -1,0 +1,185 @@
+{
+ "arm": "native",
+ "arm_knob": "WITCERT_POOL_SWAP_B",
+ "arm_val": "0",
+ "arm_env": "",
+ "quality_caliber": {
+  "c128_evictions": 0,
+  "c4_evictions": 0,
+  "zero_evict": true
+ },
+ "manifest": {
+  "workers": 4,
+  "ndoc": 12,
+  "seed": 42,
+  "smoke": "0",
+  "adapters": "dsv4-sm120route,kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-graph",
+  "run_id": "q10a",
+  "model": "/workspace/models/DeepSeek-V4-Flash-FP8",
+  "code": "3fe32c5",
+  "ring_pages_env": "1025",
+  "c4_ring_pages_env": "1025",
+  "abort_n": 0,
+  "graphs": "on",
+  "radix": "off",
+  "extra_server_flags": "",
+  "context_len": 65536,
+  "tp": 8,
+  "client": "bench",
+  "bench": {
+   "BENCH_ILEN": null,
+   "BENCH_OLEN": null,
+   "BENCH_N": null,
+   "BENCH_RATE": null
+  }
+ },
+ "hbm_mib_per_gpu": [
+  124596,
+  125532,
+  125532,
+  125532,
+  125532,
+  125532,
+  125052,
+  125532
+ ],
+ "run_id": "q10a",
+ "acc": 1.0,
+ "n": 12,
+ "n_error": 0,
+ "abort_probe": null,
+ "valid": true,
+ "witcert_env": {
+  "WITCERT_PROBE_FLUSH": "64",
+  "WITCERT_PROBE": "0",
+  "WITCERT_POOL_SWAP_B": "0",
+  "WITCERT_PACK_EVERY_READ": "0",
+  "WITCERT_PACKSHADOW": "0",
+  "WITCERT_PACKED_KERNEL": "0",
+  "WITCERT_DECODE_SHADOW": "0",
+  "WITCERT_PROBE_EVERY": "8",
+  "WITCERT_DECODE_SHADOW_EVERY": "32",
+  "WITCERT_STAGEB_C4_RING_PAGES": "1025",
+  "WITCERT_STAGEB_EMPTY_CACHE": "1",
+  "WITCERT_PROBE_ROWS": "64",
+  "WITCERT_PROBE_FILE": "/tmp/wc_q10a.json",
+  "WITCERT_PROBE_BANDS": "16",
+  "WITCERT_SHADOW_EVERY": "16",
+  "WITCERT_SM120_ROUTE": "0",
+  "WITCERT_STAGEB_RING_PAGES": "1025",
+  "WITCERT_PACKED_C4": "0",
+  "_applied_adapters": "dsv4-sm120route,kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-graph"
+ },
+ "snapshot": {},
+ "n_rank_files": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "417013\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "417026\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "417039\n```\n\n\n## 3.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "417052",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "417065\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_14.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417078",
+   "out": "417078\n```\n\n\n## 3.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_15.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417091",
+   "out": "417091",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_16.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417104",
+   "out": "417104",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_17.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417117",
+   "out": "417117",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_18.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417130",
+   "out": "417130",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_19.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417143",
+   "out": "417143\n```",
+   "hit": true,
+   "error": null
+  }
+ ]
+}

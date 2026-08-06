@@ -1,0 +1,121 @@
+{
+ "arm": "native",
+ "arm_knob": "WITCERT_POOL_SWAP_B",
+ "arm_val": "0",
+ "arm_env": "",
+ "manifest": {
+  "workers": 4,
+  "ndoc": 6,
+  "seed": 42,
+  "smoke": "1",
+  "adapters": "kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-graph",
+  "run_id": "q6c",
+  "model": "/workspace/models/DeepSeek-V4-Flash-FP8",
+  "code": "da64729",
+  "ring_pages_env": "513",
+  "c4_ring_pages_env": "513",
+  "abort_n": 0,
+  "graphs": "on",
+  "radix": "on",
+  "extra_server_flags": "",
+  "context_len": 65536,
+  "tp": 8,
+  "client": "niah",
+  "bench": null
+ },
+ "hbm_mib_per_gpu": [
+  121288,
+  124080,
+  124080,
+  124080,
+  124080,
+  124080,
+  123600,
+  124080
+ ],
+ "run_id": "q6c",
+ "acc": 1.0,
+ "n": 6,
+ "n_error": 0,
+ "abort_probe": null,
+ "valid": true,
+ "witcert_env": {
+  "WITCERT_PROBE_FLUSH": "64",
+  "WITCERT_PROBE": "0",
+  "WITCERT_POOL_SWAP_B": "0",
+  "WITCERT_PACK_EVERY_READ": "0",
+  "WITCERT_PACKSHADOW": "0",
+  "WITCERT_PACKED_KERNEL": "0",
+  "WITCERT_DECODE_SHADOW": "0",
+  "WITCERT_PROBE_EVERY": "8",
+  "WITCERT_DECODE_SHADOW_EVERY": "32",
+  "WITCERT_STAGEB_C4_RING_PAGES": "513",
+  "WITCERT_STAGEB_EMPTY_CACHE": "1",
+  "WITCERT_PROBE_ROWS": "64",
+  "WITCERT_PROBE_FILE": "/tmp/wc_q6c.json",
+  "WITCERT_PROBE_BANDS": "16",
+  "WITCERT_SHADOW_EVERY": "16",
+  "WITCERT_SM120_ROUTE": "0",
+  "WITCERT_STAGEB_RING_PAGES": "513",
+  "WITCERT_PACKED_C4": "0",
+  "_applied_adapters": "kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-graph"
+ },
+ "snapshot": {},
+ "n_rank_files": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "417013\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "417026\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "417039\n```\n\n\n## 3.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "417052",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "417065\n```",
+   "hit": true,
+   "error": null
+  }
+ ]
+}

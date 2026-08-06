@@ -1,0 +1,485 @@
+{
+ "what": "F2 v2:真实生命周期请求身份(写路径 extend 边界)+ 不复用随机流 + 全局 e-process",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "身份 = 逻辑请求 UID(全局单调,永不复用);边界主信号 = 非 extend→extend转换,在写路径、任何写入入账之前检测 —— 无一批偏移;decode-only 后备 = 同 rid seq_len 回落。单元测试 R5 覆盖七审列举的漏检情形",
+  "user 请求 = 读账户中**最后 8 个**(串行执行 uid 顺序=到达顺序,launcher 恰发 8 条 prompt);更早的读账户 = 服务器 warmup generate,无读账户 = boot/prefill-only warmup —— 三类分开报,不合称请求数",
+  "SR 种子 = (server_nonce, UID, layer, k) mod 2^63 —— 不同请求不共享随机流(条件随机性对自适应流量成立);四元组跨 rank 一致 → 耦合保持",
+  "串行 batch=1 口径;并发批下批内首请求近似失效(显式声明);槽位复用的 (entry,version) 仍是串行无驱逐口径",
+  "e-process 全局账户跨请求不重置(持续全服务哨兵);log_M_max 仅含更新后的值,负值峰值如实报(不以初始化 0 冒充)"
+ ],
+ "arms": {
+  "policy": {
+   "per_request": [
+    {
+     "rid": "u1",
+     "is_user_request": false,
+     "write_side": {
+      "n_compressed": 19,
+      "n_fallback_exact": 86,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 86394,
+      "n_read_masked": 16724,
+      "n_read_kept_exact": 69670,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u2",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 4790,
+      "n_fallback_exact": 18382,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 946176,
+      "n_read_masked": 183389,
+      "n_read_kept_exact": 762787,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u3",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 5407,
+      "n_fallback_exact": 21057,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 199626,
+      "n_read_kept_exact": 832566,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u4",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 8767,
+      "n_fallback_exact": 33907,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 199737,
+      "n_read_kept_exact": 832455,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u5",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 5904,
+      "n_fallback_exact": 23790,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 188380,
+      "n_read_kept_exact": 843812,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u6",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 4608,
+      "n_fallback_exact": 16991,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 204033,
+      "n_read_kept_exact": 828159,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u7",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 4509,
+      "n_fallback_exact": 17090,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 197040,
+      "n_read_kept_exact": 835152,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u8",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 6249,
+      "n_fallback_exact": 23445,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 200507,
+      "n_read_kept_exact": 831685,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    },
+    {
+     "rid": "u9",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 8666,
+      "n_fallback_exact": 34008,
+      "delta_spent": 0.0,
+      "n_prob_events": 0,
+      "n_authorized": 0,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1031168,
+      "n_read_masked": 195782,
+      "n_read_kept_exact": 835386,
+      "n_read_unwritten": 0
+     },
+     "eprocess": null
+    }
+   ],
+   "replica_coupling": {
+    "n_ranks_seen": 8,
+    "identical": true,
+    "diff": null
+   },
+   "eprocess_global": null
+  },
+  "dither": {
+   "per_request": [
+    {
+     "rid": "u1",
+     "is_user_request": false,
+     "write_side": {
+      "n_compressed": 74,
+      "n_fallback_exact": 31,
+      "delta_spent": 0.009905660377358485,
+      "n_prob_events": 105,
+      "n_authorized": 74,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 86394,
+      "n_read_masked": 44698,
+      "n_read_kept_exact": 41696,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -45.866480976343155,
+      "log_M_max": -0.8249588012695312,
+      "n_factors": 74,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u2",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 12127,
+      "n_fallback_exact": 11045,
+      "delta_spent": 0.009980916030534349,
+      "n_prob_events": 523,
+      "n_authorized": 12127,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 946176,
+      "n_read_masked": 501981,
+      "n_read_kept_exact": 444195,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -7641.580294251442,
+      "log_M_max": -623.6177978515625,
+      "n_factors": 12127,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u3",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 13180,
+      "n_fallback_exact": 13284,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 13180,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 518848,
+      "n_read_kept_exact": 513344,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -8485.571573615074,
+      "log_M_max": -762.314453125,
+      "n_factors": 13180,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u4",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 21882,
+      "n_fallback_exact": 20582,
+      "delta_spent": 0.009971910112359548,
+      "n_prob_events": 355,
+      "n_authorized": 21882,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 612864,
+      "n_read_masked": 305888,
+      "n_read_kept_exact": 306976,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -13880.38066098094,
+      "log_M_max": -1181.8900146484375,
+      "n_factors": 21882,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u5",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 14834,
+      "n_fallback_exact": 14860,
+      "delta_spent": 0.009981684981684981,
+      "n_prob_events": 545,
+      "n_authorized": 14834,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 516530,
+      "n_read_kept_exact": 515662,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -9523.440951883793,
+      "log_M_max": -793.85205078125,
+      "n_factors": 14834,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u6",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 10951,
+      "n_fallback_exact": 10648,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 10951,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 526155,
+      "n_read_kept_exact": 506037,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -6949.645988613367,
+      "log_M_max": -567.1954345703125,
+      "n_factors": 10951,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u7",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 10987,
+      "n_fallback_exact": 10612,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 10987,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 530331,
+      "n_read_kept_exact": 501861,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -6970.616100400686,
+      "log_M_max": -564.7532348632812,
+      "n_factors": 10987,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u8",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 15156,
+      "n_fallback_exact": 14538,
+      "delta_spent": 0.009981684981684981,
+      "n_prob_events": 545,
+      "n_authorized": 15156,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1032192,
+      "n_read_masked": 525019,
+      "n_read_kept_exact": 507173,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -9685.410926312208,
+      "log_M_max": -810.8785400390625,
+      "n_factors": 15156,
+      "crossed": false
+     }
+    },
+    {
+     "rid": "u9",
+     "is_user_request": true,
+     "write_side": {
+      "n_compressed": 21470,
+      "n_fallback_exact": 21204,
+      "delta_spent": 0.009982332155477032,
+      "n_prob_events": 565,
+      "n_authorized": 21470,
+      "n_auth_violations": 0
+     },
+     "budget_ok": true,
+     "read_side": {
+      "n_events": 1030144,
+      "n_read_masked": 511453,
+      "n_read_kept_exact": 518691,
+      "n_read_unwritten": 0
+     },
+     "eprocess": {
+      "kappa": 0.5,
+      "delta_e": 0.01,
+      "log_M": -13636.478481918573,
+      "log_M_max": -1143.0537109375,
+      "n_factors": 21470,
+      "crossed": false
+     }
+    }
+   ],
+   "replica_coupling": {
+    "n_ranks_seen": 8,
+    "identical": true,
+    "diff": null
+   },
+   "eprocess_global": {
+    "kappa": 0.5,
+    "delta_e": 0.01,
+    "log_M": -76818.99145895243,
+    "log_M_max": -0.8249588012695312,
+    "n_factors": 120661,
+    "crossed": false
+   }
+  }
+ },
+ "summary": {
+  "n_user_requests": 8,
+  "n_warmup_accounts": 1,
+  "all_budgets_independent_ok": true,
+  "max_delta_spent": 0.009982332155477032,
+  "read_of_masked_user": 3936205,
+  "read_events_user": 7750144,
+  "read_unwritten_user": 0,
+  "auth_violations": "0/120661",
+  "replica_coupling_identical": true,
+  "eprocess_global": {
+   "n_factors": 120661,
+   "log_M_final": -76818.99145895243,
+   "log_M_max": -0.8249588012695312,
+   "threshold": 4.605170185988092,
+   "crossed": false
+  }
+ },
+ "findings": {
+  "0_headline": "**真实生命周期身份 + 不复用随机流成立**:8 个 user 请求账户(另有 1 个 warmup/boot 账户,分开计)各自独立预算,max Σδ = 0.009982 ≤ 0.01(全部通过);边界在写路径 extend 转换处检测(先于任何写入,无一批偏移);SR 种子含 (nonce,UID,layer,k),跨请求零随机流复用;读闭环:user 请求 7,750,144 次检查中 3,936,205 次命中已掩槽位、0 次读到未写槽位;违约 0/120661;8-rank 耦合逐字段一致;**全局 e-process(跨请求不重置)**:120,661 因子,log M 终值 -76819.0、更新后峰值 -0.82 vs 阈值 4.61,越阈 0 次 —— 持续全服务漂移哨兵在位"
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "model": "/home/user/witcert/models/Qwen2.5-1.5B-Instruct",
+ "seqlen": 8192,
+ "dtype": "bfloat16",
+ "summary": {
+  "0.02": {
+   "tanh": 16,
+   "witness": 16,
+   "oracle": 9.142857142857142,
+   "viol": "0/0"
+  },
+  "0.05": {
+   "tanh": 16,
+   "witness": 15,
+   "oracle": 8.142857142857142,
+   "viol": "0/7"
+  },
+  "0.1": {
+   "tanh": 16,
+   "witness": 12,
+   "oracle": 7.25,
+   "viol": "0/28"
+  },
+  "0.2": {
+   "tanh": 16,
+   "witness": 9,
+   "oracle": 6.535714285714286,
+   "viol": "0/49"
+  }
+ },
+ "ppl": {
+  "base": 10.421688079833984,
+  "witness": 10.421086311340332,
+  "avg_bits": 15
+ }
+}

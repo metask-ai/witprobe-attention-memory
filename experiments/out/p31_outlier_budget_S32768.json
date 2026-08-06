@@ -1,0 +1,38 @@
+{
+ "S": 32768,
+ "nq": 24,
+ "tau": 0.2,
+ "delta_req": 0.01,
+ "rows": [
+  {
+   "m_pairs": 4,
+   "bytes_per_tok_head": 145.09375,
+   "saving_pct": 43.32275390625,
+   "coverage": 0.7916666865348816,
+   "cert_median": 0.188259556889534,
+   "cert_max": 0.21258416771888733,
+   "latency_ms": 8.800870361328125,
+   "needs_fallback": true
+  },
+  {
+   "m_pairs": 8,
+   "bytes_per_tok_head": 161.15625,
+   "saving_pct": 37.04833984375,
+   "coverage": 0.9583333730697632,
+   "cert_median": 0.1782500296831131,
+   "cert_max": 0.20144455134868622,
+   "latency_ms": 9.880350952148438,
+   "needs_fallback": true
+  },
+  {
+   "m_pairs": 16,
+   "bytes_per_tok_head": 193.28125,
+   "saving_pct": 24.49951171875,
+   "coverage": 1.0,
+   "cert_median": 0.15961864590644836,
+   "cert_max": 0.18039710819721222,
+   "latency_ms": 11.713863525390625,
+   "needs_fallback": false
+  }
+ ]
+}

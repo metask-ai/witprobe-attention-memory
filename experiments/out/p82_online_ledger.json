@@ -1,0 +1,255 @@
+{
+ "what": "在线影子账本(A9 阶段 1):逐请求实例化 + 逐读取(选中页条目)检查 + 请求报告,在线跑在 serving 里;**只读,回退为假想**",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8, ctx 65536",
+ "W_thr": 0.5,
+ "W_thr_source": "launcher env(WITCERT_LEDGER_WTHR,快照字段本轮缺失)",
+ "caliber": [
+  "逐读取 = 每 decode 步、每 c4 层、全部被选中页条目(非抽样);串行请求,边界真实",
+  "**影子账本**:超阈条目照常被模型使用;would_* = 若执行回退策略会发生什么",
+  "窗口条目与 c128 层不在账本;rank 分片计数相加",
+  "Σδ=0(全确定性证书);真实回退与其成本入账是 A9 终局"
+ ],
+ "n_requests": 25,
+ "note_requests": "25 = 24 条测量请求 + 1 条预热(串行,均单独成账)",
+ "per_request": [
+  {
+   "rid": "1",
+   "n_events": 3024,
+   "n_would_fallback": 904,
+   "n_steps": 168,
+   "would_pagein_mib": 0.8828125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.701058201058201
+  },
+  {
+   "rid": "2",
+   "n_events": 8257536,
+   "n_would_fallback": 5518312,
+   "n_steps": 2016,
+   "would_pagein_mib": 5388.9765625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3317241365947421
+  },
+  {
+   "rid": "3",
+   "n_events": 8257536,
+   "n_would_fallback": 5519344,
+   "n_steps": 2016,
+   "would_pagein_mib": 5389.984375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3315991598462301
+  },
+  {
+   "rid": "4",
+   "n_events": 8257536,
+   "n_would_fallback": 5477416,
+   "n_steps": 2016,
+   "would_pagein_mib": 5349.0390625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3366767035590278
+  },
+  {
+   "rid": "5",
+   "n_events": 8257536,
+   "n_would_fallback": 5488080,
+   "n_steps": 2016,
+   "would_pagein_mib": 5359.453125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.33538527715773814
+  },
+  {
+   "rid": "6",
+   "n_events": 8257536,
+   "n_would_fallback": 5501520,
+   "n_steps": 2016,
+   "would_pagein_mib": 5372.578125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3337576729910714
+  },
+  {
+   "rid": "7",
+   "n_events": 8257536,
+   "n_would_fallback": 5490288,
+   "n_steps": 2016,
+   "would_pagein_mib": 5361.609375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3351178850446429
+  },
+  {
+   "rid": "8",
+   "n_events": 8257536,
+   "n_would_fallback": 5438832,
+   "n_steps": 2016,
+   "would_pagein_mib": 5311.359375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.34134928385416663
+  },
+  {
+   "rid": "9",
+   "n_events": 8257536,
+   "n_would_fallback": 5495080,
+   "n_steps": 2016,
+   "would_pagein_mib": 5366.2890625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3345375666542659
+  },
+  {
+   "rid": "10",
+   "n_events": 8257536,
+   "n_would_fallback": 5436840,
+   "n_steps": 2016,
+   "would_pagein_mib": 5309.4140625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.34159051804315477
+  },
+  {
+   "rid": "11",
+   "n_events": 8257536,
+   "n_would_fallback": 5536248,
+   "n_steps": 2016,
+   "would_pagein_mib": 5406.4921875,
+   "delta_spent": 0.0,
+   "entry_retention": 0.32955206008184523
+  },
+  {
+   "rid": "12",
+   "n_events": 8257536,
+   "n_would_fallback": 5501792,
+   "n_steps": 2016,
+   "would_pagein_mib": 5372.84375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3337247333829365
+  },
+  {
+   "rid": "13",
+   "n_events": 8257536,
+   "n_would_fallback": 5448928,
+   "n_steps": 2016,
+   "would_pagein_mib": 5321.21875,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3401266431051587
+  },
+  {
+   "rid": "14",
+   "n_events": 8257536,
+   "n_would_fallback": 5552288,
+   "n_steps": 2016,
+   "would_pagein_mib": 5422.15625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.32760959201388884
+  },
+  {
+   "rid": "15",
+   "n_events": 8257536,
+   "n_would_fallback": 5603136,
+   "n_steps": 2016,
+   "would_pagein_mib": 5471.8125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.32145182291666663
+  },
+  {
+   "rid": "16",
+   "n_events": 8257536,
+   "n_would_fallback": 5510392,
+   "n_steps": 2016,
+   "would_pagein_mib": 5381.2421875,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3326832604786706
+  },
+  {
+   "rid": "17",
+   "n_events": 8257536,
+   "n_would_fallback": 5489728,
+   "n_steps": 2016,
+   "would_pagein_mib": 5361.0625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3351857018849206
+  },
+  {
+   "rid": "18",
+   "n_events": 8257536,
+   "n_would_fallback": 5492488,
+   "n_steps": 2016,
+   "would_pagein_mib": 5363.7578125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3348514617435516
+  },
+  {
+   "rid": "19",
+   "n_events": 8257536,
+   "n_would_fallback": 5450576,
+   "n_steps": 2016,
+   "would_pagein_mib": 5322.828125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3399270678323413
+  },
+  {
+   "rid": "20",
+   "n_events": 8257536,
+   "n_would_fallback": 5548632,
+   "n_steps": 2016,
+   "would_pagein_mib": 5418.5859375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.32805233909970233
+  },
+  {
+   "rid": "21",
+   "n_events": 8257536,
+   "n_would_fallback": 5563744,
+   "n_steps": 2016,
+   "would_pagein_mib": 5433.34375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3262222532242064
+  },
+  {
+   "rid": "22",
+   "n_events": 8257536,
+   "n_would_fallback": 5512024,
+   "n_steps": 2016,
+   "would_pagein_mib": 5382.8359375,
+   "delta_spent": 0.0,
+   "entry_retention": 0.33248562282986116
+  },
+  {
+   "rid": "23",
+   "n_events": 8257536,
+   "n_would_fallback": 5519816,
+   "n_steps": 2016,
+   "would_pagein_mib": 5390.4453125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.33154199993799605
+  },
+  {
+   "rid": "24",
+   "n_events": 8257536,
+   "n_would_fallback": 5564200,
+   "n_steps": 2016,
+   "would_pagein_mib": 5433.7890625,
+   "delta_spent": 0.0,
+   "entry_retention": 0.3261670309399801
+  },
+  {
+   "rid": "25",
+   "n_events": 8237056,
+   "n_would_fallback": 5480768,
+   "n_steps": 2011,
+   "would_pagein_mib": 5352.3125,
+   "delta_spent": 0.0,
+   "entry_retention": 0.33462052461461955
+  }
+ ],
+ "summary": {
+  "retention_median": 0.3337576729910714,
+  "retention_min": 0.32145182291666663,
+  "retention_max": 0.701058201058201,
+  "would_pagein_mib_median": 5372.578125,
+  "would_pagein_mib_max": 5471.8125,
+  "events_total": 198163408,
+  "delta_spent_total": 0.0
+ },
+ "findings": {
+  "0_headline": "**在线影子账本闭环(只读)**:25 条串行请求,逐请求账本在线建立并出报告;逐读取检查共 198,163,408 个页条目事件。W_thr=0.50 下逐请求保留率中位 0.334(min 0.321 / max 0.701),假想页入中位 5372.6 MiB/请求;Σδ=0。**评审缺项四清二**:逐请求实例化✓ 请求边界✓ 逐读取检查✓ 请求报告✓;真实回退读路径✗ 概率预算实际消费✗(A9 终局)",
+  "1_semantics": "shadow 的诚实边界:账本证明的是'策略在真实读取流上的账目',不是'模型输出被策略保护过' —— 后者要等数值路径的真实回退"
+ }
+}

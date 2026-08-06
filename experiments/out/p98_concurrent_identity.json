@@ -1,0 +1,243 @@
+{
+ "what": "G1:并发批逐行请求身份 —— 逐条目 UID 归属 + 每账户独立预算/随机流",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "8 路 ThreadPoolExecutor 并发,批内多请求混行;终态快照(并发下无逐请求快照边界);user 账户 = 有读事件的账户",
+  "写侧逐条目归属:decode 计划 [bs,16] 批行对齐 / prefill 计划逐 query token 由 extend_seq_lens 前缀和分段;形状不符退回批首行口径(计数守卫)",
+  "foreign 读是归属正确性的运行时守卫:归属错位会把别账户条目算进本账户 owner,foreign 立即非零;8 条 prompt 互不相同,无前缀共享",
+  "每账户独立 (nonce,uid,layer,k) 随机流;并发调度批流 rank 间一致 → 耦合"
+ ],
+ "per_request": [
+  {
+   "rid": "u1",
+   "is_user_request": false,
+   "write_side": {
+    "n_compressed": 48,
+    "n_fallback_exact": 15,
+    "delta_spent": 0.009843749999999995,
+    "n_prob_events": 63,
+    "n_authorized": 48,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 378,
+    "n_read_masked": 302,
+    "n_read_kept_exact": 76,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u2",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 12041,
+    "n_fallback_exact": 11173,
+    "delta_spent": 0.009982332155477032,
+    "n_prob_events": 565,
+    "n_authorized": 12041,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 541469,
+    "n_read_kept_exact": 487139,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u3",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 21207,
+    "n_fallback_exact": 21467,
+    "delta_spent": 0.009983525535420099,
+    "n_prob_events": 606,
+    "n_authorized": 21207,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 505066,
+    "n_read_kept_exact": 523542,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u4",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 13314,
+    "n_fallback_exact": 13150,
+    "delta_spent": 0.009983525535420099,
+    "n_prob_events": 606,
+    "n_authorized": 13314,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 63,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 514704,
+    "n_read_kept_exact": 513904,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u5",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 14820,
+    "n_fallback_exact": 14874,
+    "delta_spent": 0.009981684981684981,
+    "n_prob_events": 545,
+    "n_authorized": 14820,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 511257,
+    "n_read_kept_exact": 517351,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u6",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 10683,
+    "n_fallback_exact": 10916,
+    "delta_spent": 0.009983525535420099,
+    "n_prob_events": 606,
+    "n_authorized": 10683,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 512642,
+    "n_read_kept_exact": 515966,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u7",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 11019,
+    "n_fallback_exact": 10580,
+    "delta_spent": 0.009982332155477032,
+    "n_prob_events": 565,
+    "n_authorized": 11019,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 530993,
+    "n_read_kept_exact": 497615,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u8",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 20375,
+    "n_fallback_exact": 22299,
+    "delta_spent": 0.009983525535420099,
+    "n_prob_events": 606,
+    "n_authorized": 20375,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 501804,
+    "n_read_kept_exact": 526804,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u9",
+   "is_user_request": true,
+   "write_side": {
+    "n_compressed": 14265,
+    "n_fallback_exact": 15429,
+    "delta_spent": 0.00998296422487223,
+    "n_prob_events": 586,
+    "n_authorized": 14265,
+    "n_auth_violations": 0
+   },
+   "n_slot_reuses": 0,
+   "budget_ok": true,
+   "read": {
+    "n_events": 1028608,
+    "n_read_masked": 497726,
+    "n_read_kept_exact": 530882,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  }
+ ],
+ "replica_coupling": {
+  "n_ranks_seen": 8,
+  "identical": true,
+  "diff": null
+ },
+ "summary": {
+  "n_user_requests": 8,
+  "n_other_accounts": 1,
+  "all_budgets_ok": true,
+  "max_delta_spent": 0.009983525535420099,
+  "foreign_reads_user": 0,
+  "read_events_user": 8228864,
+  "read_unwritten_user": 0,
+  "auth_violations": "0/117772",
+  "replica_coupling_identical": true,
+  "eprocess_global": {
+   "n_factors": 117772,
+   "log_M_max": -0.5806199312210083,
+   "crossed": false
+  }
+ },
+ "gate": {
+  "criteria": {
+   "n_user_requests==8": true,
+   "all_budgets<=delta_req": true,
+   "foreign_reads==0": true,
+   "read_unwritten==0": true,
+   "auth_violations==0": true,
+   "uid_group_fallbacks==0": true,
+   "identity_fail_closed==0": true,
+   "eprocess_has_factors": true,
+   "eprocess_logM_present": true,
+   "eprocess_not_crossed": true,
+   "n_ranks_seen==8": true,
+   "replica_coupling_identical": true
+  },
+  "passed": true
+ },
+ "findings": {
+  "0_headline": "**并发逐行身份 gate PASS**(12/12 硬判据):8 user 账户独立 max Σδ = 0.009984;foreign 0/读 8,228,864;读未写 0;违约 0/117772;归属回退 0;身份 fail-closed 拦截 0;8-rank 耦合一致;全局哨兵 117772 因子峰值 -0.58"
+ }
+}

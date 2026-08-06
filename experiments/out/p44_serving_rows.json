@@ -1,0 +1,95 @@
+{
+ "protocol": "bench_sglang_e2e,3 次取中位,H200,page16 memfrac0.88;tp2_* 为 CUDA_VISIBLE_DEVICES=6,7 tp_size=2",
+ "results": {
+  "14b_fp16": {
+   "tok_per_s_all": [
+    941.3,
+    924.1,
+    917.9
+   ],
+   "kv_capacity": 517984,
+   "tok_per_s_median": 924.1
+  },
+  "14b_wc": {
+   "tok_per_s_all": [
+    514.5,
+    624.1,
+    607.4
+   ],
+   "kv_capacity": 975024,
+   "tok_per_s_median": 607.4
+  },
+  "32b_fp16": {
+   "tok_per_s_all": [
+    733.2,
+    775.1,
+    774.3
+   ],
+   "kv_capacity": 251392,
+   "tok_per_s_median": 774.3
+  },
+  "32b_wc": {
+   "tok_per_s_all": [
+    545.5,
+    555.6,
+    508.6
+   ],
+   "kv_capacity": 473200,
+   "tok_per_s_median": 545.5
+  },
+  "tp2_7b_fp16": {
+   "tok_per_s_all": [
+    287.3,
+    369.3,
+    277.0
+   ],
+   "kv_capacity": 4286640,
+   "tok_per_s_median": 287.3
+  },
+  "tp2_7b_witcert": {
+   "tok_per_s_all": [
+    338.4,
+    296.5,
+    354.7
+   ],
+   "kv_capacity": 8068976,
+   "tok_per_s_median": 338.4
+  },
+  "tp4_7b_fp16": {
+   "tok_per_s_all": [
+    321.0,
+    469.1,
+    468.6
+   ],
+   "kv_capacity": 8810032,
+   "tok_per_s_median": 468.6
+  },
+  "tp4_7b_witcert": {
+   "tok_per_s_all": [
+    355.3,
+    364.2,
+    334.0
+   ],
+   "kv_capacity": 16583616,
+   "tok_per_s_median": 355.3
+  },
+  "70b_tp4_fp16": {
+   "tok_per_s_all": [
+    321.0,
+    363.5,
+    400.1
+   ],
+   "kv_capacity": 1160128,
+   "tok_per_s_median": 363.5
+  },
+  "70b_tp4_witcert": {
+   "tok_per_s_all": [
+    288.4,
+    261.1,
+    286.6
+   ],
+   "kv_capacity": 2183776,
+   "tok_per_s_median": 286.6
+  }
+ }
+}

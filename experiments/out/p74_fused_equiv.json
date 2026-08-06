@@ -1,0 +1,79 @@
+{
+ "what": "融合 band_witness 的数值等价性与单调用成本",
+ "machine": "hgx",
+ "caliber": [
+  "先证数值一致再谈速度;等价不过则不报速度",
+  "相对误差阈 1e-4(fp32 归约顺序不同,不要求 bit 级一致)",
+  "viol 计数必须完全相等 —— 那是 soundness 自检,不容许近似",
+  "量的是探针单次调用耗时,不是 serving 端到端(端到端见 p75)"
+ ],
+ "cases": [
+  {
+   "n": 128,
+   "D": 128,
+   "bands": 8,
+   "worst_rel_err": 7.696802756686876e-07,
+   "worst_key": "true_int8/min",
+   "viol_ref": 0,
+   "viol_fused": 0,
+   "n_ref": 128,
+   "n_fused": 128,
+   "ok": true
+  },
+  {
+   "n": 128,
+   "D": 512,
+   "bands": 8,
+   "worst_rel_err": 4.939222165648529e-07,
+   "worst_key": "rel_int8/max",
+   "viol_ref": 0,
+   "viol_fused": 0,
+   "n_ref": 128,
+   "n_fused": 128,
+   "ok": true
+  },
+  {
+   "n": 64,
+   "D": 1024,
+   "bands": 16,
+   "worst_rel_err": 1.8419176622282796e-07,
+   "worst_key": "tight_int8/min",
+   "viol_ref": 0,
+   "viol_fused": 0,
+   "n_ref": 64,
+   "n_fused": 64,
+   "ok": true
+  },
+  {
+   "n": 7,
+   "D": 128,
+   "bands": 8,
+   "worst_rel_err": 9.330162011265704e-07,
+   "worst_key": "wit_int8/min",
+   "viol_ref": 0,
+   "viol_fused": 0,
+   "n_ref": 7,
+   "n_fused": 7,
+   "ok": true
+  }
+ ],
+ "repeat_accumulate": {
+  "n_ref": 640,
+  "n_fused": 640,
+  "ok": true
+ },
+ "equivalent": true,
+ "latency_us": {
+  "torch_1quant": 296.6814301908016,
+  "torch_2quant": 546.8013044446707,
+  "fused_1quant": 12.27288506925106
+ },
+ "speedup": {
+  "vs_torch_1quant": 24.17373164636881,
+  "vs_torch_2quant": 44.553607514393406
+ },
+ "findings": {
+  "0_headline": "**数值等价成立**(最大相对误差 9.3e-07,viol 与 n 完全相等),融合后单次调用 12.3 us,对 torch 单量化档 24.17×、双量化档 44.55× —— 这正是 B6 要压的常数:开图后成本的驱动量是每次执行的 kernel 数",
+  "1_caveat": "这是**探针单调用**耗时,不是 serving 端到端。端到端要在开图下测,且必须同时过重放累加与层覆盖对账(见 p75)"
+ }
+}

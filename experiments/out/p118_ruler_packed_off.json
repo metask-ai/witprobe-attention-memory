@@ -1,0 +1,188 @@
+{
+ "arm": "packed",
+ "acc": 0.05,
+ "n": 20,
+ "n_error": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "177565\n```\n\n\n## 3.2.",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "0.5\n```\n\nThe model correctly identifies ",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "0.5\n```\n\nThe model's output is not",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "0",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_14.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417078",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_15.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417091",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_16.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417104",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_17.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417117",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_18.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417130",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_19.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417143",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_2.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417156",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_3.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417169",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_4.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417182",
+   "out": "14\n```\n\n\n## 2.2.2",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_5.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417195",
+   "out": "330\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_6.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417208",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_7.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417221",
+   "out": "17\n```\n\n\n## 2.2.2",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_8.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417234",
+   "out": "18\n\nQuestion: What is the special magic ",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_9.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417247",
+   "out": "19\n\nQuestion: What is the special magic ",
+   "hit": false,
+   "error": null
+  }
+ ]
+}

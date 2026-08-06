@@ -1,0 +1,43 @@
+{
+ "model": "Yi-1.5-6B-Chat",
+ "S": 4096,
+ "docs": 6,
+ "jaccard_mean": 0.8802083333333334,
+ "jaccard_min": 0.5,
+ "energy_top1": 0.23908352851867676,
+ "energy_top4": 0.411688894033432,
+ "energy_top8": 0.5156948566436768,
+ "energy_top16": 0.6526877880096436,
+ "coverage_by_m": {
+  "0": {
+   "coverage": 0.9070366753472222,
+   "extra_bytes": 0,
+   "total_bytes": 136,
+   "saving_pct": 46.875
+  },
+  "2": {
+   "coverage": 0.9988606770833334,
+   "extra_bytes": 8,
+   "total_bytes": 144,
+   "saving_pct": 43.75
+  },
+  "4": {
+   "coverage": 0.9999728732638888,
+   "extra_bytes": 16,
+   "total_bytes": 152,
+   "saving_pct": 40.625
+  },
+  "8": {
+   "coverage": 1.0,
+   "extra_bytes": 32,
+   "total_bytes": 168,
+   "saving_pct": 34.375
+  },
+  "16": {
+   "coverage": 1.0,
+   "extra_bytes": 64,
+   "total_bytes": 200,
+   "saving_pct": 21.875
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "model": "Qwen2.5-7B-Instruct",
+ "S": 8192,
+ "docs": 7,
+ "bits": 8,
+ "note": "\u771f\u5b9eV(\u975eK\u4ee3\u7406);2x2\u6d88\u878d",
+ "results": {
+  "RTN": {
+   "rel_err": 0.027511386519145906,
+   "bytes": 258.0,
+   "saving_pct": 49.609375
+  },
+  "RTN+\u79bb\u7fa4": {
+   "rel_err": 0.019949299784624303,
+   "bytes": 290.125,
+   "saving_pct": 43.3349609375
+  },
+  "dither": {
+   "rel_err": 0.027169895569831893,
+   "bytes": 258.0,
+   "saving_pct": 49.609375
+  },
+  "dither+\u79bb\u7fa4": {
+   "rel_err": 0.01950879384198093,
+   "bytes": 290.125,
+   "saving_pct": 43.3349609375
+  }
+ }
+}

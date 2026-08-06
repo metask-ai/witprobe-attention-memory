@@ -1,0 +1,238 @@
+{
+ "what": "A9-B:同请求闭环(读侧逐请求账本 + 写侧真实策略同运行)+ 概率语义修正",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "dither = 抽签前授权:u_e 为先验半径(均值项+尾项),授权不看实现值;事件 E_i='授权条目 W_e > u_e',δ_i 望远镜入账;写后审计违约数",
+  "掩码是**精度粗化非物理压缩**(字节数不变);接受率≠压缩收益保留率",
+  "8 条不同任务 prompt,n=8 小样本,方向性结论;首异位置右删失已分开报",
+  "逐请求账目 = 相邻请求快照差分(读写两侧;六审 P0-2:旧数据 rid=pool index 串行恒 0,无原生逐请求键);rank0 口径,TP 复制下各 rank 为同一逻辑条目"
+ ],
+ "arms": {
+  "off2": {
+   "exact_match": "6/8",
+   "first_div_median_divergent_only": 6.0,
+   "n_divergent": 2
+  },
+  "policy": {
+   "exact_match": "4/8",
+   "first_div_median_divergent_only": 5.5,
+   "n_divergent": 4
+  },
+  "dither": {
+   "exact_match": "6/8",
+   "first_div_median_divergent_only": 5.0,
+   "n_divergent": 2
+  }
+ },
+ "same_request_closure": {
+  "policy": [
+   {
+    "req": 0,
+    "write_side": {
+     "n_compressed": 89193,
+     "n_fallback_exact": 96166,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1028986
+   },
+   {
+    "req": 1,
+    "write_side": {
+     "n_compressed": 100934,
+     "n_fallback_exact": 109645,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1034240
+   },
+   {
+    "req": 2,
+    "write_side": {
+     "n_compressed": 160932,
+     "n_fallback_exact": 178631,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1030144
+   },
+   {
+    "req": 3,
+    "write_side": {
+     "n_compressed": 113408,
+     "n_fallback_exact": 122971,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1034240
+   },
+   {
+    "req": 4,
+    "write_side": {
+     "n_compressed": 82465,
+     "n_fallback_exact": 89398,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1030144
+   },
+   {
+    "req": 5,
+    "write_side": {
+     "n_compressed": 81889,
+     "n_fallback_exact": 89990,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1034240
+   },
+   {
+    "req": 6,
+    "write_side": {
+     "n_compressed": 115357,
+     "n_fallback_exact": 121049,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1030144
+   },
+   {
+    "req": 7,
+    "write_side": {
+     "n_compressed": 163307,
+     "n_fallback_exact": 176274,
+     "delta_spent": 0.0,
+     "n_prob_events": 0,
+     "n_auth_violations": 0,
+     "n_authorized": 0
+    },
+    "read_side_events": 1034752
+   }
+  ],
+  "dither": [
+   {
+    "req": 0,
+    "write_side": {
+     "n_compressed": 22490,
+     "n_fallback_exact": 162869,
+     "delta_spent": 0.009997619614377534,
+     "n_prob_events": 4200,
+     "n_auth_violations": 0,
+     "n_authorized": 22490
+    },
+    "read_side_events": 1028986
+   },
+   {
+    "req": 1,
+    "write_side": {
+     "n_compressed": 15767,
+     "n_fallback_exact": 194812,
+     "delta_spent": 1.187068199969693e-06,
+     "n_prob_events": 4179,
+     "n_auth_violations": 0,
+     "n_authorized": 15767
+    },
+    "read_side_events": 1034240
+   },
+   {
+    "req": 2,
+    "write_side": {
+     "n_compressed": 25727,
+     "n_fallback_exact": 313836,
+     "delta_spent": 3.9605998801948983e-07,
+     "n_prob_events": 4163,
+     "n_auth_violations": 0,
+     "n_authorized": 25727
+    },
+    "read_side_events": 1030144
+   },
+   {
+    "req": 3,
+    "write_side": {
+     "n_compressed": 18145,
+     "n_fallback_exact": 218234,
+     "delta_spent": 1.992428428389259e-07,
+     "n_prob_events": 4179,
+     "n_auth_violations": 0,
+     "n_authorized": 18145
+    },
+    "read_side_events": 1034240
+   },
+   {
+    "req": 4,
+    "write_side": {
+     "n_compressed": 12662,
+     "n_fallback_exact": 159201,
+     "delta_spent": 1.1920204660668954e-07,
+     "n_prob_events": 4163,
+     "n_auth_violations": 0,
+     "n_authorized": 12662
+    },
+    "read_side_events": 1030144
+   },
+   {
+    "req": 5,
+    "write_side": {
+     "n_compressed": 11985,
+     "n_fallback_exact": 159894,
+     "delta_spent": 7.983393008996476e-08,
+     "n_prob_events": 4179,
+     "n_auth_violations": 0,
+     "n_authorized": 11985
+    },
+    "read_side_events": 1034240
+   },
+   {
+    "req": 6,
+    "write_side": {
+     "n_compressed": 16541,
+     "n_fallback_exact": 219865,
+     "delta_spent": 5.682923229916037e-08,
+     "n_prob_events": 4163,
+     "n_auth_violations": 0,
+     "n_authorized": 16541
+    },
+    "read_side_events": 1030144
+   },
+   {
+    "req": 7,
+    "write_side": {
+     "n_compressed": 23891,
+     "n_fallback_exact": 315690,
+     "delta_spent": 4.281988053023156e-08,
+     "n_prob_events": 4181,
+     "n_auth_violations": 0,
+     "n_authorized": 23891
+    },
+    "read_side_events": 1034752
+   }
+  ]
+ },
+ "summary": {
+  "stability_off_vs_off2": "6/8",
+  "policy_acceptance_rate": 0.47974237804958636,
+  "dither_preauth_rate": 0.07782157940673787,
+  "preauth_conservatism": 6.164644584533449,
+  "delta_spent_dither": 0.009999700670497888,
+  "auth_violations_observed": "0/147208"
+ },
+ "findings": {
+  "0_headline": "**同请求闭环成立**:同一次运行里,每请求一行 —— 读侧检查数 + 写侧真实压缩/回退增量 + δ 消费增量 + 违约审计。稳定性地板 off vs off2 一致 6/8。policy 接受率 0.480(**精度粗化接受率,非物理压缩收益**);dither **预授权率** 0.078(保守代价 = policy/dither ≈ 6.2×,先验半径的尾项所致,如实报);预授条目实测违约 0/147208(事件语义的运行时验证);Σδ = 0.010000 且每一份 δ_i 都绑定事件 E_i='授权条目实现 W 超预授半径'",
+  "1_quality": "输出保护(右删失已剔):off2 一致 6/8;policy 一致 4/8(分歧样本 4 个,其首异中位 5.5);dither 一致 6/8(分歧 2,5.0)—— n=8 方向性"
+ }
+}
