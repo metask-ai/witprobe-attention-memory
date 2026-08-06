@@ -1,0 +1,41 @@
+{
+ "what": "hisparse 上游崩溃取证:native 臂 + --enable-hisparse,双图口径。目的=把 BLOCKED_UPSTREAM 结论钉在可复核的 traceback 上",
+ "machine": "hgx",
+ "stack": "sglang 0.5.13.post1",
+ "run_id": "q6d3",
+ "manifest": {
+  "model": "/workspace/models/DeepSeek-V4-Flash-FP8",
+  "code": "28aa164",
+  "witcert": "native(无探针无适配器,inject revert --all 后起服)"
+ },
+ "arms": {
+  "graphon": {
+   "what": "hisparse 取证臂原始证据(native + --enable-hisparse)",
+   "machine": "hgx",
+   "stack": "sglang 0.5.13.post1",
+   "arm": "graphon",
+   "gflags": "",
+   "outcome": "traceback",
+   "crashed": true,
+   "signature": "TypeError: 'NoneType' object is not subscriptable",
+   "traceback_excerpt": "Traceback (most recent call last):\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 4062, in run_scheduler_process\n    scheduler.run_event_loop()\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 1418, in run_event_loop\n    dispatch_event_loop(self)\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 3927, in dispatch_event_loop\n    scheduler.event_loop_overlap()\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 1471, in event_loop_overlap\n    batch = self.get_next_batch_to_run()\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 2522, in get_next_batch_to_run\n    self.running_batch = self.update_running_batch(self.running_batch)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 2923, in update_running_batch\n    batch.prepare_for_decode()\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/schedule_batch.py\", line 2568, in prepare_for_decode\n    self.hisparse_coordinator.map_last_loc_to_buffer(\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/hisparse_coordinator.py\", line 459, in map_last_loc_to_buffer\n    self._eager_backup_previous_token(\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/hisparse_coordinator.py\", line 535, in _eager_backup_previous_token\n    req_idx = int(req_pool_indices_cpu[i])\n                  ~~~~~~~~~~~~~~~~~~~~^^^\nTypeError: 'NoneType' object is not subscriptable",
+   "n_traceback_blocks": 8,
+   "generated_by": "hisparse_incident.sh"
+  },
+  "graphoff": {
+   "what": "hisparse 取证臂原始证据(native + --enable-hisparse)",
+   "machine": "hgx",
+   "stack": "sglang 0.5.13.post1",
+   "arm": "graphoff",
+   "gflags": "--disable-cuda-graph --disable-piecewise-cuda-graph",
+   "outcome": "traceback",
+   "crashed": true,
+   "signature": "TypeError: 'NoneType' object is not subscriptable",
+   "traceback_excerpt": "Traceback (most recent call last):\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 4062, in run_scheduler_process\n    scheduler.run_event_loop()\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 1418, in run_event_loop\n    dispatch_event_loop(self)\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 3927, in dispatch_event_loop\n    scheduler.event_loop_overlap()\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 1471, in event_loop_overlap\n    batch = self.get_next_batch_to_run()\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 2522, in get_next_batch_to_run\n    self.running_batch = self.update_running_batch(self.running_batch)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/scheduler.py\", line 2923, in update_running_batch\n    batch.prepare_for_decode()\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/schedule_batch.py\", line 2568, in prepare_for_decode\n    self.hisparse_coordinator.map_last_loc_to_buffer(\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/hisparse_coordinator.py\", line 459, in map_last_loc_to_buffer\n    self._eager_backup_previous_token(\n  File \"/home/ubuntu/miniconda3/envs/sglang_v0513/lib/python3.11/site-packages/sglang/srt/managers/hisparse_coordinator.py\", line 535, in _eager_backup_previous_token\n    req_idx = int(req_pool_indices_cpu[i])\n                  ~~~~~~~~~~~~~~~~~~~~^^^\nTypeError: 'NoneType' object is not subscriptable",
+   "n_traceback_blocks": 8,
+   "generated_by": "hisparse_incident.sh"
+  }
+ },
+ "repro": "RUN_ID=<new> bash experiments/launchers/hisparse_incident.sh",
+ "generated_by": "hisparse_incident.sh"
+}

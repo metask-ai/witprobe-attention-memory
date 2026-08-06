@@ -1,0 +1,97 @@
+{
+ "arm": "fp8",
+ "arm_knob": "WITCERT_POOL_SWAP_B",
+ "arm_val": "0",
+ "hbm_mib_per_gpu": [
+  120332,
+  123126,
+  123126,
+  123126,
+  123126,
+  123126,
+  122646,
+  123126
+ ],
+ "run_id": "p112b2",
+ "acc": 1.0,
+ "n": 6,
+ "n_error": 0,
+ "valid": true,
+ "witcert_env": {
+  "WITCERT_PROBE_FLUSH": "64",
+  "WITCERT_PROBE": "1",
+  "WITCERT_POOL_SWAP_B": "0",
+  "WITCERT_PACK_EVERY_READ": "0",
+  "WITCERT_PACKSHADOW": "0",
+  "WITCERT_PACKED_KERNEL": "0",
+  "WITCERT_DECODE_SHADOW": "0",
+  "WITCERT_PROBE_EVERY": "8",
+  "WITCERT_DECODE_SHADOW_EVERY": "32",
+  "WITCERT_STAGEB_EMPTY_CACHE": "1",
+  "WITCERT_PROBE_ROWS": "64",
+  "WITCERT_PROBE_FILE": "/tmp/wc_p112b2.json",
+  "WITCERT_PROBE_BANDS": "16",
+  "WITCERT_SHADOW_EVERY": "16",
+  "WITCERT_SM120_ROUTE": "0",
+  "WITCERT_PACKED_C4": "0",
+  "_applied_adapters": "kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-r"
+ },
+ "snapshot": {},
+ "n_rank_files": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "417013\n```\n\n\n## 3.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "417026\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "417039\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "417052",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "417065\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  }
+ ]
+}

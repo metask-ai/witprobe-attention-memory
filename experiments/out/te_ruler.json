@@ -1,0 +1,189 @@
+{
+ "harness": "RULER-4096 6难任务×25样本=150条, Qwen2.5-7B, SGLang观测台, 增量持久修复",
+ "rows": {
+  "fp8_gate02": {
+   "tag": "fp8_gate02",
+   "scheme": "fp8-e4m3",
+   "gate_tau": "0.2",
+   "n": 150,
+   "wall_s": 199.0292055606842,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 65.0,
+    "qa_1": 63.0,
+    "qa_2": 48.0
+   },
+   "avg": 79.33333333333333,
+   "n_zero": 19,
+   "coverage": 0.8449466840692491,
+   "fallback": {
+    "n_req": 171621,
+    "n_call": 12090,
+    "mib": 31592.296875
+   }
+  },
+  "fp8_gate5": {
+   "tag": "fp8_gate5",
+   "scheme": "fp8-e4m3",
+   "gate_tau": "5.0",
+   "n": 150,
+   "wall_s": 134.37669849395752,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 67.0,
+    "qa_1": 63.0,
+    "qa_2": 48.0
+   },
+   "avg": 79.66666666666666,
+   "n_zero": 19,
+   "coverage": 0.538444407066856,
+   "fallback": {
+    "n_req": 39771,
+    "n_call": 6403,
+    "mib": 26682.5625
+   }
+  },
+  "fp8_raw": {
+   "tag": "fp8_raw",
+   "scheme": "fp8-e4m3",
+   "gate_tau": null,
+   "n": 150,
+   "wall_s": 66.46434259414673,
+   "per_task": {
+    "niah_multikey_2": 48.0,
+    "niah_multikey_3": 0.0,
+    "niah_single_2": 4.0,
+    "niah_multiquery": 0.0,
+    "qa_1": 44.666666666666664,
+    "qa_2": 40.0
+   },
+   "avg": 22.77777777777778,
+   "n_zero": 114,
+   "coverage": 0.018591396158290974,
+   "fallback": {
+    "n_req": 0,
+    "n_call": 0,
+    "mib": 0.0
+   }
+  },
+  "int8_gate5": {
+   "tag": "int8_gate5",
+   "scheme": "rtn-int8",
+   "gate_tau": "5.0",
+   "n": 150,
+   "wall_s": 121.17973971366882,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 65.0,
+    "qa_1": 63.0,
+    "qa_2": 48.0
+   },
+   "avg": 79.33333333333333,
+   "n_zero": 19,
+   "coverage": 0.4850503292396451,
+   "fallback": {
+    "n_req": 33040,
+    "n_call": 2934,
+    "mib": 7911.1953125
+   }
+  },
+  "int8_raw": {
+   "tag": "int8_raw",
+   "scheme": "rtn-int8",
+   "gate_tau": null,
+   "n": 150,
+   "wall_s": 68.48729825019836,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 96.0,
+    "niah_multiquery": 64.0,
+    "qa_1": 64.33333333333334,
+    "qa_2": 48.0
+   },
+   "avg": 78.72222222222223,
+   "n_zero": 20,
+   "coverage": 0.20659686452265447,
+   "fallback": {
+    "n_req": 0,
+    "n_call": 0,
+    "mib": 0.0
+   }
+  },
+  "kivi_gate02": {
+   "tag": "kivi_gate02",
+   "scheme": "kivi2-k",
+   "gate_tau": "0.2",
+   "n": 150,
+   "wall_s": 115.74373245239258,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 65.0,
+    "qa_1": 63.0,
+    "qa_2": 48.0
+   },
+   "avg": 79.33333333333333,
+   "n_zero": 19,
+   "coverage": 0.9775392738131302,
+   "fallback": {
+    "n_req": 4228,
+    "n_call": 868,
+    "mib": 31239.25
+   }
+  },
+  "kivi_raw": {
+   "tag": "kivi_raw",
+   "scheme": "kivi2-k",
+   "gate_tau": null,
+   "n": 150,
+   "wall_s": 68.19726514816284,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 60.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 66.0,
+    "qa_1": 64.33333333333333,
+    "qa_2": 52.0
+   },
+   "avg": 73.72222222222223,
+   "n_zero": 28,
+   "coverage": 4.8518851779366656e-05,
+   "fallback": {
+    "n_req": 0,
+    "n_call": 0,
+    "mib": 0.0
+   }
+  },
+  "none": {
+   "tag": "none",
+   "scheme": "none",
+   "gate_tau": null,
+   "n": 150,
+   "wall_s": 68.64038181304932,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 65.0,
+    "qa_1": 63.0,
+    "qa_2": 48.0
+   },
+   "avg": 79.33333333333333,
+   "n_zero": 19,
+   "coverage": 1.0,
+   "fallback": {
+    "n_req": 0,
+    "n_call": 0,
+    "mib": 0.0
+   }
+  }
+ }
+}

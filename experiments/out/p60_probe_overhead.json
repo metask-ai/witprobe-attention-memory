@@ -1,0 +1,73 @@
+{
+ "measurement": "probe overhead, paired on/off, same process config & request sequence",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8, ctx 65536, disable-cuda-graph + disable-piecewise-cuda-graph",
+ "adapters_active": [
+  "dsv4-entry (LatentKV)",
+  "dsv4-selector (SparseSelector, 页级)"
+ ],
+ "caliber": "单请求串行无并发 = 探针开销的最不利放大口径;关图状态下的**相对增量**, 不代表带图生产的端到端开销;每档 3 次重复取中位",
+ "reps": 3,
+ "cases": {
+  "off": {
+   "probe": "0",
+   "sample_every": 1
+  },
+  "on_e1": {
+   "probe": "1",
+   "sample_every": 1
+  },
+  "on_e16": {
+   "probe": "1",
+   "sample_every": 16
+  },
+  "on_e64": {
+   "probe": "1",
+   "sample_every": 64
+  }
+ },
+ "errors": [],
+ "wall_s_median": {
+  "off": {
+   "ctx8k": 6.24804207123816,
+   "ctx30k": 8.492859872058034,
+   "ctx60k": 6.418326435610652
+  },
+  "on_e1": {
+   "ctx8k": 13.323095528408885,
+   "ctx30k": 15.502607276663184,
+   "ctx60k": 13.430063650012016
+  },
+  "on_e16": {
+   "ctx8k": 6.492144979536533,
+   "ctx30k": 8.581646360456944,
+   "ctx60k": 6.76825481839478
+  },
+  "on_e64": {
+   "ctx8k": 6.445918349549174,
+   "ctx30k": 8.4619458951056,
+   "ctx60k": 6.479047566652298
+  }
+ },
+ "overhead_pct": {
+  "on_e1": {
+   "ctx8k": 113.23632870110744,
+   "ctx30k": 82.53694880410775,
+   "ctx60k": 109.24556868124228
+  },
+  "on_e16": {
+   "ctx8k": 3.9068704326121786,
+   "ctx30k": 1.0454250951557778,
+   "ctx60k": 5.452019093990431
+  },
+  "on_e64": {
+   "ctx8k": 3.1670125785789,
+   "ctx30k": -0.36399961165192696,
+   "ctx60k": 0.9460586283793289
+  }
+ },
+ "findings": {
+  "1_overhead": "on_e1(EVERY=1):ctx8k +113.24% / ctx30k +82.54% / ctx60k +109.25%;最不利档 +113.24%; on_e16(EVERY=16):ctx8k +3.91% / ctx30k +1.05% / ctx60k +5.45%;最不利档 +5.45%; on_e64(EVERY=64):ctx8k +3.17% / ctx30k -0.36% / ctx60k +0.95%;最不利档 +3.17%",
+  "2_sampling_knob": "调用采样是有效旋钮:EVERY 1->16->64 使最不利档开销 +113.24% -> +5.45% -> +3.17%",
+  "3_row_sampling_useless": "行采样无效(前一轮实测 ROWS 256->32 开销从 +102.6% 到 +102.2%,几乎不变):开销绝对值与上下文长度无关(三档均 ~7.2s),是每次调用的固定 kernel launch 成本"
+ }
+}

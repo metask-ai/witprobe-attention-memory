@@ -1,0 +1,201 @@
+{
+ "what": "旗舰一键 gate:A 机制 / B 质量 / C 性能 / D 路径矩阵 分层聚合",
+ "generated_by": "flagship_gate.py",
+ "machine": "local(聚合;数字源产物各带 machine/stack)",
+ "caliber": [
+  "gate 三态:PASS / FAIL / PENDING;PENDING = 产物不存在(没测),不算 PASS 也不算 FAIL,单独退出码 2",
+  "总 gate = 全 PASS;任一 FAIL 即 FAIL;损坏产物按 FAIL 不按 PENDING",
+  "PPL 红线 ≤1.0%(声明红线,非拟合现值;p109 清洁对照实测 0.188%)",
+  "PENDING 项按前向契约评估:约定文件落盘后采信顶层 gate.passed/passed;契约文件名见 telemetry_pending.expected_file",
+  "本报告只聚合不复算(p111 配对 PPL 除外,聚合式与 p109_quality 相同);引用任何数字须回到 source_file 带其原口径"
+ ],
+ "layers": {
+  "A": {
+   "title": "机制:身份 / 闭环 / fail-closed / kernel 消费",
+   "items": {
+    "identity_isolation": {
+     "value": "foreign_reads=0 read_unwritten=0 auth_violations=0/118750",
+     "source_file": "p99_concurrent_identity.json",
+     "gate": "PASS",
+     "caliber": "8 路并发终态快照,tp8+ep8,hgx;判据键沿 p99 gate.criteria 原文;foreign 读是归属正确性的运行时守卫,错位立即非零"
+    },
+    "identity_fail_closed": {
+     "value": "identity_fail_closed=0",
+     "source_file": "p99_concurrent_identity.json",
+     "gate": "PASS",
+     "caliber": "8 路并发终态快照,tp8+ep8,hgx;判据键沿 p99 gate.criteria 原文;0 = 无请求因身份不明触发 fail-closed 回退"
+    },
+    "eprocess_loop": {
+     "value": "n_factors=118750 log_M_max=-0.464568555355072 crossed=False",
+     "source_file": "p99_concurrent_identity.json",
+     "gate": "PASS",
+     "caliber": "8 路并发终态快照,tp8+ep8,hgx;判据键沿 p99 gate.criteria 原文;log_M_max 未越界即 e-process 未穿越"
+    },
+    "replica_coupling": {
+     "value": "replica_coupling_identical=True n_ranks_seen=8",
+     "source_file": "p99_concurrent_identity.json",
+     "gate": "PASS",
+     "caliber": "8 路并发终态快照,tp8+ep8,hgx;判据键沿 p99 gate.criteria 原文;每账户独立随机流,批流 rank 间一致才耦合"
+    },
+    "privacy_budget": {
+     "value": "max_delta_spent=0.009983525535420099",
+     "source_file": "p99_concurrent_identity.json",
+     "gate": "PASS",
+     "caliber": "8 路并发终态快照,tp8+ep8,hgx;判据键沿 p99 gate.criteria 原文;全部请求预算 <= delta_req"
+    },
+    "identity_first_run": {
+     "value": "criteria 12/12",
+     "source_file": "p98_concurrent_identity.json",
+     "gate": "PASS",
+     "caliber": "首采与 p99 加固复跑构成两次独立并发身份验收"
+    },
+    "kernel_consumption": {
+     "value": "n_packed_rows=1400454 n_entry=4209 n_gather=8222",
+     "source_file": "p106_packed_decode.json",
+     "gate": "PASS",
+     "caliber": "sm120 参考路由强制生效 + packed 行真实消费(零触发即败);参考路径性能非生产 kernel,fail-closed 到 FP8;p109 口径下生产 packed kernel 覆盖 1040/2278 调用,余走 fail-closed"
+    },
+    "packshadow_witness": {
+     "value": "n_checked=660 n_unwritten=0 rel_mean=0.0749071344789682 rel_max=0.11562252044677734 (理论 {'c4': 0.023881543427705765, 'c128': 0.06703995913267136},容许 ≤0.1006)",
+     "source_file": "p106_packed_decode.json + q0_sweep.json",
+     "gate": "PASS",
+     "caliber": "影子读回逐条目对账:read_unwritten 必须为 0(读到未写条目 = 池身份错);rel 必须落在理论容许区间内 —— rel≥1 判数据无效(陈旧/跨代条目),rel_mean 超理论 1.5× 判失真异常,阈值溯源 q0_sweep.json 而非拍定"
+    }
+   }
+  },
+  "B": {
+   "title": "质量:PPL / 输出地板 / 量化门 / RULER",
+   "items": {
+    "ppl_clean": {
+     "value": "delta_pct=0.1877% (fp8 1.350007 -> packed 1.352541)",
+     "source_file": "p109_quality_clean.json",
+     "gate": "PASS",
+     "caliber": "同拓扑(tp4)同语料同文档配对,拓扑混杂已消除;packed kernel 覆盖 46%,余 fail-closed —— 引用该数字必须带覆盖口径;红线 ≤1.0%"
+    },
+    "output_floor": {
+     "value": "route_vs_fp8base=11/16 packed_vs_route=11/16",
+     "source_file": "p106_packed_decode.json",
+     "gate": "PASS",
+     "caliber": "p88 口径:贪心解码、完全一致率、地板 = 同配置重启对照;n=16 方向性"
+    },
+    "q0_quant_gate": {
+     "value": {
+      "c4": "had64_INT6(479B/条目)—— rel 2.4%/2.65%p95,W≤4 覆盖 100%,score 代理 3.5×int8",
+      "c128": "had64_INT4(367B;packed 布局 360B)—— rel 6.4%/9.2%p95,W≤4 覆盖 100%"
+     },
+     "source_file": "q0_sweep.json",
+     "gate": "PASS",
+     "caliber": "shadow 口径(非物理);calibration/validation/hidden 层分裂防过拟合;否决路线(c4 INT4/INT5、INT2 全族、1-bit RQ、varnorm、池级 PCA)保留在 verdict"
+    },
+    "q1_roundtrip": {
+     "value": "rel_l2_mean=0.0705 rel_l2_p95=0.0976 cov_W<=4=1.0 (n=2420)",
+     "source_file": "q1_packed_int4.json",
+     "gate": "PASS",
+     "caliber": "真实 c128 条目 GPU 往返,与 shadow had64_int4 同一数学;见证覆盖 W<=4 须 100%"
+    },
+    "dual_pool_ppl": {
+     "value": "delta_pct=-0.0024% (base 1.349564 -> packed 1.349531) activation=True",
+     "source_file": "p111_lp_base.json + p111_lp_packed.json",
+     "gate": "PASS",
+     "caliber": "聚合式与 p109_quality 相同;红线 ≤1.0%;**激活双向门**:packed 臂 n_packed_c4>0∧c128>0、base 臂两者为零(此前发生过 PPL 测错路径,无激活证据只算 provisional=PENDING)"
+    },
+    "ruler_flagship": {
+     "value": "packed acc=1.000 vs base acc=1.000 (Δ=0.000) | n_invalidate=26419544 | 解码侧 c4 rel_mean=0.02461 rel_max=0.0312",
+     "source_file": "p118_ruler_base_off.json + p124c_conc_inval_on.json",
+     "gate": "PASS",
+     "caliber": "长上下文检索任务分,packed vs FP8 同配置配对(radix=off);**当前的 ΔPPL 实验(p108)替代不了本项** —— 它取 prefill 侧 input logprob,而 packed 池只在 decode 被消费,走的不是同一条路径,因此验证不了本次压缩路径;这是实验设计走错路径,不是 PPL 这个指标天生不敏感(TinyKG 10664);红线:packed 不低于 base 5 个点"
+    }
+   }
+  },
+  "C": {
+   "title": "性能:HBM / 吞吐(服务实测多为 PENDING)",
+   "items": {
+    "pool_bytes_gpu": {
+     "value": "saving=0.3836 (fp8 36.5 MiB -> int4 22.5 MiB, 65536 token)",
+     "source_file": "q1_packed_int4.json",
+     "gate": "PASS",
+     "caliber": "torch.cuda.memory_allocated 差分,hgx;实测 = 名义才 PASS(有水分即败);池字节口径,非总 HBM,非服务集成"
+    },
+    "unpack_upper_bound": {
+     "value": "ratio_int4_over_fp8=4.57 (torch 参考,未融合上界)",
+     "source_file": "q1_packed_int4.json",
+     "gate": "PASS",
+     "caliber": "CUDA event 微基准;int4 为 torch 参考实现 vs 生产 FP8 Triton 核;红线 0<ratio≤10 —— 只证明上界存在且在可挽救范围内,融合核实测见 fused_unpack(PENDING)"
+    },
+    "weighted_pool_saving": {
+     "value": "compressed_pool_saving=0.1853 (weights: 条目率 c4=21/4, c128=20/128 每 token(c4 是压缩池内存 32× 大头))",
+     "source_file": "q0_sweep.json",
+     "gate": "PASS",
+     "caliber": "**压缩池字节**口径的核算值,非实测;红线 10%≤saving<100%;总 HBM 还含 swa 窗口池/稠密层/激活,总量节省依赖池占比 —— 服务实测见 hbm_serving(PENDING)"
+    },
+    "hbm_serving": {
+     "value": "每GPU差 [320, 316, 316, 316, 316, 316, 316, 316] MiB(中位 316.0)vs 字节净差 354.6 MiB(freed 639.2 − ring+packed 284.6);acc 双臂 1.0",
+     "source_file": "p112_serving_hbm.json",
+     "gate": "PASS",
+     "caliber": "服务口径 HBM 差分;q1 的 -38.4% 是池字节微基准,总量节省依赖池占比"
+    },
+    "serving_latency": {
+     "value": "staging1/native:吞吐×0.884 TTFT×0.736 ITL×1.275 成本×1.131(仅臂间可比)",
+     "source_file": "p113_serving_latency.json",
+     "gate": "PASS",
+     "caliber": "在线服务时延与吞吐,packed vs FP8 同拓扑同负载配对"
+    },
+    "fused_unpack": {
+     "value": "fusedk/refcons:吞吐×0.238 ITL×2.526 成本×4.201;kernel calls=9219 view=4287 audited=597981 stale=0 fb=4932;acc 双臂 1.0",
+     "source_file": "p115_fused_unpack.json",
+     "gate": "PASS",
+     "caliber": "解包核开销,融合实现 vs 生产 FP8 dequantize 核"
+    }
+   }
+  },
+  "D": {
+   "title": "路径矩阵:p110 六路径",
+   "items": {
+    "cudagraph": {
+     "value": "FAIL(p110 判读;未过:[])",
+     "source_file": "p110_sixpath.json",
+     "gate": "FAIL",
+     "caliber": "p110 统一判读转录:服务健康 ∧ n_packed>0 ∧ err=None ∧ 输出过地板"
+    },
+    "radix": {
+     "value": "FAIL(p110 判读;未过:[])",
+     "source_file": "p110_sixpath.json",
+     "gate": "FAIL",
+     "caliber": "p110 统一判读转录:服务健康 ∧ n_packed>0 ∧ err=None ∧ 输出过地板"
+    },
+    "mtp": {
+     "value": "PASS(p110 判读)",
+     "source_file": "p110_sixpath.json",
+     "gate": "PASS",
+     "caliber": "p110 统一判读转录:服务健康 ∧ n_packed>0 ∧ err=None ∧ 输出过地板"
+    },
+    "hisparse": {
+     "value": "FAIL(p110 判读;未过:[])",
+     "source_file": "p110_sixpath.json",
+     "gate": "FAIL",
+     "caliber": "p110 统一判读转录:服务健康 ∧ n_packed>0 ∧ err=None ∧ 输出过地板"
+    },
+    "tpcouple": {
+     "value": "PASS(p110 判读)",
+     "source_file": "p110_sixpath.json",
+     "gate": "PASS",
+     "caliber": "p110 统一判读转录:服务健康 ∧ n_packed>0 ∧ err=None ∧ 输出过地板"
+    },
+    "pd": {
+     "value": "FAIL(p110 判读;未过:[])",
+     "source_file": "p110_sixpath.json",
+     "gate": "FAIL",
+     "caliber": "p110 统一判读转录:服务健康 ∧ n_packed>0 ∧ err=None ∧ 输出过地板"
+    }
+   }
+  }
+ },
+ "telemetry_pending": [],
+ "summary": {
+  "overall": "FAIL",
+  "n_pass": 22,
+  "n_fail": 4,
+  "n_pending": 0
+ },
+ "exit_code": 1
+}

@@ -1,0 +1,77 @@
+{
+ "harness": "P38 长上下文覆盖率(P17 同配置,δ=1e-2,模型自身 cos/sin)",
+ "results": [
+  {
+   "model": "Qwen2.5-1.5B-Instruct",
+   "S": 8192,
+   "domain": "natural",
+   "yarn": false,
+   "layers_sampled": 7,
+   "jkv": 0.6450892857142857,
+   "jq": 0.7955729166666666,
+   "jkv_tanh": 0.016741071428571428,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Qwen2.5-1.5B-Instruct",
+   "S": 8192,
+   "domain": "needle",
+   "yarn": false,
+   "layers_sampled": 7,
+   "jkv": 0.6372767857142857,
+   "jq": 0.7594866071428571,
+   "jkv_tanh": 0.21651785714285715,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Qwen2.5-1.5B-Instruct",
+   "S": 32768,
+   "domain": "natural",
+   "yarn": false,
+   "layers_sampled": 7,
+   "jkv": 0.5725446428571429,
+   "jq": 0.7485119047619048,
+   "jkv_tanh": 0.010044642857142858,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Qwen2.5-1.5B-Instruct",
+   "S": 32768,
+   "domain": "needle",
+   "yarn": false,
+   "layers_sampled": 7,
+   "jkv": 0.6004464285714286,
+   "jq": 0.7494419642857143,
+   "jkv_tanh": 0.13839285714285715,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Qwen2.5-1.5B-Instruct",
+   "S": 131072,
+   "domain": "natural",
+   "yarn": true,
+   "layers_sampled": 7,
+   "jkv": 0.265625,
+   "jq": 0.5450148809523809,
+   "jkv_tanh": 0.0,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Qwen2.5-1.5B-Instruct",
+   "S": 131072,
+   "domain": "needle",
+   "yarn": true,
+   "layers_sampled": 7,
+   "jkv": 0.41294642857142855,
+   "jq": 0.6685267857142857,
+   "jkv_tanh": 0.002232142857142857,
+   "viol": 0,
+   "viol_tanh": 0
+  }
+ ]
+}

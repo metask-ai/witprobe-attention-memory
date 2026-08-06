@@ -1,0 +1,115 @@
+{
+ "what": "F4:同对象 e-process —— 接到逐条目授权事件的任意时刻模型校验",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "对象 = 压缩页池授权条目的实现见证 W_e 对抽签前先验均值 m_e —— 与逐条目授权**同一物理条目、同一事件时刻**(六审 P0-3 的对象错位由此关闭)",
+  "语义 = 模型校验(半径假设的漂移哨兵),δ_e=1% 独立于 δ_req;**不替代**逐条目 union 预算 —— 两者互补,p92 的量级对比仍按不同对象报",
+  "任意时刻性在写批粒度(批内因子一次乘入);κ=0.5 预注册,逐请求账户",
+  "E[g|历史]≤1 的形式依据:Lean eprocess_factor_mean_le_one(McDiarmid MGF + witness_mean_le 组合,axioms=[propext,choice,quot])"
+ ],
+ "per_request": [
+  {
+   "rid": "boot",
+   "n_factors": 11119,
+   "log_M_final": -7076.171279519796,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "1#0",
+   "n_factors": 57,
+   "log_M_final": -35.12076407670975,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "2#0",
+   "n_factors": 10596,
+   "log_M_final": -6873.396595686674,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "3#0",
+   "n_factors": 17213,
+   "log_M_final": -11064.434069186449,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "4#0",
+   "n_factors": 11888,
+   "log_M_final": -7706.152488261461,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "5#0",
+   "n_factors": 8833,
+   "log_M_final": -5699.815266489983,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "6#0",
+   "n_factors": 8580,
+   "log_M_final": -5499.709975451231,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "7#0",
+   "n_factors": 11817,
+   "log_M_final": -7689.778010100126,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "8#0",
+   "n_factors": 16749,
+   "log_M_final": -10812.915470063686,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  },
+  {
+   "rid": "9#0",
+   "n_factors": 259,
+   "log_M_final": -161.0208957195282,
+   "log_M_max": 0.0,
+   "threshold": 4.605170185988092,
+   "crossed": false,
+   "kappa": 0.5
+  }
+ ],
+ "summary": {
+  "n_requests": 10,
+  "n_factors_total": 97111,
+  "log_M_max_global": 0.0,
+  "threshold": 4.605170185988092,
+  "n_crossed": 0
+ },
+ "findings": {
+  "0_headline": "**同对象 e-process 上线**:10 个请求账户、97,111 个授权条目因子,log M 峰值 0.00 vs 阈值 ln(100)=4.61,越阈 0 次 —— 半径假设(SR 条件均值零/独立有界)在全部真实流量上未被否证;任意时刻有效(写批粒度),κ=0.5 预注册,δ_e=1% 独立校验预算。事件族 = 实现见证对先验均值的累计超越 —— 与逐条目授权同对象同时刻,互补不替代"
+ },
+ "superseded_by": "p96_identity_v2.json",
+ "superseded_why": "七审:逐账户重启的原型;log_M_max 含初始化零;随机流跨请求复用"
+}

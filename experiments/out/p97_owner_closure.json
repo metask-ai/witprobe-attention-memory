@@ -1,0 +1,153 @@
+{
+ "what": "G2:owner 版本化闭环 —— (entry, owner, 状态) 三元分账",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "复用事件 = 认证写时槽位 owner 变更(压缩池无独立 free 路径,复用必先重写,flags 恒新鲜 —— 这就是不需要 allocator hook 的原因,设计即约束)",
+  "foreign 读 = 读到别的 UID 写入的条目;合法来源是前缀缓存共享 ——第 9 条 prompt 重复第 1 条专测此路径;异常来源(复用后未重写)设计上不可能,由 n_read_unwritten 守卫",
+  "复用压力来源 = 串行页回收 + 前缀共享;**请求中途驱逐**的负载未覆盖(需长 context 逼近显存上限,另案)"
+ ],
+ "per_request": [
+  {
+   "rid": "u1",
+   "delta_spent": 0.009905660377358485,
+   "budget_ok": true,
+   "n_slot_reuses": 0,
+   "read": {
+    "n_events": 86394,
+    "n_read_masked": 44420,
+    "n_read_kept_exact": 41974,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 85851
+   }
+  },
+  {
+   "rid": "u2",
+   "delta_spent": 0.009980916030534349,
+   "budget_ok": true,
+   "n_slot_reuses": 0,
+   "read": {
+    "n_events": 946176,
+    "n_read_masked": 496943,
+    "n_read_kept_exact": 449233,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 3655
+   }
+  },
+  {
+   "rid": "u3",
+   "delta_spent": 0.009982332155477032,
+   "budget_ok": true,
+   "n_slot_reuses": 1133,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 515290,
+    "n_read_kept_exact": 516902,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u4",
+   "delta_spent": 0.009982332155477032,
+   "budget_ok": true,
+   "n_slot_reuses": 1388,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 518895,
+    "n_read_kept_exact": 513297,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u5",
+   "delta_spent": 0.009981684981684981,
+   "budget_ok": true,
+   "n_slot_reuses": 1974,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 517098,
+    "n_read_kept_exact": 515094,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u6",
+   "delta_spent": 0.009982332155477032,
+   "budget_ok": true,
+   "n_slot_reuses": 1250,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 525222,
+    "n_read_kept_exact": 506970,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u7",
+   "delta_spent": 0.009982332155477032,
+   "budget_ok": true,
+   "n_slot_reuses": 1439,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 532548,
+    "n_read_kept_exact": 499644,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u8",
+   "delta_spent": 0.009981684981684981,
+   "budget_ok": true,
+   "n_slot_reuses": 1659,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 520074,
+    "n_read_kept_exact": 512118,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u9",
+   "delta_spent": 0.009982332155477032,
+   "budget_ok": true,
+   "n_slot_reuses": 1850,
+   "read": {
+    "n_events": 1032192,
+    "n_read_masked": 510565,
+    "n_read_kept_exact": 521627,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 0
+   }
+  },
+  {
+   "rid": "u10",
+   "delta_spent": 0.009981684981684981,
+   "budget_ok": true,
+   "n_slot_reuses": 1070,
+   "read": {
+    "n_events": 1031168,
+    "n_read_masked": 695015,
+    "n_read_kept_exact": 336153,
+    "n_read_unwritten": 0,
+    "n_read_foreign_owner": 974386
+   }
+  }
+ ],
+ "summary": {
+  "n_accounts": 10,
+  "all_budgets_ok": true,
+  "slot_reuses_total": 11763,
+  "foreign_reads_total": 1063892,
+  "foreign_reads_dup_prompt": 974386,
+  "read_unwritten_total": 0
+ },
+ "findings": {
+  "0_headline": "**owner 版本化闭环成立**:10 账户预算全过;槽位复用(写时 owner 变更)共 11,763 次 —— 复用后 flags 被重写刷新,读侧 0 次读到未写槽位(0);foreign 读共 1,063,892 次(重复 prompt 账户占 974386)—— 别的请求写入的条目被 owner 分账捕获,不再误记入本请求闭环"
+ }
+}

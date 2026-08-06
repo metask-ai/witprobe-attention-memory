@@ -1,0 +1,8 @@
+{
+ "lines": {
+  "witcert_sglang.patch": 500,
+  "witcert_sglang_extend.patch": 155,
+  "witcert_sglang_serving.patch": 327
+ },
+ "note": "integration/ 私有;此为其冻结元数据"
+}

@@ -1,0 +1,69 @@
+{
+ "what": "A9 终局:真实回退四臂对照(策略首次在数值路径生效)",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8",
+ "caliber": [
+  "压缩 = FP8 nope 尾数掩码 2 位(值域真实变粗);scale/rope 不动",
+  "回退 = 超阈条目保持原字节 —— 数值路径真实生效,非影子",
+  "偏离度 = 与基线贪心输出的首异位置;8 prompt 小样本,方向性结论",
+  "写侧无请求 id,账目为全局口径(逐请求账本见 p82 影子层)"
+ ],
+ "arms": {
+  "all": {
+   "prefix_match_median": 49.5,
+   "prefix_match_min": 1,
+   "exact_match": "4/8",
+   "certified_write": {
+    "mode": "all",
+    "n_compressed": 2373147,
+    "n_fallback_exact": 0,
+    "delta_spent": 0.0,
+    "n_prob_events": 0,
+    "w_max_compressed": 17.670618057250977,
+    "assumptions": [],
+    "retention": 1.0
+   }
+  },
+  "policy": {
+   "prefix_match_median": 96.0,
+   "prefix_match_min": 1,
+   "exact_match": "6/8",
+   "certified_write": {
+    "mode": "policy",
+    "n_compressed": 1160738,
+    "n_fallback_exact": 1212409,
+    "delta_spent": 0.0,
+    "n_prob_events": 0,
+    "w_max_compressed": 8.835306167602539,
+    "assumptions": [],
+    "retention": 0.48911340089762667
+   }
+  },
+  "dither": {
+   "prefix_match_median": 96.0,
+   "prefix_match_min": 1,
+   "exact_match": "6/8",
+   "certified_write": {
+    "mode": "dither",
+    "n_compressed": 1446204,
+    "n_fallback_exact": 926943,
+    "delta_spent": 0.00999970050016453,
+    "n_prob_events": 33388,
+    "w_max_compressed": 8.835308074951172,
+    "assumptions": [
+     "R3′:非减法抖动,Schuchman 矩条件+坐标独立(partial)"
+    ],
+    "retention": 0.6094034629966032
+   }
+  }
+ },
+ "checks": {
+  "1_all_diverges": true,
+  "2_policy_protects": true,
+  "3_delta_spent": true,
+  "4_retention_informative": true
+ },
+ "findings": {
+  "0_headline": "**真实回退首次生效**:policy 臂 retention 0.489(真实压缩 1,160,738 条 / 真实回退 1,212,409 条),首异位置中位 all=49.5 / policy=96.0 / dither=96.0(基线=完整长度);dither 臂 Σδ=0.010000(≤ δ_req=0.01),assumption:R3′:非减法抖动,Schuchman 矩条件+坐标独立(partial)。四判据:{'1_all_diverges': True, '2_policy_protects': True, '3_delta_spent': True, '4_retention_informative': True}"
+ }
+}

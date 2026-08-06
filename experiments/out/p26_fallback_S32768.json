@@ -1,0 +1,16 @@
+{
+ "S": 32768,
+ "heads": 8,
+ "steps": 32,
+ "tau": 0.2,
+ "gpu_packed_mb": 36.26568603515625,
+ "gpu_fp16_mb": 64.0,
+ "cpu_backing_mb": 64.0,
+ "fallback_rate": 0.2734375,
+ "err_fast_mean": 0.008063395833095876,
+ "err_fb_before": 0.009182532151628817,
+ "err_fb_after": 0.00033237589855811424,
+ "pagein_mb_per_step": 17.5,
+ "ms_per_step": 269.50205117464066,
+ "effective_bits": 10.962321877479553
+}

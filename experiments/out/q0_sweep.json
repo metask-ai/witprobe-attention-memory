@@ -1,0 +1,2013 @@
+{
+ "what": "Q0 shadow 量化候选扫描(真实 c4/c128 条目;RoPE 保 BF16)",
+ "machine": "hgx 采集 + 本地复算",
+ "kind": "shadow(非物理,格式核算另列)",
+ "split": {
+  "calibration": [
+   2,
+   4,
+   6,
+   8
+  ],
+  "validation": [
+   10,
+   12
+  ],
+  "hidden": [
+   15,
+   17
+  ]
+ },
+ "pools": {
+  "c4": {
+   "n_calib": 1638,
+   "validation": [
+    {
+     "name": "A_fp8_baseline",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.0,
+     "rel_l2_p95": 0.0,
+     "witness_mean": 0.0,
+     "witness_p95": 0.0,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 0.0,
+      "vs_int8_control": 0.0,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int8",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.007241330109536648,
+     "rel_l2_p95": 0.010459045879542828,
+     "witness_mean": 0.574083685874939,
+     "witness_p95": 0.8565102815628052,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 0.5738777058656108,
+      "vs_int8_control": 1.0,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "C_had64_int6",
+     "bits": 6,
+     "kind": "shadow",
+     "rel_l2_mean": 0.023881543427705765,
+     "rel_l2_p95": 0.02626279555261135,
+     "witness_mean": 1.9890750646591187,
+     "witness_p95": 2.8234455585479736,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.46764346957206726,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 336.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 479.0,
+      "vs_584": 0.8202054794520548,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 1.9883613887431266,
+      "vs_int8_control": 3.464782423885893,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "C_had64_int5",
+     "bits": 5,
+     "kind": "shadow",
+     "rel_l2_mean": 0.04938508942723274,
+     "rel_l2_p95": 0.054321788251399994,
+     "witness_mean": 4.114207744598389,
+     "witness_p95": 5.851490020751953,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.03907204046845436,
+      "W<=4.0": 0.43223443627357483,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 280.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 423.0,
+      "vs_584": 0.7243150684931506,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 4.11273157558251,
+      "vs_int8_control": 7.166564467562046,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out8",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10500681400299072,
+     "rel_l2_p95": 0.11566654592752457,
+     "witness_mean": 8.746583938598633,
+     "witness_p95": 12.458481788635254,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.03418803587555885,
+      "W<=8.0": 0.38827839493751526,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 8,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 375.0,
+      "vs_584": 0.6421232876712328,
+      "static_per_layer": "+8 离群通道号/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.743445682825842,
+      "vs_int8_control": 15.235729831389127,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10546061396598816,
+     "rel_l2_p95": 0.11619193106889725,
+     "witness_mean": 8.784732818603516,
+     "witness_p95": 12.517138481140137,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.03418803587555885,
+      "W<=8.0": 0.3858363926410675,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 4,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 371.0,
+      "vs_584": 0.6352739726027398,
+      "static_per_layer": "+4 离群通道号/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.781580875093463,
+      "vs_int8_control": 15.302181606528395,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out2",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10569384694099426,
+     "rel_l2_p95": 0.11670263856649399,
+     "witness_mean": 8.805249214172363,
+     "witness_p95": 12.530013084411621,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.032967034727334976,
+      "W<=8.0": 0.38461539149284363,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 2,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 369.0,
+      "vs_584": 0.6318493150684932,
+      "static_per_layer": "+2 离群通道号/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.802089909423078,
+      "vs_int8_control": 15.337919245610717,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "C_had64_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10593035072088242,
+     "rel_l2_p95": 0.11712496727705002,
+     "witness_mean": 8.825108528137207,
+     "witness_p95": 12.578023910522461,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0317460335791111,
+      "W<=8.0": 0.38339439034461975,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.821942097908176,
+      "vs_int8_control": 15.372512310094994,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "D_had64_varnorm_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10704018175601959,
+     "rel_l2_p95": 0.11855168640613556,
+     "witness_mean": 8.914711952209473,
+     "witness_p95": 12.687650680541992,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.030525030568242073,
+      "W<=8.0": 0.37240538001060486,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448 fp16 尺度/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.911513372461862,
+      "vs_int8_control": 15.528593080681087,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.13107924163341522,
+     "rel_l2_p95": 0.1879301220178604,
+     "witness_mean": 10.413932800292969,
+     "witness_p95": 15.421464920043945,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.21611721813678741,
+      "W<=16.0": 0.9645909667015076
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 10.41019630328369,
+      "vs_int8_control": 18.14009534937662,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "F_dither_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.1326327621936798,
+     "rel_l2_p95": 0.19405020773410797,
+     "witness_mean": 10.4676513671875,
+     "witness_p95": 15.678328514099121,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.21245421469211578,
+      "W<=16.0": 0.9572649598121643
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 10.463895596070314,
+      "vs_int8_control": 18.233668060492178,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "E_pca_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.141240656375885,
+     "rel_l2_p95": 0.1972135603427887,
+     "witness_mean": 11.931035995483398,
+     "witness_p95": 20.569828033447266,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.21245421469211578,
+      "W<=16.0": 0.8107448220252991
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 11.926755165064225,
+      "vs_int8_control": 20.782746991494392,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int3",
+     "bits": 3,
+     "kind": "shadow",
+     "rel_l2_mean": 0.2964756190776825,
+     "rel_l2_p95": 0.3781600594520569,
+     "witness_mean": 23.85881996154785,
+     "witness_p95": 35.86538314819336,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.11965811997652054
+     },
+     "physical": {
+      "payload_B": 168.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 311.0,
+      "vs_584": 0.5325342465753424,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 23.850259467530766,
+      "vs_int8_control": 41.559829252394685,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "H_rq_1bit_shadow",
+     "bits": 1,
+     "kind": "shadow",
+     "rel_l2_mean": 0.418383926153183,
+     "rel_l2_p95": 0.5737350583076477,
+     "witness_mean": 32.46338653564453,
+     "witness_p95": 46.0867919921875,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0012210012646391988
+     },
+     "physical": {
+      "payload_B": 56.0,
+      "quant_meta_B": 14,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 206.0,
+      "vs_584": 0.3527397260273973,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 32.451738741383934,
+      "vs_int8_control": 56.548178139165074,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "E_pca_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.7258558869361877,
+     "rel_l2_p95": 0.7783899307250977,
+     "witness_mean": 60.80348205566406,
+     "witness_p95": 84.21513366699219,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 60.78166589521714,
+      "vs_int8_control": 105.9139696035706,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.7288727164268494,
+     "rel_l2_p95": 0.7801378965377808,
+     "witness_mean": 60.948814392089844,
+     "witness_p95": 85.75670623779297,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 60.92694608670874,
+      "vs_int8_control": 106.16712491873042,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "F_dither_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.9268279671669006,
+     "rel_l2_p95": 1.3563086986541748,
+     "witness_mean": 73.2103042602539,
+     "witness_p95": 110.32498931884766,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 73.18403655830474,
+      "vs_int8_control": 127.52549159915054,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    }
+   ],
+   "hidden": [
+    {
+     "name": "A_fp8_baseline",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.0,
+     "rel_l2_p95": 0.0,
+     "witness_mean": 0.0,
+     "witness_p95": 0.0,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 0.0,
+      "vs_int8_control": 0.0,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int8",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.007229470182210207,
+     "rel_l2_p95": 0.010358419269323349,
+     "witness_mean": 0.5756722092628479,
+     "witness_p95": 0.8389800786972046,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 0.5754656592946962,
+      "vs_int8_control": 1.0,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "C_had64_int6",
+     "bits": 6,
+     "kind": "shadow",
+     "rel_l2_mean": 0.023971768096089363,
+     "rel_l2_p95": 0.026502929627895355,
+     "witness_mean": 2.0014450550079346,
+     "witness_p95": 2.857694387435913,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.46886447072029114,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 336.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 479.0,
+      "vs_584": 0.8202054794520548,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 2.000726940765632,
+      "vs_int8_control": 3.4767095281024565,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "C_had64_int5",
+     "bits": 5,
+     "kind": "shadow",
+     "rel_l2_mean": 0.04953078553080559,
+     "rel_l2_p95": 0.054568324238061905,
+     "witness_mean": 4.133811950683594,
+     "witness_p95": 5.839746475219727,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.029304029420018196,
+      "W<=4.0": 0.4432234466075897,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 280.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 423.0,
+      "vs_584": 0.7243150684931506,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 4.132328747720136,
+      "vs_int8_control": 7.180843341346923,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out8",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10525363683700562,
+     "rel_l2_p95": 0.11561746895313263,
+     "witness_mean": 8.787557601928711,
+     "witness_p95": 12.505629539489746,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.02442002482712269,
+      "W<=8.0": 0.4017094075679779,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 8,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 375.0,
+      "vs_584": 0.6421232876712328,
+      "static_per_layer": "+8 离群通道号/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.784404644892389,
+      "vs_int8_control": 15.264863338081296,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10573670268058777,
+     "rel_l2_p95": 0.11620163917541504,
+     "witness_mean": 8.82820987701416,
+     "witness_p95": 12.554211616516113,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.02319902367889881,
+      "W<=8.0": 0.3956044018268585,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 4,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 371.0,
+      "vs_584": 0.6352739726027398,
+      "static_per_layer": "+4 离群通道号/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.825042334027728,
+      "vs_int8_control": 15.33548039138235,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out2",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10597529262304306,
+     "rel_l2_p95": 0.1163850948214531,
+     "witness_mean": 8.848899841308594,
+     "witness_p95": 12.587947845458984,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.02319902367889881,
+      "W<=8.0": 0.39438340067863464,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 2,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 369.0,
+      "vs_584": 0.6318493150684932,
+      "static_per_layer": "+2 离群通道号/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.845724874806839,
+      "vs_int8_control": 15.371420921360212,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "C_had64_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10621520131826401,
+     "rel_l2_p95": 0.11657009273767471,
+     "witness_mean": 8.86973762512207,
+     "witness_p95": 12.626885414123535,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.02319902367889881,
+      "W<=8.0": 0.38949939608573914,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.866555182067664,
+      "vs_int8_control": 15.407618228574606,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "D_had64_varnorm_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.10758490860462189,
+     "rel_l2_p95": 0.11995429545640945,
+     "witness_mean": 8.971030235290527,
+     "witness_p95": 12.72026252746582,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.02442002482712269,
+      "W<=8.0": 0.37728938460350037,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448 fp16 尺度/层"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 8.967811448662351,
+      "vs_int8_control": 15.583573587437877,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.13167530298233032,
+     "rel_l2_p95": 0.18530015647411346,
+     "witness_mean": 10.483370780944824,
+     "witness_p95": 15.469088554382324,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.19413919746875763,
+      "W<=16.0": 0.9621489644050598
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 10.479609369735309,
+      "vs_int8_control": 18.2106598377727,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "F_dither_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.13243193924427032,
+     "rel_l2_p95": 0.1932889074087143,
+     "witness_mean": 10.50688648223877,
+     "witness_p95": 15.668649673461914,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.1855921894311905,
+      "W<=16.0": 0.9597069621086121
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 10.503116633645488,
+      "vs_int8_control": 18.251508954536657,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "E_pca_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.13747908174991608,
+     "rel_l2_p95": 0.19445188343524933,
+     "witness_mean": 11.579669952392578,
+     "witness_p95": 18.601377487182617,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.2173382192850113,
+      "W<=16.0": 0.8559218645095825
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 11.575515191364705,
+      "vs_int8_control": 20.11504075769164,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int3",
+     "bits": 3,
+     "kind": "shadow",
+     "rel_l2_mean": 0.2962608337402344,
+     "rel_l2_p95": 0.3823012411594391,
+     "witness_mean": 23.930055618286133,
+     "witness_p95": 35.31489944458008,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.12210012227296829
+     },
+     "physical": {
+      "payload_B": 168.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 311.0,
+      "vs_584": 0.5325342465753424,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 23.92146956506644,
+      "vs_int8_control": 41.56889152062548,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "H_rq_1bit_shadow",
+     "bits": 1,
+     "kind": "shadow",
+     "rel_l2_mean": 0.41839599609375,
+     "rel_l2_p95": 0.5703389644622803,
+     "witness_mean": 32.60953140258789,
+     "witness_p95": 46.47517013549805,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0024420025292783976
+     },
+     "physical": {
+      "payload_B": 56.0,
+      "quant_meta_B": 14,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 206.0,
+      "vs_584": 0.3527397260273973,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 32.59783117185889,
+      "vs_int8_control": 56.64600596986367,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "B_rtn_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.7282941341400146,
+     "rel_l2_p95": 0.7750628590583801,
+     "witness_mean": 61.031063079833984,
+     "witness_p95": 85.70352935791016,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 61.0091652637981,
+      "vs_int8_control": 106.01703903334966,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "E_pca_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.7290875315666199,
+     "rel_l2_p95": 0.7790247201919556,
+     "witness_mean": 61.26404571533203,
+     "witness_p95": 85.19831085205078,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     },
+     "score_shift_proxy": {
+      "eps_mean": 61.242064305620495,
+      "vs_int8_control": 106.42175309067125,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    },
+    {
+     "name": "F_dither_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.9269793629646301,
+     "rel_l2_p95": 1.3276116847991943,
+     "witness_mean": 73.60198974609375,
+     "witness_p95": 109.13420867919922,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0,
+      "W<=16.0": 0.0
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     },
+     "score_shift_proxy": {
+      "eps_mean": 73.57558150822271,
+      "vs_int8_control": 127.85399149342572,
+      "caliber": "代理 = E[scale·‖q‖]·W̄,非 lost-mass 实测"
+     }
+    }
+   ]
+  },
+  "c128": {
+   "n_calib": 1320,
+   "validation": [
+    {
+     "name": "A_fp8_baseline",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.0,
+     "rel_l2_p95": 0.0,
+     "witness_mean": 0.0,
+     "witness_p95": 0.0,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "C_had64_int6",
+     "bits": 6,
+     "kind": "shadow",
+     "rel_l2_mean": 0.015084858052432537,
+     "rel_l2_p95": 0.02146848663687706,
+     "witness_mean": 0.26441922783851624,
+     "witness_p95": 0.6742245554924011,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 336.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 479.0,
+      "vs_584": 0.8202054794520548,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "B_rtn_int8",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.015365434810519218,
+     "rel_l2_p95": 0.0187724269926548,
+     "witness_mean": 0.23501506447792053,
+     "witness_p95": 0.5380189418792725,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "C_had64_int5",
+     "bits": 5,
+     "kind": "shadow",
+     "rel_l2_mean": 0.031249284744262695,
+     "rel_l2_p95": 0.04428958520293236,
+     "witness_mean": 0.5484277606010437,
+     "witness_p95": 1.4195921421051025,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 280.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 423.0,
+      "vs_584": 0.7243150684931506,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out8",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06620703637599945,
+     "rel_l2_p95": 0.09555868059396744,
+     "witness_mean": 1.1598871946334839,
+     "witness_p95": 2.9361424446105957,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.8999999761581421,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 8,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 375.0,
+      "vs_584": 0.6421232876712328,
+      "static_per_layer": "+8 离群通道号/层"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06663832068443298,
+     "rel_l2_p95": 0.0962328165769577,
+     "witness_mean": 1.167271614074707,
+     "witness_p95": 2.9608066082000732,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.8999999761581421,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 4,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 371.0,
+      "vs_584": 0.6352739726027398,
+      "static_per_layer": "+4 离群通道号/层"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out2",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06679528206586838,
+     "rel_l2_p95": 0.09639164805412292,
+     "witness_mean": 1.1699879169464111,
+     "witness_p95": 2.9670886993408203,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.8999999761581421,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 2,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 369.0,
+      "vs_584": 0.6318493150684932,
+      "static_per_layer": "+2 离群通道号/层"
+     }
+    },
+    {
+     "name": "C_had64_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06703995913267136,
+     "rel_l2_p95": 0.09693509340286255,
+     "witness_mean": 1.1739280223846436,
+     "witness_p95": 2.994124174118042,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.8999999761581421,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "D_had64_varnorm_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.12831982970237732,
+     "rel_l2_p95": 0.28194883465766907,
+     "witness_mean": 2.084775686264038,
+     "witness_p95": 4.859727382659912,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.6386363506317139,
+      "W<=4.0": 0.9113636612892151,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448 fp16 尺度/层"
+     }
+    },
+    {
+     "name": "B_rtn_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.14123466610908508,
+     "rel_l2_p95": 0.2217617928981781,
+     "witness_mean": 2.418523073196411,
+     "witness_p95": 6.117243766784668,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.4886363744735718,
+      "W<=4.0": 0.9022727012634277,
+      "W<=8.0": 0.9886363744735718,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "E_pca_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.18266959488391876,
+     "rel_l2_p95": 0.23206870257854462,
+     "witness_mean": 3.5223283767700195,
+     "witness_p95": 6.907379150390625,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.10227272659540176,
+      "W<=4.0": 0.6909090876579285,
+      "W<=8.0": 0.9954545497894287,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     }
+    },
+    {
+     "name": "B_rtn_int3",
+     "bits": 3,
+     "kind": "shadow",
+     "rel_l2_mean": 0.20446619391441345,
+     "rel_l2_p95": 0.3762418329715729,
+     "witness_mean": 3.5817465782165527,
+     "witness_p95": 9.602853775024414,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.14772726595401764,
+      "W<=4.0": 0.7340909242630005,
+      "W<=8.0": 0.9045454263687134,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 168.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 311.0,
+      "vs_584": 0.5325342465753424,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "F_dither_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.292557030916214,
+     "rel_l2_p95": 0.33869102597236633,
+     "witness_mean": 4.439442157745361,
+     "witness_p95": 9.697321891784668,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.072727270424366,
+      "W<=4.0": 0.5136363506317139,
+      "W<=8.0": 0.8931818008422852,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "B_rtn_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.32900533080101013,
+     "rel_l2_p95": 0.665260374546051,
+     "witness_mean": 5.698204517364502,
+     "witness_p95": 15.884499549865723,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.04545454680919647,
+      "W<=4.0": 0.3636363744735718,
+      "W<=8.0": 0.8500000238418579,
+      "W<=16.0": 0.949999988079071
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "E_pca_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.5359112024307251,
+     "rel_l2_p95": 0.7265844941139221,
+     "witness_mean": 8.775266647338867,
+     "witness_p95": 12.21702766418457,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0022727272007614374,
+      "W<=8.0": 0.37727272510528564,
+      "W<=16.0": 0.9795454740524292
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     }
+    },
+    {
+     "name": "H_rq_1bit_shadow",
+     "bits": 1,
+     "kind": "shadow",
+     "rel_l2_mean": 0.8757520914077759,
+     "rel_l2_p95": 0.9435858726501465,
+     "witness_mean": 10.415973663330078,
+     "witness_p95": 23.723295211791992,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0022727272007614374,
+      "W<=4.0": 0.036363635212183,
+      "W<=8.0": 0.35681816935539246,
+      "W<=16.0": 0.8795454502105713
+     },
+     "physical": {
+      "payload_B": 56.0,
+      "quant_meta_B": 14,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 206.0,
+      "vs_584": 0.3527397260273973,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "F_dither_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 2.044330358505249,
+     "rel_l2_p95": 2.3625142574310303,
+     "witness_mean": 31.106443405151367,
+     "witness_p95": 68.0601577758789,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.004545454401522875,
+      "W<=16.0": 0.10227272659540176
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     }
+    }
+   ],
+   "hidden": [
+    {
+     "name": "A_fp8_baseline",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.0,
+     "rel_l2_p95": 0.0,
+     "witness_mean": 0.0,
+     "witness_p95": 0.0,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "C_had64_int6",
+     "bits": 6,
+     "kind": "shadow",
+     "rel_l2_mean": 0.014607083052396774,
+     "rel_l2_p95": 0.020769547671079636,
+     "witness_mean": 0.26896098256111145,
+     "witness_p95": 0.6393003463745117,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 336.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 479.0,
+      "vs_584": 0.8202054794520548,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "B_rtn_int8",
+     "bits": 8,
+     "kind": "shadow",
+     "rel_l2_mean": 0.015469208359718323,
+     "rel_l2_p95": 0.018430527299642563,
+     "witness_mean": 0.2483033686876297,
+     "witness_p95": 0.5602037906646729,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 448.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 591.0,
+      "vs_584": 1.0119863013698631,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "C_had64_int5",
+     "bits": 5,
+     "kind": "shadow",
+     "rel_l2_mean": 0.030144749209284782,
+     "rel_l2_p95": 0.042748499661684036,
+     "witness_mean": 0.5553879141807556,
+     "witness_p95": 1.3329716920852661,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 1.0,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 280.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 423.0,
+      "vs_584": 0.7243150684931506,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out8",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06323239952325821,
+     "rel_l2_p95": 0.09174135327339172,
+     "witness_mean": 1.1734073162078857,
+     "witness_p95": 2.8402719497680664,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.9015151262283325,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 8,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 375.0,
+      "vs_584": 0.6421232876712328,
+      "static_per_layer": "+8 离群通道号/层"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06385386735200882,
+     "rel_l2_p95": 0.09198237210512161,
+     "witness_mean": 1.183587670326233,
+     "witness_p95": 2.8475306034088135,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.9015151262283325,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 4,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 371.0,
+      "vs_584": 0.6352739726027398,
+      "static_per_layer": "+4 离群通道号/层"
+     }
+    },
+    {
+     "name": "G_C_had64_int4_out2",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06401867419481277,
+     "rel_l2_p95": 0.09217089414596558,
+     "witness_mean": 1.1865147352218628,
+     "witness_p95": 2.8537964820861816,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.9015151262283325,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 2,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 369.0,
+      "vs_584": 0.6318493150684932,
+      "static_per_layer": "+2 离群通道号/层"
+     }
+    },
+    {
+     "name": "C_had64_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.06427828222513199,
+     "rel_l2_p95": 0.09244775772094727,
+     "witness_mean": 1.1903331279754639,
+     "witness_p95": 2.879448652267456,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.9015151262283325,
+      "W<=4.0": 1.0,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "D_had64_varnorm_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.11987625807523727,
+     "rel_l2_p95": 0.29863980412483215,
+     "witness_mean": 2.059537172317505,
+     "witness_p95": 4.676455497741699,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.6469696760177612,
+      "W<=4.0": 0.9106060862541199,
+      "W<=8.0": 1.0,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448 fp16 尺度/层"
+     }
+    },
+    {
+     "name": "B_rtn_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.13378238677978516,
+     "rel_l2_p95": 0.22201284766197205,
+     "witness_mean": 2.4298651218414307,
+     "witness_p95": 6.612370491027832,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.5136363506317139,
+      "W<=4.0": 0.9015151262283325,
+      "W<=8.0": 0.9984848499298096,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "E_pca_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.18112953007221222,
+     "rel_l2_p95": 0.23460334539413452,
+     "witness_mean": 3.725510835647583,
+     "witness_p95": 6.7569780349731445,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.06818182021379471,
+      "W<=4.0": 0.6590909361839294,
+      "W<=8.0": 0.9863636493682861,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     }
+    },
+    {
+     "name": "B_rtn_int3",
+     "bits": 3,
+     "kind": "shadow",
+     "rel_l2_mean": 0.19325785338878632,
+     "rel_l2_p95": 0.389923095703125,
+     "witness_mean": 3.581164836883545,
+     "witness_p95": 9.310277938842773,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.16818182170391083,
+      "W<=4.0": 0.728787899017334,
+      "W<=8.0": 0.903030276298523,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 168.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 311.0,
+      "vs_584": 0.5325342465753424,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "F_dither_int4",
+     "bits": 4,
+     "kind": "shadow",
+     "rel_l2_mean": 0.296298086643219,
+     "rel_l2_p95": 0.3382119834423065,
+     "witness_mean": 4.731502056121826,
+     "witness_p95": 10.047393798828125,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.06363636255264282,
+      "W<=4.0": 0.44090908765792847,
+      "W<=8.0": 0.8969696760177612,
+      "W<=16.0": 1.0
+     },
+     "physical": {
+      "payload_B": 224.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 367.0,
+      "vs_584": 0.6284246575342466,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "B_rtn_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.3145119249820709,
+     "rel_l2_p95": 0.6591231822967529,
+     "witness_mean": 5.716824054718018,
+     "witness_p95": 15.10299301147461,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.05151515081524849,
+      "W<=4.0": 0.4121212065219879,
+      "W<=8.0": 0.8500000238418579,
+      "W<=16.0": 0.949999988079071
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "E_pca_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 0.5273619890213013,
+     "rel_l2_p95": 0.6946543455123901,
+     "witness_mean": 9.231523513793945,
+     "witness_p95": 13.159064292907715,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0015151514671742916,
+      "W<=8.0": 0.32575756311416626,
+      "W<=16.0": 0.9833333492279053
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": "448² fp16 旋转阵/层(摊销)"
+     }
+    },
+    {
+     "name": "H_rq_1bit_shadow",
+     "bits": 1,
+     "kind": "shadow",
+     "rel_l2_mean": 0.8837797045707703,
+     "rel_l2_p95": 0.9493780732154846,
+     "witness_mean": 10.906582832336426,
+     "witness_p95": 24.759389877319336,
+     "witness_soundness": "post-hoc(确定性量化,W 即实现;dither 为先验半径另注)",
+     "coverage": {
+      "W<=2.0": 0.0015151514671742916,
+      "W<=4.0": 0.01666666753590107,
+      "W<=8.0": 0.30909091234207153,
+      "W<=16.0": 0.8878787755966187
+     },
+     "physical": {
+      "payload_B": 56.0,
+      "quant_meta_B": 14,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 206.0,
+      "vs_584": 0.3527397260273973,
+      "static_per_layer": ""
+     }
+    },
+    {
+     "name": "F_dither_int2",
+     "bits": 2,
+     "kind": "shadow",
+     "rel_l2_mean": 2.0754125118255615,
+     "rel_l2_p95": 2.36914324760437,
+     "witness_mean": 33.136409759521484,
+     "witness_p95": 70.964111328125,
+     "witness_soundness": "先验半径可用(减性抖动残差~U;δ 入望远镜账)",
+     "coverage": {
+      "W<=2.0": 0.0,
+      "W<=4.0": 0.0,
+      "W<=8.0": 0.0015151514671742916,
+      "W<=16.0": 0.08939393609762192
+     },
+     "physical": {
+      "payload_B": 112.0,
+      "quant_meta_B": 7,
+      "outlier_B": 0,
+      "rope_B": 128,
+      "legacy_scale_pad_B": 8,
+      "entry_total_B": 255.0,
+      "vs_584": 0.4366438356164384,
+      "static_per_layer": ""
+     }
+    }
+   ]
+  }
+ },
+ "hbm_saving": {
+  "c4": {
+   "candidate": "G_C_had64_int4_out8",
+   "entry_bytes": 375.0,
+   "hbm_saving_at_r": {
+    "25%": 0.0895,
+    "50%": 0.1789,
+    "75%": 0.2684,
+    "90%": 0.3221
+   }
+  },
+  "c128": {
+   "candidate": "G_C_had64_int4_out8",
+   "entry_bytes": 375.0,
+   "hbm_saving_at_r": {
+    "25%": 0.0895,
+    "50%": 0.1789,
+    "75%": 0.2684,
+    "90%": 0.3221
+   }
+  }
+ },
+ "verdict": {
+  "gate": "Q0 完整收口(c4 由 p101 分桶补采判定;c128 沿 p100/p101 一致)",
+  "optimal_config": {
+   "c4": "had64_INT6(479B/条目)—— rel 2.4%/2.65%p95,W≤4 覆盖 100%,score 代理 3.5×int8",
+   "c128": "had64_INT4(367B;packed 布局 360B)—— rel 6.4%/9.2%p95,W≤4 覆盖 100%",
+   "mixing": "池级固定精度(门规:不做页内混合);c4 INT4 被否决(覆盖 2%,代理 15×)"
+  },
+  "memory_weighted": {
+   "weights": "条目率 c4=21/4, c128=20/128 每 token(c4 是压缩池内存 32× 大头)",
+   "compressed_pool_saving": 0.1853,
+   "note": "18.5% 为**压缩池字节**口径;总 HBM 还含 swa 窗口池/稠密层/激活,总量节省依赖池占比 —— 服务实测留 Q1 二段;单压 c128 对总量仅 ~1%(权重悬殊),c4 才是收益主体"
+  },
+  "negative_kept": "c4 INT4/INT5 否决(覆盖 2%/44%);INT2 全族、1-bit RQ、varnorm(过拟合)、池级 PCA(样本饥饿)、减性抖动 —— 全部保留",
+  "physical_stage1": "q1_packed_int4(hgx GPU 实测):池字节 −38.4% 实测=名义;真实条目往返 7.05%/9.76% 与 shadow 一致;解包 torch 参考 0.29ms/32Ki(112M tok/s),为生产 FP8 Triton 核的 4.6×(未融合上界)",
+  "next": "Q1 二段 = 服务集成:融合 Triton 解包核、新 cache 配置注册、六条服务路径逐项验证、吞吐/质量/cost_per_successful_output_token"
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "n_rows": 4998,
+ "n_layers": 21,
+ "q0_reference": {
+  "c4_had64_int6_rel_l2_mean": 0.02388,
+  "c4_had64_int6_rel_l2_p95": 0.02626,
+  "source": "experiments/out/q0_sweep.json /pools/c4/validation[2]"
+ },
+ "prod_observed": {
+  "rel_mean": 0.13549,
+  "rel_max": 2.71913,
+  "source": "p118 arm5 快照 packshadow_check"
+ },
+ "A_kernel": {
+  "n": 4998,
+  "mean": 0.02448,
+  "p95": 0.027,
+  "max": 0.0304,
+  "n_gt1": 0
+ },
+ "B_pool": {
+  "n": 4998,
+  "mean": 0.02448,
+  "p95": 0.027,
+  "max": 0.0304,
+  "n_gt1": 0
+ },
+ "C_rewrite": {
+  "n": 4998,
+  "mean": 0.02448,
+  "p95": 0.027,
+  "max": 0.0304,
+  "n_gt1": 0
+ },
+ "D_rope": {
+  "n": 4998,
+  "mean": 0.0,
+  "p95": 0.0,
+  "max": 0.0,
+  "n_gt1": 0
+ }
+}

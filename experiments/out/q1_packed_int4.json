@@ -1,0 +1,33 @@
+{
+ "what": "Q1 阶段一:c128 packed INT4 物理格式 —— 真实字节 + GPU 实测",
+ "machine": "hgx",
+ "source": "p101_wc_q05_raw.rank0.pt",
+ "caliber": [
+  "数值等价性在真实条目上往返验证(与 shadow had64_int4 同一数学)",
+  "池字节 = torch.cuda.memory_allocated 差分(GPU 实测)",
+  "解包 = CUDA event 微基准,对比现行 FP8 dequantize_k_cache_paged",
+  "**非服务集成**:吞吐/TTFT/CUDA graph/MTP/Radix/HiSparse/PD 验证是 Q1 阶段二,本报告不冒充"
+ ],
+ "roundtrip": {
+  "n_entries": 2420,
+  "rel_l2_mean": 0.07052933424711227,
+  "rel_l2_p95": 0.09764044731855392,
+  "witness_mean": 1.2585219144821167,
+  "cov_W_le_4": 1.0
+ },
+ "pool_bytes_gpu": {
+  "n_tokens": 65536,
+  "fp8_pool_MiB": 36.5,
+  "int4_pool_MiB": 22.5,
+  "measured_saving": 0.3835616438356164,
+  "format_saving_nominal": 0.3835616438356164
+ },
+ "unpack_bench": {
+  "n_tokens": 32768,
+  "int4_unpack_ms": 0.29312448501586913,
+  "int4_tokens_per_s": 111788682.53952245,
+  "fp8_dequant_ms": 0.06411392211914063,
+  "ratio_int4_over_fp8": 4.571931888228056,
+  "note": "int4 解包为 torch 参考实现(未融合);fp8 为生产 Triton 核 —— 比值是**上界**,融合 Triton 版应显著低于此"
+ }
+}

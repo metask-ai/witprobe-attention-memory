@@ -1,0 +1,52 @@
+% DeepSeek-V4 压缩条目生命周期与故障边界图(示意)
+% v3:目检抓到卡片重叠/文本裁切 —— text width 显式控宽 + 间距放大,
+% 箭头标签抬升;红卡措辞维持 q11af2 降格口径
+\begin{figure}[t]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[font=\footnotesize,
+  st/.style={draw, rounded corners=1.5pt, align=center, inner sep=3.5pt,
+             minimum height=8mm},
+  lc/.style={st, fill=blue!7, draw=blue!35!gray, text width=29mm},
+  card/.style={st, align=left, text width=42mm, inner sep=5pt},
+  ok/.style={card, fill=teal!18, draw=teal!55!black},
+  bad/.style={card, fill=red!12, draw=red!55!black},
+  mid/.style={card, fill=yellow!24, draw=orange!70!black},
+  arr/.style={-{Stealth[length=2.4mm]}, semithick, gray!45!black}]
+
+% 生命周期横排(上):箭头标签抬升,不压框沿
+\node[lc] (log)  at (0, 0)     {logical slot\\[-1pt]{\scriptsize allocator coordinate}};
+\node[lc] (ring) at (4.65, 0)  {physical ring slot\\[-1pt]{\scriptsize FP8 staging window}};
+\node[lc] (arch) at (9.3, 0)   {packed archive\\[-1pt]{\scriptsize INT6, logical-keyed}};
+\node[lc] (kern) at (13.95, 0) {attention kernel\\[-1pt]{\scriptsize decode consumption}};
+\draw[arr] (log.east) -- (ring.west)
+  node[midway, above=2.4mm]{\scriptsize write translation};
+\draw[arr] (ring.east) -- (arch.west)
+  node[midway, above=2.4mm]{\scriptsize finalize};
+\draw[arr] (arch.east) -- (kern.west)
+  node[midway, above=2.4mm]{\scriptsize logical-id read};
+
+% 三状态卡片(下):text width 42mm + 中心距 50mm,零重叠
+\node[ok, anchor=north]  (g) at (1.95, -0.85)
+  {\textbf{exact} --- ring $\geq$ live working set, no
+   eviction, identity isolation: $1.000$ across three
+   independent 12-doc rounds};
+\node[bad, anchor=north] (r) at (6.95, -0.85)
+  {\textbf{degraded} --- eviction or cross-request slot
+   reuse: drops to $0.500$ with every validity flag green;
+   write chain and reader math exonerated,
+   micro-mediator open};
+\node[mid, anchor=north] (y) at (11.95, -0.85)
+  {\textbf{truncated} --- non-resident reads folded to the
+   skip sentinel: honest omission, not recovery; heals or
+   harms depending on eviction timing vs.\ prefill};
+\end{tikzpicture}}
+\caption{\textbf{Compressed-entry lifecycle and runtime regimes.} The exact
+regime is certified; degradation correlates with eviction and slot reuse
+while the write chain and audited readers are exonerated (mediator open,
+\S\ref{sec:served}); the sentinel fold is a timing-dependent mitigation.
+The contract lesson: a replaced KV representation redefines coordinate,
+generation, and materialization semantics---all three belong in the
+runtime contract.}
+\label{fig:v4mech}
+\end{figure}

@@ -1,0 +1,241 @@
+{
+ "arm": "packonce",
+ "pack_every_read": 0,
+ "acc": 0.05,
+ "n": 20,
+ "n_error": 0,
+ "witcert_env": {
+  "WITCERT_PROBE_FLUSH": "16",
+  "WITCERT_PROBE": "1",
+  "WITCERT_PACK_EVERY_READ": "0",
+  "WITCERT_PACKSHADOW": "1",
+  "WITCERT_PACKED_KERNEL": "1",
+  "WITCERT_PROBE_EVERY": "1",
+  "WITCERT_PROBE_ROWS": "64",
+  "WITCERT_PROBE_FILE": "/tmp/wc_p119.json",
+  "WITCERT_PROBE_BANDS": "16",
+  "WITCERT_SM120_ROUTE": "1",
+  "WITCERT_PACKED_C4": "1"
+ },
+ "snapshot": {
+  "err": null,
+  "n_repack": null,
+  "n_layer_skipped": null,
+  "packshadow_check": {
+   "n_checked": 240727,
+   "n_unwritten": 0,
+   "rel_sum": 168230.54274326563,
+   "rel_max": 3.7297544479370117,
+   "rel_mean": 0.6988436807805756
+  },
+  "packed_kernel": {
+   "n_calls": 13231,
+   "n_packed": 6461,
+   "n_fallback": 6770,
+   "n_packed_c4": 6461,
+   "n_fill_on_demand": 170514
+  },
+  "sm120_route": {
+   "forced": true,
+   "n_gather": 0,
+   "n_packed_rows": 0,
+   "n_entry": 13231
+  },
+  "sm120_probe": {
+   "n_called": 1,
+   "env": "1"
+  },
+  "all_ranks": {
+   "n_repack": 0,
+   "rel_sum": 1345844.341946125,
+   "n_checked": 1925816,
+   "rel_max": 3.7297544479370117,
+   "n_refill_every": 0,
+   "n_fill_on_demand": 1364112,
+   "rel_mean": 0.6988436807805756
+  }
+ },
+ "n_rank_files": 8,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "982\n```\n\nThe model correctly identifies ",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "0.5\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "417000\n```\n\nThe model correctly identifi",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "1105\n```\n\nThe model correctly identifies",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "42\n```\n\n\n## 2.2.2",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_14.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417078",
+   "out": "0",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_15.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417091",
+   "out": "0.0",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_16.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417104",
+   "out": "8\n\nQuestion: What is the special magic n",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_17.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417117",
+   "out": "4624\n```\n\nThe model correctly identifies",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_18.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417130",
+   "out": "417448\n```\n\nThe model correctly identifi",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_19.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417143",
+   "out": "0.0\n\nQuestion: What is the special magic",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_2.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417156",
+   "out": "0",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_3.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417169",
+   "out": "4935\n```",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_4.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417182",
+   "out": "14\n\nQuestion: What is the special magic ",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_5.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417195",
+   "out": "15\n\nQuestion: What is the special magic ",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_6.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417208",
+   "out": "3596\n```\n\nThe model correctly identifies",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_7.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417221",
+   "out": "17\n\nQuestion: What is the special magic ",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_8.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417234",
+   "out": "3936\n```\n\nThe model correctly identifies",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_9.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417247",
+   "out": "694\n```\n\nThe model correctly identifies ",
+   "hit": false,
+   "error": null
+  }
+ ]
+}

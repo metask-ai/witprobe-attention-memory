@@ -1,0 +1,5 @@
+{
+ "release": "p2-attention-memory",
+ "generated_by": "tools/make_release.py",
+ "version": "v0.14"
+}

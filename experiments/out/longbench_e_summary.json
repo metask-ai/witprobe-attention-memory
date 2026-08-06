@@ -1,0 +1,93 @@
+{
+ "note": "LongBench-E, Qwen2.5-7B, compression_ratio=0.401, fraction=1.0; lcc_e 失败未计入",
+ "buckets": 15,
+ "witcert_drops_gt1pp": 1,
+ "ea_drops_gt1pp": 4,
+ "data": {
+  "passage_retrieval_en_e": {
+   "expected_attention": {
+    "0-4k": 99.0,
+    "4-8k": 100.0,
+    "8k+": 100.0
+   },
+   "no_press": {
+    "0-4k": 99.0,
+    "4-8k": 99.67,
+    "8k+": 100.0
+   },
+   "witcert": {
+    "0-4k": 99.0,
+    "4-8k": 100.0,
+    "8k+": 100.0
+   }
+  },
+  "hotpotqa_e": {
+   "witcert": {
+    "0-4k": 59.92,
+    "4-8k": 58.25,
+    "8k+": 51.63
+   },
+   "no_press": {
+    "0-4k": 58.71,
+    "4-8k": 58.15,
+    "8k+": 51.0
+   },
+   "expected_attention": {
+    "0-4k": 58.56,
+    "4-8k": 56.53,
+    "8k+": 55.36
+   }
+  },
+  "multifieldqa_en_e": {
+   "witcert": {
+    "0-4k": 55.88,
+    "4-8k": 44.98,
+    "8k+": 48.66
+   },
+   "expected_attention": {
+    "0-4k": 56.49,
+    "4-8k": 46.0,
+    "8k+": 49.79
+   },
+   "no_press": {
+    "0-4k": 56.2,
+    "4-8k": 45.04,
+    "8k+": 48.71
+   }
+  },
+  "2wikimqa_e": {
+   "witcert": {
+    "0-4k": 51.08,
+    "4-8k": 47.12,
+    "8k+": 30.16
+   },
+   "no_press": {
+    "0-4k": 51.89,
+    "4-8k": 50.35,
+    "8k+": 30.5
+   },
+   "expected_attention": {
+    "0-4k": 48.51,
+    "4-8k": 42.56,
+    "8k+": 28.92
+   }
+  },
+  "gov_report_e": {
+   "expected_attention": {
+    "0-4k": 35.19,
+    "4-8k": 34.98,
+    "8k+": 34.11
+   },
+   "no_press": {
+    "0-4k": 35.13,
+    "4-8k": 34.93,
+    "8k+": 33.01
+   },
+   "witcert": {
+    "0-4k": 34.98,
+    "4-8k": 34.68,
+    "8k+": 33.09
+   }
+  }
+ }
+}

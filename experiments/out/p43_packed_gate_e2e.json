@@ -1,0 +1,112 @@
+{
+ "model": "Qwen2.5-7B-Instruct",
+ "protocol": "RULER 6 难任务×25,te_ruler_eval,H200 单卡,单次",
+ "fp16_avg": 78.66666666666666,
+ "packed_avg": 78.83333333333333,
+ "gate02_avg": 2.0,
+ "packed_vs_fp16": 0.17,
+ "runs": {
+  "p43_fp16": {
+   "tag": "p43_fp16",
+   "scheme": "none",
+   "gate_tau": null,
+   "n": 150,
+   "wall_s": 19.9326810836792,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 65.0,
+    "qa_1": 63.0,
+    "qa_2": 44.0
+   },
+   "avg": 78.66666666666666,
+   "n_zero": 20,
+   "coverage": null,
+   "fallback": null
+  },
+  "p43_packed": {
+   "tag": "p43_packed",
+   "scheme": "none",
+   "gate_tau": null,
+   "n": 150,
+   "wall_s": 23.835280656814575,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 66.0,
+    "qa_1": 63.0,
+    "qa_2": 44.0
+   },
+   "avg": 78.83333333333333,
+   "n_zero": 20,
+   "coverage": null,
+   "fallback": null
+  },
+  "p43_gate02": {
+   "tag": "p43_gate02",
+   "scheme": "none",
+   "gate_tau": "0.2",
+   "n": 150,
+   "wall_s": 149.496750831604,
+   "per_task": {
+    "niah_multikey_2": 0.0,
+    "niah_multikey_3": 0.0,
+    "niah_single_2": 0.0,
+    "niah_multiquery": 0.0,
+    "qa_1": 4.0,
+    "qa_2": 8.0
+   },
+   "avg": 2.0,
+   "n_zero": 147,
+   "coverage": 0.9364808319160998,
+   "fallback": {
+    "n_req": 49999,
+    "n_call": 4367,
+    "mib": 370989.80078125
+   }
+  },
+  "p43_gate02_fixed": {
+   "tag": "p43_gate02_fixed",
+   "scheme": "none",
+   "gate_tau": "0.2",
+   "n": 150,
+   "wall_s": 180.02119612693787,
+   "per_task": {
+    "niah_multikey_2": 100.0,
+    "niah_multikey_3": 100.0,
+    "niah_single_2": 100.0,
+    "niah_multiquery": 66.0,
+    "qa_1": 63.0,
+    "qa_2": 44.0
+   },
+   "avg": 78.83333333333333,
+   "n_zero": 20,
+   "coverage": 0.9308754022139085,
+   "fallback": {
+    "n_req": 54180,
+    "n_call": 5538,
+    "mib": 408020.29296875
+   }
+  }
+ },
+ "finding": {
+  "packed_ungated": "质量中性:78.83 vs fp16 78.67(+0.16pp),packed 真实存储路径 E2E 质量首次实测,贡献(4) remains-open 的存储半句可升级",
+  "packed_gated_BROKEN": "τ=0.2 门控闭环下塌至 2.0(147/150 零分),无异常日志,修复调用 4367 次/页入 362GiB/请求级计数 49999。代码事实(已核):_witcert_fallback 观测台分支把精确值写回 fp16 池(此前 T-E 评测验证过);packed 分支不写池,而是 bk.page_in 到临时张量后用上游 grouped decode kernel 单请求重算并替换该层输出行——此分支只做过不崩冒烟,数值正确性从未验证。当前最可疑:packed 分支重算调用本身(张量布局/stride、backing 数据、_up 参数)产出错误输出,近乎步步触发 × 逐层替换 → 全线塌。待验证:单 prompt 打印重算前后输出差 + backing 数据 sanity。",
+  "packed_gated_FIXED": "根因:packed 池 set_kv_buffer 从不写 witcert_backing(CPUBacking 分配后恒零,torch.empty 新页恰为零),fallback 页回全零 KV 单请求重算并替换层输出 → 塌陷。证据链:对拍插桩显示 |kk|=0 且重算与 fp32 参考完全一致(排除 kernel);修复 = packed 池补 set_kv_buffer 覆写先落 backing。修复后 τ=0.2 门控闭环:78.83 (= packed 无门控,≥ fp16 78.67),coverage 0.9309,修复调用 5538 次 / 页入 398GiB(150 请求)。页入量大是 packed 修复非持久化的固有代价(池中数据保持量化,证书逐步复超阈,每步重页入)——独立优化项:请求级修复缓存或修复标记,列入 P1-6。旧冒烟教训:不崩+有流量 ≠ 数据正确。"
+ },
+ "gate02_fixed_avg": 78.83333333333333,
+ "per_req_pagein_mib_dist": {
+  "protocol": "WC_SERIAL=1 串行逐请求 + 统计文件差分(FLUSH_EVERY=1),150 请求,τ=0.2",
+  "P50": 2873.723,
+  "P90": 3550.076,
+  "P95": 3667.119,
+  "P99": 3855.43,
+  "max": 3886.684,
+  "min": 653.146,
+  "sum_gib": 381.56,
+  "avg_quality": 78.83333333333333,
+  "coverage": 0.9349183780574758
+ }
+}

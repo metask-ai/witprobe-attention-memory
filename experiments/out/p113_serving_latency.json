@@ -1,0 +1,55 @@
+{
+ "what": "bench_serving 双臂:native FP8(无装配)vs stage-B staging1;吞吐/TTFT/ITL/每输出token GPU·s 成本",
+ "machine": "hgx",
+ "stack": "sglang 0.5.13.post1 TP/EP=8",
+ "gate": {
+  "passed": true,
+  "criteria": {
+   "L1_零失败请求": true,
+   "L2_负载参数一致": true,
+   "L3_臂有效且质量锚一致": true,
+   "L4_manifest一致且code锁定": true
+  }
+ },
+ "summary": "staging1/native:吞吐×0.884 TTFT×0.736 ITL×1.275 成本×1.131(仅臂间可比)",
+ "metrics": {
+  "native": {
+   "completed": 32,
+   "duration_s": 24.32,
+   "output_throughput_tok_s": 91.49,
+   "mean_ttft_ms": 3291.85,
+   "median_ttft_ms": 3298.7,
+   "mean_itl_ms": 153.839,
+   "total_output_tokens": 2225,
+   "cost_gpu_s_per_output_token": 0.087442
+  },
+  "staging1": {
+   "completed": 32,
+   "duration_s": 27.51,
+   "output_throughput_tok_s": 80.89,
+   "mean_ttft_ms": 2422.56,
+   "median_ttft_ms": 2545.95,
+   "mean_itl_ms": 196.133,
+   "total_output_tokens": 2225,
+   "cost_gpu_s_per_output_token": 0.098905
+  }
+ },
+ "ratio_staging1_over_native": {
+  "output_throughput_tok_s": 0.8841,
+  "mean_ttft_ms": 0.7359,
+  "mean_itl_ms": 1.2749,
+  "cost_gpu_s_per_output_token": 1.1311
+ },
+ "caliber": "random 数据集 seed=42,负载参数见 manifest.bench;探针配置(双 CUDA graph 关,Radix 关)—— 非生产配置,生产双图属 Q6;staging1 为每调用全量物化的未优化实现,本数字是其**上界开销**;cost = duration×8GPU/输出token,同硬件仅臂间可比",
+ "sources": {
+  "native": [
+   "p113lat_native.json",
+   "p113lat_native_bench.json"
+  ],
+  "staging1": [
+   "p113lat_staging1.json",
+   "p113lat_staging1_bench.json"
+  ]
+ },
+ "generated_by": "p113_serving_latency.py"
+}

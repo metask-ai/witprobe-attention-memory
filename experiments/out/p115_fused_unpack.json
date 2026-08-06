@@ -1,0 +1,59 @@
+{
+ "what": "fused packed 解包核服务实测:refcons(decode 读 scratch FP8原生核)vs fusedk(decode 视图直读 packed INT4 融合核);物化成本同模,kernel 路径差隔离",
+ "machine": "hgx",
+ "stack": "sglang 0.5.13.post1 TP/EP=8",
+ "gate": {
+  "passed": true,
+  "criteria": {
+   "K1_双臂有效且质量锚一致": true,
+   "K2_kernel证据与路径隔离": true,
+   "K3_负载与manifest一致": true
+  }
+ },
+ "summary": "fusedk/refcons:吞吐×0.238 ITL×2.526 成本×4.201;kernel calls=9219 view=4287 audited=597981 stale=0 fb=4932;acc 双臂 1.0",
+ "metrics": {
+  "refcons": {
+   "completed": 32,
+   "output_throughput_tok_s": 87.78,
+   "mean_ttft_ms": 2715.48,
+   "mean_itl_ms": 166.094,
+   "cost_gpu_s_per_output_token": 0.091132
+  },
+  "fusedk": {
+   "completed": 32,
+   "output_throughput_tok_s": 20.9,
+   "mean_ttft_ms": 64981.94,
+   "mean_itl_ms": 419.584,
+   "cost_gpu_s_per_output_token": 0.382829
+  }
+ },
+ "ratio_fusedk_over_refcons": {
+  "output_throughput_tok_s": 0.2381,
+  "mean_ttft_ms": 23.9302,
+  "mean_itl_ms": 2.5262,
+  "cost_gpu_s_per_output_token": 4.2008
+ },
+ "kernel_evidence": {
+  "fusedk": {
+   "n_calls": 9219,
+   "n_packed": 4287,
+   "n_fallback": 4932,
+   "n_stageb_view": 4287,
+   "n_stageb_slots_audited": 597981,
+   "n_packed_c128": 4287
+  },
+  "refcons_silent": {}
+ },
+ "caliber": "random 数据集 seed=42;探针配置(双 CUDA graph 关)——非生产配置;REF 三分类物化两臂共模,但 fusedk 臂额外含**逐调用 ensure_fresh + Python 逐槽代际审计**(非共模,诊断脚手架)—— 比值是'kernel 路径 + 视图诊断开销'的**上界**,不是纯核开销;纯核对照需去审计的生产化轮。功能面结论独立成立:597,981 槽审计 stale=0、质量锚 1.000 = fused 消费 E2E 正确",
+ "sources": {
+  "refcons": [
+   "p115k2_refcons.json",
+   "p115k2_refcons_bench.json"
+  ],
+  "fusedk": [
+   "p115k2_fusedk.json",
+   "p115k2_fusedk_bench.json"
+  ]
+ },
+ "generated_by": "p115_fused_unpack.py"
+}
