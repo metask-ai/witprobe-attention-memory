@@ -1,0 +1,31 @@
+{
+ "model": "Qwen2.5-7B-Instruct",
+ "S": 8192,
+ "docs": 5,
+ "results": {
+  "A: 块×通道(论文)": {
+   "rel_err": 0.024486662289127707,
+   "bytes": 258.0,
+   "saving_pct": 49.609375,
+   "ratio_vs_paper": 1.0
+  },
+  "C: token×16通道组": {
+   "rel_err": 0.018209918355569243,
+   "bytes": 288,
+   "saving_pct": 43.75,
+   "ratio_vs_paper": 0.7436668232098993
+  },
+  "C: token×32通道组": {
+   "rel_err": 0.021313496520742773,
+   "bytes": 272,
+   "saving_pct": 46.875,
+   "ratio_vs_paper": 0.8704124828889461
+  },
+  "B: token 标量": {
+   "rel_err": 0.03719945855438709,
+   "bytes": 260,
+   "saving_pct": 49.21875,
+   "ratio_vs_paper": 1.5191722789799724
+  }
+ }
+}

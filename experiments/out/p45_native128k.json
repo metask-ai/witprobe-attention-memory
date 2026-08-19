@@ -1,0 +1,77 @@
+{
+ "harness": "P38 长上下文覆盖率(P17 同配置,δ=1e-2,模型自身 cos/sin)",
+ "results": [
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "S": 8192,
+   "domain": "natural",
+   "yarn": false,
+   "layers_sampled": 8,
+   "jkv": 0.716796875,
+   "jq": 0.83282470703125,
+   "jkv_tanh": 0.3994140625,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "S": 8192,
+   "domain": "needle",
+   "yarn": false,
+   "layers_sampled": 8,
+   "jkv": 0.76953125,
+   "jq": 0.88201904296875,
+   "jkv_tanh": 0.69873046875,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "S": 32768,
+   "domain": "natural",
+   "yarn": false,
+   "layers_sampled": 8,
+   "jkv": 0.73779296875,
+   "jq": 0.86175537109375,
+   "jkv_tanh": 0.220703125,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "S": 32768,
+   "domain": "needle",
+   "yarn": false,
+   "layers_sampled": 8,
+   "jkv": 0.7705078125,
+   "jq": 0.8779296875,
+   "jkv_tanh": 0.584228515625,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "S": 131072,
+   "domain": "natural",
+   "yarn": false,
+   "layers_sampled": 8,
+   "jkv": 0.71435546875,
+   "jq": 0.8553466796875,
+   "jkv_tanh": 0.13671875,
+   "viol": 0,
+   "viol_tanh": 0
+  },
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "S": 131072,
+   "domain": "needle",
+   "yarn": false,
+   "layers_sampled": 8,
+   "jkv": 0.770263671875,
+   "jq": 0.8798828125,
+   "jkv_tanh": 0.447509765625,
+   "viol": 0,
+   "viol_tanh": 0
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "tau_gate": 0.99,
+ "harness": "同T-E(RULER 6难任务×25,7B),同一见证输入",
+ "rows": {
+  "eform": {
+   "fp8": {
+    "avg": 79.5,
+    "pcie_gib": 30.8
+   },
+   "int8": {
+    "avg": 79.3,
+    "pcie_gib": 27.3
+   }
+  },
+  "det_tanh": {
+   "fp8": {
+    "avg": 80.1,
+    "pcie_gib": 12.1
+   },
+   "int8": {
+    "avg": 79.3,
+    "pcie_gib": 5.3
+   }
+  }
+ },
+ "conclusion": "两界形均恢复质量下限;Tier-A松见证档 det-tanh 门流量便宜2.5-5×(tanh有帽,e-form 的 p̃·e^c 被单个大c指数放大);受控抖动器档 e-form 大胜(覆盖率65-82% vs 12-52%)。界形选择按档位,框架两者皆容(WITCERT_GATE_MODE)"
+}

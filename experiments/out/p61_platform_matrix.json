@@ -1,0 +1,184 @@
+{
+ "what": "witcert.probe 平台覆盖矩阵:同一套尺子数学插进多少种模型",
+ "caliber": "逐路径对账(多探针同跑时全路径并集的层数没有意义);采样档位见各行 sample_every;跨架构的 margin 量纲不可直接比(页级 vs token 级)",
+ "gate": "只收录通过验收门(覆盖->量纲->soundness)的行;未验收的数字等于没有",
+ "adapters": 6,
+ "injection_points": 11,
+ "probe_classes": [
+  "KV",
+  "LatentKV",
+  "SparseSelector",
+  "RecurrentState"
+ ],
+ "families_covered": [
+  "GQA",
+  "KDA+MLA 混合",
+  "MLA(无稀疏索引)",
+  "MLA+DSA",
+  "MLA+压缩条目+稀疏索引"
+ ],
+ "n_probe_rows_verified": 8,
+ "n_unique_models": 6,
+ "matrix": [
+  {
+   "model": "Qwen2.5-7B-Instruct",
+   "family": "GQA",
+   "memory_object": "K/V cache(GQA)",
+   "probe_class": "KV",
+   "path": "mha",
+   "layers_covered": 28,
+   "layers_expected": 28,
+   "n_calls": 128,
+   "sample_every": 16,
+   "verify": "通过",
+   "note": "通用 GQA 适配器,零模型专用代码,首次接入即通过",
+   "rel_int8_median": 0.008024679703844918,
+   "rel_int8_range": [
+    0.007119418680667877,
+    0.010186290740966797
+   ],
+   "tight_int8_median": 3.2518553627861873,
+   "x_norm_median": 34.74271935356988
+  },
+  {
+   "model": "Meta-Llama-3.1-8B-Instruct",
+   "family": "GQA",
+   "memory_object": "K/V cache(GQA)",
+   "probe_class": "KV",
+   "path": "mha",
+   "layers_covered": 32,
+   "layers_expected": 32,
+   "n_calls": 160,
+   "sample_every": 16,
+   "verify": "通过",
+   "note": "同上",
+   "rel_int8_median": 0.010204022580927069,
+   "rel_int8_range": [
+    0.0065656223080374975,
+    0.012660889462991194
+   ],
+   "tight_int8_median": 3.766561681574041,
+   "x_norm_median": 55.98674427379261
+  },
+  {
+   "model": "DeepSeek-V4-Flash-FP8",
+   "family": "MLA+压缩条目+稀疏索引",
+   "memory_object": "压缩条目 448 nope FP8 + 64 rope BF16",
+   "probe_class": "LatentKV",
+   "path": "swa_norm_rope",
+   "layers_covered": 43,
+   "layers_expected": 43,
+   "n_calls": 6720,
+   "sample_every": 1,
+   "verify": "通过",
+   "note": "与手写探针等价性 <=0.04%",
+   "rel_int8_median": 0.006052322025636109,
+   "rel_int8_range": [
+    0.005390325014585624,
+    0.007998677798779033
+   ],
+   "tight_int8_median": 3.5958465194127647,
+   "x_norm_median": 19.259501892952482
+  },
+  {
+   "model": "DeepSeek-V4-Flash-FP8",
+   "family": "MLA+压缩条目+稀疏索引",
+   "memory_object": "C4 索引器(**页级** top-512)",
+   "probe_class": "SparseSelector",
+   "path": "c4",
+   "layers_covered": 21,
+   "layers_expected": 21,
+   "n_calls": 6720,
+   "sample_every": 1,
+   "verify": "通过",
+   "note": "与 entry 探针同一次运行采到",
+   "margin_r1_median": 1.8387243883057973,
+   "cert_rate_r1_median": 1.0,
+   "rows": 43339
+  },
+  {
+   "model": "GLM-5.2-W4AFP8",
+   "family": "MLA+DSA",
+   "memory_object": "latent 512 + k_pe 64",
+   "probe_class": "LatentKV",
+   "path": "mla",
+   "layers_covered": 78,
+   "layers_expected": 78,
+   "n_calls": 576,
+   "sample_every": 16,
+   "verify": "通过",
+   "note": "生产量化栈 tp8+ep8+dp8,全 78 层",
+   "rel_int8_median": 0.005509490233201247,
+   "rel_int8_range": [
+    0.0044906569533979595,
+    0.007439844896605742
+   ],
+   "tight_int8_median": 2.948150493509745,
+   "x_norm_median": 17.150697089431382
+  },
+  {
+   "model": "GLM-5.2-W4AFP8",
+   "family": "MLA+DSA",
+   "memory_object": "DSA 索引器(**token 级** top-2048)",
+   "probe_class": "SparseSelector",
+   "path": "ragged",
+   "layers_covered": 21,
+   "layers_expected": 21,
+   "n_calls": 576,
+   "sample_every": 16,
+   "verify": "通过",
+   "note": "与 latent 探针同一次运行采到;paged 路径同样 21 层",
+   "margin_r1_median": 13.86392593383789,
+   "cert_rate_r1_median": 1.0,
+   "rows": 10746
+  },
+  {
+   "model": "DeepSeek-V2-Lite",
+   "family": "MLA(无稀疏索引)",
+   "memory_object": "latent 512 + k_pe 64",
+   "probe_class": "LatentKV",
+   "path": "mla",
+   "layers_covered": 27,
+   "layers_expected": 27,
+   "n_calls": 240,
+   "sample_every": 8,
+   "verify": "通过",
+   "note": "**第五个架构:零新代码接入** —— 三步的第一步就发现写入口已被 mla-latent 覆盖",
+   "rel_int8_median": 0.00876452607928582,
+   "rel_int8_range": [
+    0.007058245730849932,
+    0.011107456459189362
+   ],
+   "tight_int8_median": 2.6934125792305426,
+   "x_norm_median": 29.73274985259434
+  },
+  {
+   "model": "Kimi-Linear-48B-A3B",
+   "family": "KDA+MLA 混合",
+   "memory_object": "递归状态遗忘门 a_t",
+   "probe_class": "RecurrentState",
+   "path": "qkvbfg",
+   "layers_covered": 20,
+   "layers_expected": 20,
+   "n_calls": 320,
+   "sample_every": 8,
+   "verify": "通过",
+   "note": "同一次运行里 mla-latent 另覆盖 7 个 MLA 层",
+   "a_mean_median": 0.7959980283464705,
+   "a_mean_range": [
+    0.48841181255522226,
+    0.8478245508103144
+   ],
+   "a_max": 0.9999997019767761,
+   "p_ge_0999_median": 0.05776832217261904,
+   "half_life_median": 3.038546694098652
+  }
+ ],
+ "skipped": [],
+ "notes": [
+  "GQA 两个模型是**首次接入**,只走 apply->起服->verify 三步,未写任何模型专用代码",
+  "DeepSeek-V2-Lite 是**第五个架构族的零新代码接入**:按'接新架构三步'走,第一步(实测写入口)就发现它走 MLA 池的 set_mla_kv_buffer,已被 mla-latent 覆盖 —— 这比'三步能接入'更强,说明记忆对象的分类学本身泛化",
+  "V4 / GLM / Kimi-Linear 三者都在**同一次运行**里同时采到两类探针(以前每类要单独一个脚本跑一遍)",
+  "legacy 的 apply_*_patch.py 已全部退役,能力由本框架承担"
+ ]
+}

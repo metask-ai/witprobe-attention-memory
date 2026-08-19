@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the paper."
+title: "Runtime Observability for Heterogeneous Attention Memory"
+authors:
+  - given-names: Fanzhe
+    family-names: Wei
+    affiliation: Metask Lab
+  - given-names: Li
+    family-names: Liu
+    affiliation: Metask Lab
+  - given-names: Ziyang
+    family-names: Wang
+    affiliation: Xi'an Jiaotong University
+  - given-names: Chenyu
+    family-names: Wang
+    affiliation: Metask Lab
+repository-code: https://github.com/metask-ai/witprobe-attention-memory
+license: Apache-2.0
+# arxiv-id: (to appear — tools/backfill_arxiv_id.py 回填)

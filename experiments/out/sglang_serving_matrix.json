@@ -1,0 +1,60 @@
+{
+ "page_size": 16,
+ "reps": 3,
+ "m_pairs": 4,
+ "models": {
+  "1.5B": {
+   "fp16": {
+    "tok_s": 686.8,
+    "capacity": 650368
+   },
+   "witcert": {
+    "tok_s": 511.8,
+    "capacity": 1224240,
+    "capacity_ratio": 1.8823804369218657,
+    "tp_ratio": 0.7451951077460688,
+    "coverage": 0.8125,
+    "coverage_old_local_alloc": 0.8656798245614035,
+    "coverage_n": 249312
+   },
+   "witcert_outlier": {
+    "tok_s": 436.1,
+    "capacity": 1095360,
+    "capacity_ratio": 1.6842157055697697,
+    "tp_ratio": 0.6349737914967968,
+    "coverage": 0.9403,
+    "max_cert": 0.8764933943748474,
+    "coverage_old_local_alloc": 0.9872322899505767,
+    "coverage_n": 239568
+   },
+   "cert_marginal_with_outlier": -0.023618436138500343
+  },
+  "7B": {
+   "fp16": {
+    "tok_s": 421.7,
+    "capacity": 114128
+   },
+   "witcert": {
+    "tok_s": 347.8,
+    "capacity": 214832,
+    "capacity_ratio": 1.882377681200056,
+    "tp_ratio": 0.8247569362105763,
+    "coverage": 0.753,
+    "coverage_old_local_alloc": 0.7586,
+    "coverage_n": 359072
+   },
+   "witcert_outlier": {
+    "tok_s": 311.5,
+    "capacity": 192224,
+    "capacity_ratio": 1.6842843123510445,
+    "tp_ratio": 0.7386767844439175,
+    "coverage": 0.9457,
+    "max_cert": 2.4626564130982697e+20,
+    "coverage_old_local_alloc": 0.9470473833097596,
+    "coverage_n": 381808
+   },
+   "cert_marginal_with_outlier": -0.11781701444622794
+  }
+ },
+ "coverage_note": "coverage 为 2026-07-29 修正后的请求级分配口径:δ_loc=δ_req/(L·H·T),T=256,δ_req=1e-2,WITCERT_SAMPLE=1 全量记录,单次运行;旧值(coverage_old_local_alloc)为 log(2S·nq/δ) 的逐步局部口径,已弃用。容量/吞吐与分配常数无关,沿用 3 次取中位的原测量"
+}

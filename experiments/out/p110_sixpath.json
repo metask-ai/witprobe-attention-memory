@@ -1,0 +1,121 @@
+{
+ "what": "六路径矩阵(Q6 图模式 stage-B 双池口径)—— 从产物 JSON 自动生成,规则见 q6_sixpath_build.py",
+ "machine": "hgx",
+ "stack": "sglang 0.5.13.post1",
+ "taxonomy": "PASS / FAIL_METHOD(方法性失败,含设计门)/ BLOCKED_UPSTREAM / PARTIAL / NOT_MEASURED",
+ "summary": {
+  "cudagraph": "PARTIAL",
+  "radix": "FAIL_METHOD",
+  "mtp": "PASS",
+  "hisparse": "BLOCKED_UPSTREAM",
+  "tpcouple": "PASS",
+  "pd": "PARTIAL"
+ },
+ "matrix": {
+  "cudagraph": {
+   "verdict": "PARTIAL",
+   "evidence": "6-doc 口径:packed kernel 包装器记录 5576 次 packed 调用(capture/eager 路径计数,replay 不回 host;c128 2720 + c4 2856),双臂 acc 1.0/1.0;fallback 272 已归因无害(无压缩缓存调用)。**12-doc 并发探针 acc=0.75;46 轮判别链定谳(q11t2 干预确认):压缩上下文(extra)读为必要通道(消融 0.000),伤害消费者 = decode 侧 extra 读以逻辑槽直索物理环/packed(读侧翻译从未执行),驱逐回收/跨请求共环即静默别名**(驱逐剂量单调劣化,c128 驱逐 4 轮无害;串行轮 acc=1.0 系零驱逐混杂)。零驱逐口径 12/12;decode 翻译档微缩 0.500→1.000(诚实截断语义);完整物化(非驻留 packed 回源)与图模式复验未完成;质量声明必须带环配置与驱逐计数口径",
+   "facts": {
+    "acc_stageb": 1.0,
+    "acc_native": 1.0,
+    "pk_calls": 5848,
+    "pk_packed": 5576,
+    "pk_c128": 2720,
+    "pk_c4": 2856,
+    "pk_view": 5576,
+    "pk_fallback": 272,
+    "rank_files": 8,
+    "acc_12doc_nomtp": 0.75,
+    "acc_12doc_serial": 1.0,
+    "quality_caliber": null
+   }
+  },
+  "radix": {
+   "verdict": "FAIL_METHOD",
+   "evidence": "radix×stage-B 质量退化**已复现**(q6c 0.667 → q6k 全链口径 0.6666666666666666,native 1.0;读侧污染疑虑排除)。install radix-off 门维持。预填吞吐坍缩为日志观察,**无独立 bench 产物,不作正式性能结论**",
+   "facts": {
+    "acc_stageb": 0.6666666666666666,
+    "acc_native": 1.0
+   }
+  },
+  "mtp": {
+   "verdict": "PASS",
+   "evidence": "MTP(EAGLE 1步)零驱逐口径重测:双 seed(42/43)双臂 12-doc 全对(q6q2 seed42 1.000/1.000; q6q3 seed43 1.000/1.000),quality_caliber 零驱逐自证 —— 每轮为同轮双臂受控对照,无跨轮归因需求。历史残差(q6i3 5/6、q6m 14/24)已由 14 轮判别链归因为 c4 驱逐机制混杂,非 MTP 特异",
+   "facts": {
+    "clean_rounds": [
+     [
+      "q6q2",
+      42,
+      1.0,
+      1.0,
+      12,
+      true
+     ],
+     [
+      "q6q3",
+      43,
+      1.0,
+      1.0,
+      12,
+      true
+     ]
+    ]
+   }
+  },
+  "hisparse": {
+   "verdict": "BLOCKED_UPSTREAM",
+   "evidence": "--enable-hisparse 下 **native 臂崩溃已取证**(崩溃臂:graphoff,graphon;无探针无适配器,revert --all 后起服):TypeError: 'NoneType' object is not subscriptable —— 上游集成缺口,非 WitCert 失败亦非通过,路径不可测。现场固化于 q6d3_incident.json(traceback 摘录 + 复现命令)",
+   "facts": {
+    "crashed_arms": [
+     "graphoff",
+     "graphon"
+    ],
+    "n_arms": 2,
+    "signature": "TypeError: 'NoneType' object is not subscriptable"
+   }
+  },
+  "tpcouple": {
+   "verdict": "PASS",
+   "evidence": "同配置串行重复对(带路由):acc 1.0/1.0,逐题文本 5/6 不同 —— 只主张**答案稳定性**;逐字确定性不可得(q6j:上游 --enable-deterministic-inference 白名单不含 dsv4,双臂拒启)",
+   "facts": {
+    "acc": [
+     1.0,
+     1.0
+    ],
+    "text_diff": 5,
+    "n": 6
+   }
+  },
+  "pd": {
+   "verdict": "PARTIAL",
+   "evidence": "native PD(单机双进程:prefill TP4 + decode TP4 + mini-lb,mooncake)acc=1.000 —— KV 真传输由'针在预填侧、decode 答对'证实;stage-B 臂 0.0(0/6 **无错**)= 传输完成、内核被调、服务不崩但语义错 —— ring+packed 布局未被传输层支持(packed_pool 缺口清单预告项)。修法:传输协议适配层(独立工程线)",
+   "facts": {
+    "acc_native": 1.0,
+    "acc_stageb": 0.0
+   }
+  }
+ },
+ "gate": {
+  "passed": false,
+  "note": "2/6 PASS;非 PASS 各级如实(flagship 对非 PASS 统一显示 FAIL,细分级看本产物 taxonomy)"
+ },
+ "caliber": "SMOKE/NDOC 见各轮产物 manifest;单 seed 为主(mtp 双 seed);H200 TP/EP=8(pd 为 TP4×2);环 513/513;受限配置,非全面生产兼容声明",
+ "sources": [
+  "pd1_native.json",
+  "pd2_stageb.invalid.json",
+  "q6c_native.json",
+  "q6d3_incident.json",
+  "q6g2_graphb2.json",
+  "q6g2_native.json",
+  "q6h_rep1.json",
+  "q6h_rep2.json",
+  "q6k_graphb2.invalid.json",
+  "q6n_graphb2.json",
+  "q6o_graphb2.json",
+  "q6q2_graphb2.json",
+  "q6q2_native.json",
+  "q6q3_graphb2.json",
+  "q6q3_native.json"
+ ],
+ "generated_by": "q6_sixpath_build.py"
+}

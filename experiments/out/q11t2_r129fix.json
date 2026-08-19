@@ -1,0 +1,1961 @@
+{
+ "arm": "r129fix",
+ "arm_knob": "WITCERT_STAGEB_C4_RING_PAGES",
+ "arm_val": "129",
+ "arm_env": "WITCERT_POOL_SWAP_B=1,WITCERT_POOL_SWAP_C4=1,WITCERT_STAGEB_GRAPH=1,WITCERT_SM120_ROUTE=1,WITCERT_PACKED_KERNEL=1,WITCERT_DECODE_TRANSLATE=1",
+ "quality_caliber": {
+  "c128_evictions": 0,
+  "c4_evictions": 20,
+  "zero_evict": false
+ },
+ "manifest": {
+  "workers": 1,
+  "ndoc": 2,
+  "seed": 42,
+  "smoke": "0",
+  "adapters": "dsv4-sm120route,kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-graph",
+  "run_id": "q11t2",
+  "model": "/workspace/models/DeepSeek-V4-Flash-FP8",
+  "code": "12648fe",
+  "ring_pages_env": "1025",
+  "c4_ring_pages_env": "129",
+  "abort_n": 0,
+  "graphs": "off",
+  "radix": "off",
+  "extra_server_flags": "",
+  "context_len": 65536,
+  "tp": 8,
+  "client": "niah",
+  "bench": null
+ },
+ "hbm_mib_per_gpu": [
+  123352,
+  122988,
+  122988,
+  122988,
+  122988,
+  122988,
+  122508,
+  122988
+ ],
+ "run_id": "q11t2",
+ "acc": 1.0,
+ "n": 2,
+ "n_error": 0,
+ "abort_probe": null,
+ "valid": true,
+ "witcert_env": {
+  "WITCERT_PROBE_FLUSH": "64",
+  "WITCERT_PROBE": "0",
+  "WITCERT_POOL_SWAP_B": "1",
+  "WITCERT_PACK_EVERY_READ": "0",
+  "WITCERT_PACKSHADOW": "0",
+  "WITCERT_PACKED_KERNEL": "1",
+  "WITCERT_DECODE_SHADOW": "0",
+  "WITCERT_PROBE_EVERY": "8",
+  "WITCERT_DECODE_SHADOW_EVERY": "32",
+  "WITCERT_STAGEB_C4_RING_PAGES": "129",
+  "WITCERT_STAGEB_EMPTY_CACHE": "1",
+  "WITCERT_POOL_SWAP_C4": "1",
+  "WITCERT_STAGEB_GRAPH": "1",
+  "WITCERT_PROBE_ROWS": "64",
+  "WITCERT_PROBE_FILE": "/tmp/wc_q11t2.json",
+  "WITCERT_DECODE_TRANSLATE": "1",
+  "WITCERT_PROBE_BANDS": "16",
+  "WITCERT_SHADOW_EVERY": "16",
+  "WITCERT_SM120_ROUTE": "1",
+  "WITCERT_STAGEB_RING_PAGES": "1025",
+  "WITCERT_PACKED_C4": "0",
+  "_applied_adapters": "dsv4-sm120route,kv-cert-gating,dsv4-poolswap-b,dsv4-stageb-w,dsv4-stageb-graph"
+ },
+ "snapshot": {
+  "err": null,
+  "n_repack": null,
+  "n_invalidate": null,
+  "coverage": {
+   "n_calls": 0,
+   "n_seen": 0,
+   "n_skipped_by_sampling": 0,
+   "sample_every": 8,
+   "layer_policy": null,
+   "n_skipped_by_layer": 0,
+   "sample_every_effective": null,
+   "n_forced_by_coverage_floor": 0,
+   "max_gap": 512,
+   "graph_safe": false,
+   "n_skipped_during_capture": 0,
+   "graph_safe_note": null,
+   "ledger_wthr": null,
+   "n_slots": 0,
+   "owners": [],
+   "n_layers": 0,
+   "layers": [],
+   "paths": []
+  },
+  "n_layer_skipped": null,
+  "packshadow_by_pool": null,
+  "packshadow_check": null,
+  "packed_kernel": {
+   "n_calls": 1333,
+   "n_packed": 1271,
+   "n_fallback": 62,
+   "n_stageb_view": 1271,
+   "n_dtr_calls": 1271,
+   "n_dtr_dropped": 2802831,
+   "n_packed_c4": 651,
+   "n_packed_c128": 620
+  },
+  "decode_shadow": null,
+  "sm120_route": {
+   "forced": true,
+   "n_gather": 0,
+   "n_packed_rows": 0,
+   "n_entry": 1333,
+   "extra_max_ring-c4": 8497,
+   "extra_rows_ring-c4": 129,
+   "n_extra_probe": 1271,
+   "extra_max_ring-c128": 264,
+   "extra_rows_ring-c128": 1025
+  },
+  "sm120_probe": {
+   "n_called": 1,
+   "env": "1"
+  },
+  "stageb_oracle": null,
+  "swa_oracle": null,
+  "pool_swap": {
+   "installed": 1,
+   "n_layers_remapped": 20,
+   "stage": "B",
+   "ratio": 128,
+   "ring_pages": 1025,
+   "fp8_scratch": false,
+   "staging1_freed_bytes": null,
+   "staging1_buf0_bytes": null,
+   "staging1_n_bufs": null,
+   "staging1_buf0_shape": null,
+   "staging1_survivors": null,
+   "staging1_rebased": false,
+   "ring_bytes": 35424000,
+   "packed_bytes": 293947200,
+   "mem_delta": null,
+   "cuda_mem": {
+    "alloc_before_empty": 118487426048,
+    "reserved_before_empty": 119258742784,
+    "reserved_after_empty": 118545711104
+   },
+   "ring_stats": {
+    "n_alloc": 132,
+    "n_recycle": 0,
+    "n_evict": 0,
+    "high_water": 133,
+    "n_translate_write": 519,
+    "n_translate_read": 0,
+    "n_final_slots": 9100,
+    "orphan_rows": 0,
+    "negative_slot": 0,
+    "n_scratch_pages": 0,
+    "uncovered_poison_read": 0,
+    "n_decode_scratch": 0,
+    "n_coverage_calls": 0,
+    "n_decode_slots_checked": 0,
+    "idx_raw_min": -1,
+    "idx_raw_max": -1,
+    "idx_page_size": 0,
+    "idx_num_pages": 0,
+    "n_forensic_rows": 0,
+    "n_forensic_mismatch": 0,
+    "n_ref_resident": 0,
+    "n_ref_packed": 0,
+    "n_ref_skip_current": 0,
+    "n_ref_failed": 0,
+    "n_ref_slots_total": 0,
+    "exec_confirmed_round": 30,
+    "n_finalize_freed_page": 0,
+    "n_graph_prep": 32,
+    "n_graph_prep_rows": 519
+   }
+  },
+  "pool_swap_c4": {
+   "installed": 1,
+   "n_layers_remapped": 21,
+   "stage": "B",
+   "ratio": 4,
+   "ring_pages": 129,
+   "fp8_scratch": false,
+   "staging1_freed_bytes": null,
+   "staging1_buf0_bytes": null,
+   "staging1_n_bufs": null,
+   "staging1_buf0_shape": null,
+   "staging1_survivors": null,
+   "staging1_rebased": false,
+   "ring_bytes": 101424960,
+   "packed_bytes": 12949353984,
+   "mem_delta": null,
+   "cuda_mem": {
+    "alloc_before_empty": 118862237696,
+    "reserved_before_empty": 134993674240,
+    "reserved_after_empty": 118919004160
+   },
+   "ring_stats": {
+    "n_alloc": 148,
+    "n_recycle": 20,
+    "n_evict": 20,
+    "high_water": 129,
+    "n_translate_write": 16629,
+    "n_translate_read": 0,
+    "n_final_slots": 306201,
+    "orphan_rows": 0,
+    "negative_slot": 0,
+    "n_scratch_pages": 0,
+    "uncovered_poison_read": 0,
+    "n_decode_scratch": 0,
+    "n_coverage_calls": 0,
+    "n_decode_slots_checked": 0,
+    "idx_raw_min": -1,
+    "idx_raw_max": -1,
+    "idx_page_size": 0,
+    "idx_num_pages": 0,
+    "n_forensic_rows": 0,
+    "n_forensic_mismatch": 0,
+    "n_ref_resident": 0,
+    "n_ref_packed": 0,
+    "n_ref_skip_current": 0,
+    "n_ref_failed": 0,
+    "n_ref_slots_total": 0,
+    "exec_confirmed_round": 30,
+    "n_finalize_freed_page": 0,
+    "n_graph_prep": 32,
+    "n_graph_prep_rows": 16629,
+    "n_evict_blocked_unexec": 512,
+    "evict_events": [
+     [
+      1,
+      15
+     ],
+     [
+      2,
+      15
+     ],
+     [
+      3,
+      15
+     ],
+     [
+      4,
+      15
+     ],
+     [
+      33,
+      28
+     ],
+     [
+      34,
+      28
+     ],
+     [
+      35,
+      28
+     ],
+     [
+      36,
+      28
+     ],
+     [
+      65,
+      29
+     ],
+     [
+      66,
+      29
+     ],
+     [
+      67,
+      29
+     ],
+     [
+      68,
+      29
+     ],
+     [
+      97,
+      30
+     ],
+     [
+      98,
+      30
+     ],
+     [
+      99,
+      30
+     ],
+     [
+      100,
+      30
+     ],
+     [
+      129,
+      31
+     ],
+     [
+      130,
+      31
+     ],
+     [
+      131,
+      31
+     ],
+     [
+      132,
+      31
+     ]
+    ],
+    "n_quarantine_bypass": 20
+   }
+  },
+  "stageb_shadow": null,
+  "rank_errors": {},
+  "per_rank_pool_swap": {
+   "0": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "1": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "2": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "3": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "4": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "5": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "6": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   },
+   "7": {
+    "installed": 1,
+    "n_layers_remapped": 20,
+    "stage": "B",
+    "ratio": 128,
+    "ring_pages": 1025,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 35424000,
+    "packed_bytes": 293947200,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118487426048,
+     "reserved_before_empty": 119258742784,
+     "reserved_after_empty": 118545711104
+    },
+    "ring_stats": {
+     "n_alloc": 132,
+     "n_recycle": 0,
+     "n_evict": 0,
+     "high_water": 133,
+     "n_translate_write": 519,
+     "n_translate_read": 0,
+     "n_final_slots": 9100,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 519
+    }
+   }
+  },
+  "per_rank_packed_kernel": {
+   "0": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "1": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "2": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "3": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "4": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "5": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "6": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   },
+   "7": {
+    "n_calls": 1333,
+    "n_packed": 1271,
+    "n_fallback": 62,
+    "n_stageb_view": 1271,
+    "n_dtr_calls": 1271,
+    "n_dtr_dropped": 2802831,
+    "n_packed_c4": 651,
+    "n_packed_c128": 620
+   }
+  },
+  "per_rank_pool_swap_c4": {
+   "0": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "1": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "2": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "3": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "4": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "5": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "6": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   },
+   "7": {
+    "installed": 1,
+    "n_layers_remapped": 21,
+    "stage": "B",
+    "ratio": 4,
+    "ring_pages": 129,
+    "fp8_scratch": false,
+    "staging1_freed_bytes": null,
+    "staging1_buf0_bytes": null,
+    "staging1_n_bufs": null,
+    "staging1_buf0_shape": null,
+    "staging1_survivors": null,
+    "staging1_rebased": false,
+    "ring_bytes": 101424960,
+    "packed_bytes": 12949353984,
+    "mem_delta": null,
+    "cuda_mem": {
+     "alloc_before_empty": 118862237696,
+     "reserved_before_empty": 134993674240,
+     "reserved_after_empty": 118919004160
+    },
+    "ring_stats": {
+     "n_alloc": 148,
+     "n_recycle": 20,
+     "n_evict": 20,
+     "high_water": 129,
+     "n_translate_write": 16629,
+     "n_translate_read": 0,
+     "n_final_slots": 306201,
+     "orphan_rows": 0,
+     "negative_slot": 0,
+     "n_scratch_pages": 0,
+     "uncovered_poison_read": 0,
+     "n_decode_scratch": 0,
+     "n_coverage_calls": 0,
+     "n_decode_slots_checked": 0,
+     "idx_raw_min": -1,
+     "idx_raw_max": -1,
+     "idx_page_size": 0,
+     "idx_num_pages": 0,
+     "n_forensic_rows": 0,
+     "n_forensic_mismatch": 0,
+     "n_ref_resident": 0,
+     "n_ref_packed": 0,
+     "n_ref_skip_current": 0,
+     "n_ref_failed": 0,
+     "n_ref_slots_total": 0,
+     "exec_confirmed_round": 30,
+     "n_finalize_freed_page": 0,
+     "n_graph_prep": 32,
+     "n_graph_prep_rows": 16629,
+     "n_evict_blocked_unexec": 512,
+     "evict_events": [
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       33,
+       28
+      ],
+      [
+       34,
+       28
+      ],
+      [
+       35,
+       28
+      ],
+      [
+       36,
+       28
+      ],
+      [
+       65,
+       29
+      ],
+      [
+       66,
+       29
+      ],
+      [
+       67,
+       29
+      ],
+      [
+       68,
+       29
+      ],
+      [
+       97,
+       30
+      ],
+      [
+       98,
+       30
+      ],
+      [
+       99,
+       30
+      ],
+      [
+       100,
+       30
+      ],
+      [
+       129,
+       31
+      ],
+      [
+       130,
+       31
+      ],
+      [
+       131,
+       31
+      ],
+      [
+       132,
+       31
+      ]
+     ],
+     "n_quarantine_bypass": 20
+    }
+   }
+  },
+  "all_ranks": {
+   "n_repack": 0,
+   "n_invalidate": 0,
+   "rel_sum": 0.0,
+   "n_checked": 0,
+   "rel_max": 0.0,
+   "n_refill_every": 0,
+   "n_fill_on_demand": 0,
+   "n_calls": 0,
+   "rel_mean": 0.0,
+   "n_rank_files": 8,
+   "all_rank_err_clean": true
+  },
+  "by_pool_all_ranks": {},
+  "decode_shadow_all_ranks": {}
+ },
+ "n_rank_files": 8,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "417013\n\nThe secret code for word4249 is",
+   "hit": true,
+   "error": null
+  }
+ ]
+}

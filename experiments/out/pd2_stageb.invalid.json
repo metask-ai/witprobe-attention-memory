@@ -1,0 +1,198 @@
+{
+ "arm": "stageb",
+ "run_id": "pd2",
+ "acc": 0.0,
+ "n": 6,
+ "n_error": 0,
+ "valid": true,
+ "topology": "PD 单机双进程:prefill TP4(GPU0-3)+ decode TP4(GPU4-7)+ sglang-router mini-lb,mooncake 传输",
+ "manifest": {
+  "run_id": "pd2",
+  "code": "bcb28e0",
+  "tp": 4,
+  "workers": 2,
+  "ndoc": 6,
+  "seed": 42,
+  "model": "/workspace/models/DeepSeek-V4-Flash-FP8",
+  "context_len": 65536,
+  "arm": "stageb"
+ },
+ "witcert_env": {
+  "WITCERT_POOL_SWAP_B": "1",
+  "WITCERT_PACKED_KERNEL": "1",
+  "WITCERT_STAGEB_C4_RING_PAGES": "513",
+  "WITCERT_STAGEB_EMPTY_CACHE": "1",
+  "WITCERT_POOL_SWAP_C4": "1",
+  "WITCERT_STAGEB_GRAPH": "1",
+  "WITCERT_PROBE_FILE": "/tmp/wc_pd2.json",
+  "WITCERT_SM120_ROUTE": "1",
+  "WITCERT_STAGEB_RING_PAGES": "513"
+ },
+ "snapshot": {
+  "pool_swap": {
+   "installed": 1,
+   "n_layers_remapped": 20,
+   "stage": "B",
+   "ratio": 128,
+   "ring_pages": 513,
+   "fp8_scratch": false,
+   "staging1_freed_bytes": null,
+   "staging1_buf0_bytes": null,
+   "staging1_n_bufs": null,
+   "staging1_buf0_shape": null,
+   "staging1_survivors": null,
+   "staging1_rebased": false,
+   "ring_bytes": 17729280,
+   "packed_bytes": 168220800,
+   "mem_delta": null,
+   "cuda_mem": {
+    "alloc_before_empty": 120295693312,
+    "reserved_before_empty": 121009864704,
+    "reserved_after_empty": 120590434304
+   },
+   "ring_stats": {
+    "n_alloc": 479,
+    "n_recycle": 0,
+    "n_evict": 0,
+    "high_water": 480,
+    "n_translate_write": 956,
+    "n_translate_read": 0,
+    "n_final_slots": 17840,
+    "orphan_rows": 0,
+    "negative_slot": 0,
+    "n_scratch_pages": 0,
+    "uncovered_poison_read": 0,
+    "n_decode_scratch": 0,
+    "n_coverage_calls": 0,
+    "n_decode_slots_checked": 0,
+    "idx_raw_min": -1,
+    "idx_raw_max": -1,
+    "idx_page_size": 0,
+    "idx_num_pages": 0,
+    "n_ref_resident": 0,
+    "n_ref_packed": 0,
+    "n_ref_skip_current": 0,
+    "n_ref_failed": 0,
+    "n_ref_slots_total": 0,
+    "n_graph_prep": 16,
+    "n_graph_prep_rows": 956
+   }
+  },
+  "pool_swap_c4": {
+   "installed": 1,
+   "n_layers_remapped": 21,
+   "stage": "B",
+   "ratio": 4,
+   "ring_pages": 513,
+   "fp8_scratch": false,
+   "staging1_freed_bytes": null,
+   "staging1_buf0_bytes": null,
+   "staging1_n_bufs": null,
+   "staging1_buf0_shape": null,
+   "staging1_survivors": null,
+   "staging1_rebased": false,
+   "ring_bytes": 403341120,
+   "packed_bytes": 7410686976,
+   "mem_delta": null,
+   "cuda_mem": {
+    "alloc_before_empty": 120526769664,
+    "reserved_before_empty": 129983578112,
+    "reserved_after_empty": 120779177984
+   },
+   "ring_stats": {
+    "n_alloc": 481,
+    "n_recycle": 0,
+    "n_evict": 0,
+    "high_water": 482,
+    "n_translate_write": 30660,
+    "n_translate_read": 0,
+    "n_final_slots": 600852,
+    "orphan_rows": 0,
+    "negative_slot": 0,
+    "n_scratch_pages": 0,
+    "uncovered_poison_read": 0,
+    "n_decode_scratch": 0,
+    "n_coverage_calls": 0,
+    "n_decode_slots_checked": 0,
+    "idx_raw_min": -1,
+    "idx_raw_max": -1,
+    "idx_page_size": 0,
+    "idx_num_pages": 0,
+    "n_ref_resident": 0,
+    "n_ref_packed": 0,
+    "n_ref_skip_current": 0,
+    "n_ref_failed": 0,
+    "n_ref_slots_total": 0,
+    "n_graph_prep": 16,
+    "n_graph_prep_rows": 30660
+   }
+  },
+  "packed_kernel": {
+   "n_calls": 645,
+   "n_packed": 615,
+   "n_fallback": 30,
+   "n_stageb_view": 615,
+   "n_packed_c4": 315,
+   "n_packed_c128": 300
+  },
+  "sm120_route": {
+   "forced": true,
+   "n_gather": 0,
+   "n_packed_rows": 0,
+   "n_entry": 645
+  },
+  "err": null
+ },
+ "n_rank_files": 4,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "gold": "417000",
+   "out": "4173",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "gold": "417013",
+   "out": "2933",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "gold": "417026",
+   "out": "417\n</s>\n\nThe secret number is:\nAnswer",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "gold": "417039",
+   "out": "",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "gold": "417052",
+   "out": "",
+   "hit": false,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "gold": "417065",
+   "out": "",
+   "hit": false,
+   "error": null
+  }
+ ],
+ "superseded": "pd2:stage-B×PD 布局不兼容(0/6 无错)—— mooncake 按池布局契约搬运,stage-B 的 kv_buffer/item_lens 语义已变(packed_pool 缺口清单早有预告,disagg 前置必须 off);修法=传输层学 ring+packed 布局(独立工程线,附带传输带宽收益)。native PD(pd1)1.000 不受影响"
+}

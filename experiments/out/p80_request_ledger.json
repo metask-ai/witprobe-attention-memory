@@ -1,0 +1,131 @@
+{
+ "what": "请求级风险账本**原型 + 离线可行性重放**(三审定位):条目级确定性证书 + 假想局部回退;保留率/TV 界曲线(c4 层)。**不是在线逐请求闭环** —— 无请求边界/逐读取检查/真实回退读路径,那些是被本重放定价的实现工作",
+ "machine": "hgx",
+ "stack": "DeepSeek-V4-Flash-FP8, sglang 0.5.13.post1, tp8+ep8, ctx 65536",
+ "guarantee": "P(请求内任一入账事件越界) ≤ Σδ_i ≤ δ_req;本轮证书全部为确定性逐条目判定(δ=0),Σδ=0。构造性保证:被读条目全 ≤ W_thr ⟹ TV_step ≤ ½(e^{2·qn·W_thr}−1)。**保证局部操作不越界,不保证最终输出相同**",
+ "lean": [
+  "Ledger.ledger_sound",
+  "Ledger.telescope_sum",
+  "Ledger.coverage_confidence"
+ ],
+ "caliber": [
+  "证书粒度=条目;回退粒度=条目(局部回退),覆盖率=压缩收益保留率",
+  "探针为采样审计口径;生产化=逐读取检查,由 gating 补丁执行(C2 边界)",
+  "选择侧事件一律 fallback(索引条目见证未建,A8);empirical 不入账",
+  "24 请求 × 3 档长度混合口径;c128 层不在账本;窗口条目见证由 swa 路覆盖,其分布未入本账本(W_swa ≤ W_centry,实测)"
+ ],
+ "n_layers": 21,
+ "n_entries_total": 12386472,
+ "coverage_curve": [
+  {
+   "W_thr": 0.02,
+   "tv_bound_per_step_max": 0.020489054648983318,
+   "entry_retention": 0.0,
+   "fallback_rate": 1.0,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.05,
+   "tv_bound_per_step_max": 0.05280758898309812,
+   "entry_retention": 0.0,
+   "fallback_rate": 1.0,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.1,
+   "tv_bound_per_step_max": 0.11119246087461176,
+   "entry_retention": 0.0,
+   "fallback_rate": 1.0,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.15,
+   "tv_bound_per_step_max": 0.17574366140148123,
+   "entry_retention": 2.325117273102462e-05,
+   "fallback_rate": 0.999976748827269,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.2,
+   "tv_bound_per_step_max": 0.24711244845992775,
+   "entry_retention": 0.00027126368186195394,
+   "fallback_rate": 0.9997287363181381,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.3,
+   "tv_bound_per_step_max": 0.4132589918485595,
+   "entry_retention": 0.00176063046846592,
+   "fallback_rate": 0.998239369531534,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.4,
+   "tv_bound_per_step_max": 0.6163540212875764,
+   "entry_retention": 0.11082154789515529,
+   "fallback_rate": 0.8891784521048447,
+   "p_diag_worst_layer": 1.0,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.5,
+   "tv_bound_per_step_max": 0.864614322956045,
+   "entry_retention": 0.29251137854265524,
+   "fallback_rate": 0.7074886214573447,
+   "p_diag_worst_layer": 0.9999659922779716,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 0.7,
+   "tv_bound_per_step_max": 1.5390406960543541,
+   "entry_retention": 0.8005275432746306,
+   "fallback_rate": 0.19947245672536942,
+   "p_diag_worst_layer": 0.9856432698756604,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 1.0,
+   "tv_bound_per_step_max": 3.22434450083357,
+   "entry_retention": 0.9997287363181381,
+   "fallback_rate": 0.00027126368186195394,
+   "p_diag_worst_layer": 0.00729011168824432,
+   "n_entries": 12386472
+  },
+  {
+   "W_thr": 1.5,
+   "tv_bound_per_step_max": 9.664587698920142,
+   "entry_retention": 1.0,
+   "fallback_rate": 0.0,
+   "p_diag_worst_layer": 5.07895853998086e-06,
+   "n_entries": 12386472
+  }
+ ],
+ "working_point_coverage": {
+  "W_thr": 0.7,
+  "tv_bound_per_step_max": 1.5390406960543541,
+  "entry_retention": 0.8005275432746306,
+  "fallback_rate": 0.19947245672536942,
+  "p_diag_worst_layer": 0.9856432698756604,
+  "n_entries": 12386472
+ },
+ "working_point_bound": {
+  "W_thr": 0.5,
+  "tv_bound_per_step_max": 0.864614322956045,
+  "entry_retention": 0.29251137854265524,
+  "fallback_rate": 0.7074886214573447,
+  "p_diag_worst_layer": 0.9999659922779716,
+  "n_entries": 12386472
+ },
+ "findings": {
+  "0_headline": "**账本原型 + 离线可行性重放(非在线闭环),数字如实**:保留优先点 W=0.70:压缩条目保留率 80.1%,但每步 TV 构造界 1.54(空洞);界优先点 W=0.50:TV ≤ 0.86(非空洞),保留率仅 29.3% —— 在 int8 二次量化代理的见证分布上(集中于 0.5–0.7,无重尾),**非空洞每步界与 ≥80%% 覆盖不能同时成立**。杠杆与 p78 一致:见证 W 本身;更细的带宽/贴合 fp8 的见证是收紧方向。Σδ=0(全确定性证书),δ_req 预算未动",
+  "1_curve": "W=0.02: 保留 0.0%/TV≤0.02; W=0.05: 保留 0.0%/TV≤0.05; W=0.10: 保留 0.0%/TV≤0.11; W=0.15: 保留 0.0%/TV≤0.18; W=0.20: 保留 0.0%/TV≤0.25; W=0.30: 保留 0.2%/TV≤0.41; W=0.40: 保留 11.1%/TV≤0.62; W=0.50: 保留 29.3%/TV≤0.86; W=0.70: 保留 80.1%/TV≤1.54; W=1.00: 保留 100.0%/TV≤3.22; W=1.50: 保留 100.0%/TV≤9.66",
+  "2_granularity": "**证书粒度是成败线**(本文件第一版教训):按步取条目最大值判定 → 覆盖 0%;改条目级局部回退后,一个大见证条目只损失它自己。n=12386472 条目,层中位 589832",
+  "3_semantics": "第一档保证:请求内所有走压缩路径的读取都有确定性证书,不过的**逐条目**精确读取。不保证最终输出(层间传播/重置点是下一阶段);empirical 对象不入账,只回退"
+ }
+}

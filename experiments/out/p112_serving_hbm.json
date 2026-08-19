@@ -1,0 +1,71 @@
+{
+ "what": "同负载双臂起服 HBM 差分:native FP8(无装配)vs stage-B staging1(ring+packed 真理源 + 单层共享 staging)",
+ "machine": "hgx",
+ "stack": "sglang 0.5.13.post1 TP/EP=8",
+ "gate": {
+  "passed": true,
+  "criteria": {
+   "H1_双臂有效且质量一致": true,
+   "H2_字节真值恒等式": true,
+   "H3_字节模型净差吻合": true,
+   "H4_manifest一致且code锁定": true
+  }
+ },
+ "summary": "每GPU差 [320, 316, 316, 316, 316, 316, 316, 316] MiB(中位 316.0)vs 字节净差 354.6 MiB(freed 639.2 − ring+packed 284.6);acc 双臂 1.0",
+ "hbm_mib_per_gpu": {
+  "native": [
+   123280,
+   123124,
+   123124,
+   123124,
+   123124,
+   123124,
+   122644,
+   123124
+  ],
+  "staging1": [
+   122960,
+   122808,
+   122808,
+   122808,
+   122808,
+   122808,
+   122328,
+   122808
+  ],
+  "diff": [
+   320,
+   316,
+   316,
+   316,
+   316,
+   316,
+   316,
+   316
+  ]
+ },
+ "byte_truth": {
+  "staging1_freed_bytes": 670199616,
+  "staging1_buf0_bytes": 35273664,
+  "staging1_n_bufs": 20,
+  "ring_bytes": 4458240,
+  "packed_bytes": 293947200,
+  "net_expected_bytes": 371794176,
+  "measured_median_bytes": 331350016,
+  "freed_mib_per_gpu": 639.15,
+  "caliber": "untyped_storage().nbytes() 张量直读;freed = 池 20 层缓冲中 19 层被别名释放"
+ },
+ "ledger": {
+  "realized": "c128 stage-B 单臂:池 20→1 层共享 staging",
+  "q0_weighted_projection": {
+   "compressed_pool_saving": 0.1853,
+   "caliber": "q0_sweep memory_weighted:压缩池字节口径,c4(had64_INT6,32× 权重大头)+ c128;c4 替换属 Q4 未完成 —— 本产物只落已实现部分的实测,投影不计入 gate"
+  }
+ },
+ "caliber": "SMOKE 6-doc niah 同负载;WORKERS=4;65,536 context;探针配置(双 CUDA graph 关,Radix 关)—— 生产双图配置属 Q6;ring 129 页;nvidia-smi 口径含 allocator 缓存,字节真值为准、实测差交叉核对",
+ "sources": {
+  "native": "p112hbm2_native.json",
+  "staging1": "p112hbm2_staging1.json"
+ },
+ "generated_by": "p112_serving_hbm.py"
+}

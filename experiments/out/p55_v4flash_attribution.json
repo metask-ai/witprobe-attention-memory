@@ -1,0 +1,327 @@
+{
+ "model": "DeepSeek-V4-Flash-FP8",
+ "stack": "sglang 0.5.13.post1, tp8+ep8, ctx 65536, disable-cuda-graph + disable-piecewise-cuda-graph; 四条路径同一次运行采集,调用采样 EVERY=8",
+ "honesty": "池化与索引是模型原生计算:本产物刻画风险分布,不是相对假想 dense 基线的误差。存储侧有 sound 上界;选择侧是条件认证;**池化侧自 2026-07-31 起也有 sound 契约** —— a_pool=‖w‖_2 由 Cauchy–Schwarz 给出,它刻画的是块内 token 误差经池化后的收缩系数,而非池化自身引入的误差(池化不引入误差,它就是模型语义)。集中度指标(top1_norm/entropy_n/eff_frac)仍是经验观测。",
+ "coverage": {
+  "n_calls": 1760,
+  "n_seen": 13226,
+  "n_skipped_by_sampling": 11466,
+  "sample_every": 8,
+  "n_slots": 126,
+  "owners": [
+   "Compressor#1",
+   "Compressor#10",
+   "Compressor#11",
+   "Compressor#12",
+   "Compressor#13",
+   "Compressor#14",
+   "Compressor#15",
+   "Compressor#16",
+   "Compressor#17",
+   "Compressor#18",
+   "Compressor#19",
+   "Compressor#20",
+   "Compressor#21",
+   "Compressor#22",
+   "Compressor#23",
+   "Compressor#24",
+   "Compressor#25",
+   "Compressor#26",
+   "Compressor#27",
+   "Compressor#28",
+   "Compressor#29",
+   "Compressor#3",
+   "Compressor#30",
+   "Compressor#31",
+   "Compressor#32",
+   "Compressor#33",
+   "Compressor#34",
+   "Compressor#35",
+   "Compressor#36",
+   "Compressor#37",
+   "Compressor#38",
+   "Compressor#39",
+   "Compressor#4",
+   "Compressor#40",
+   "Compressor#41",
+   "Compressor#42",
+   "Compressor#43",
+   "Compressor#44",
+   "Compressor#45",
+   "Compressor#46",
+   "Compressor#47",
+   "Compressor#48",
+   "Compressor#49",
+   "Compressor#5",
+   "Compressor#50",
+   "Compressor#51",
+   "Compressor#52",
+   "Compressor#53",
+   "Compressor#54",
+   "Compressor#55",
+   "Compressor#56",
+   "Compressor#57",
+   "Compressor#58",
+   "Compressor#59",
+   "Compressor#6",
+   "Compressor#60",
+   "Compressor#61",
+   "Compressor#62",
+   "Compressor#63",
+   "Compressor#7",
+   "Compressor#8",
+   "Compressor#9",
+   "DeepSeekV4SingleKVPool#0",
+   "DeepseekV4AttnBackend#2"
+  ],
+  "n_layers": 43,
+  "layers": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42
+  ],
+  "paths": [
+   "c4",
+   "pool_attn",
+   "pool_idx",
+   "swa_norm_rope"
+  ]
+ },
+ "store_path": {
+  "n_layers": 43,
+  "rel_int8_median": 0.006103257265957919,
+  "rel_int4_median": 0.10995615178888495,
+  "tight_int8_median": 3.608119451349432,
+  "witness_violations": 0,
+  "status": "sound(带范数见证是 TV 的上界)"
+ },
+ "select_path": {
+  "n_layers": 21,
+  "rows": 5627,
+  "margin_r1_median": 1.927901082964086,
+  "cert_rate_r1": 0.9934245601563888,
+  "flip_rate_r1": 0.000888572951839346,
+  "cert_rate_set": 0.00017771459036786921,
+  "a_S": 1.0,
+  "b_S": {
+   "0.001": 0.002034037415661029,
+   "0.01": 0.0203048364440007
+  },
+  "m_out": {
+   "0.001": 0.0020340547632815235,
+   "0.01": 0.02030372085855968
+  },
+  "m_in": {
+   "0.001": 0.0020340200680405347,
+   "0.01": 0.020305948470955463
+  },
+  "flip_in_cert": 0,
+  "status": "条件认证(margin>2ε 时该 top-r 集合不可能改变)"
+ },
+ "pool_path": {
+  "pool_attn": {
+   "block4": {
+    "n_layers": 21,
+    "a_pool_median": 0.5473591839825666,
+    "a_pool_range": [
+     0.5062648985120985,
+     0.6698522214536313
+    ],
+    "a_pool_floor": 0.5,
+    "attenuates": true,
+    "top1_norm_median": 0.15505986743503147,
+    "top1_norm_range": [
+     0.04779611693488227,
+     0.374603342126917
+    ],
+    "entropy_n_median": 0.92014687149613,
+    "eff_frac_median": 0.9114754994710287,
+    "eff_tokens_median": 3.6459019978841147,
+    "most_concentrated_layers": [
+     [
+      34,
+      0.3746
+     ],
+     [
+      40,
+      0.2988
+     ],
+     [
+      16,
+      0.2562
+     ],
+     [
+      30,
+      0.224
+     ],
+     [
+      38,
+      0.2198
+     ]
+    ]
+   },
+   "block128": {
+    "n_layers": 20,
+    "a_pool_median": 0.09068511923154196,
+    "a_pool_range": [
+     0.08850846687952678,
+     0.1094919244448344
+    ],
+    "a_pool_floor": 0.08838834764831845,
+    "attenuates": true,
+    "top1_norm_median": 0.0039049992337822914,
+    "top1_norm_range": [
+     0.0008217221281180779,
+     0.027243226766586304
+    ],
+    "entropy_n_median": 0.9961776336034138,
+    "eff_frac_median": 0.9877851009368896,
+    "eff_tokens_median": 126.43649291992188,
+    "most_concentrated_layers": [
+     [
+      17,
+      0.0272
+     ],
+     [
+      35,
+      0.0107
+     ],
+     [
+      23,
+      0.0084
+     ],
+     [
+      15,
+      0.0077
+     ],
+     [
+      29,
+      0.0066
+     ]
+    ]
+   }
+  },
+  "pool_idx": {
+   "block4": {
+    "n_layers": 21,
+    "a_pool_median": 0.5466696068092629,
+    "a_pool_range": [
+     0.5069526036580404,
+     0.6571185500533493
+    ],
+    "a_pool_floor": 0.5,
+    "attenuates": true,
+    "top1_norm_median": 0.15499913250958477,
+    "top1_norm_range": [
+     0.058790502724824126,
+     0.35515011681450737
+    ],
+    "entropy_n_median": 0.9239270952012804,
+    "eff_frac_median": 0.9178509182400174,
+    "eff_tokens_median": 3.6714036729600696,
+    "most_concentrated_layers": [
+     [
+      34,
+      0.3552
+     ],
+     [
+      40,
+      0.29
+     ],
+     [
+      16,
+      0.2609
+     ],
+     [
+      38,
+      0.2275
+     ],
+     [
+      22,
+      0.2248
+     ]
+    ]
+   }
+  }
+ },
+ "pool_invariant_violations": 0,
+ "end_to_end": {
+  "bound": 0.02405531867355355,
+  "tier": "partial",
+  "delta": 0.0,
+  "dominant_stage": "U_store(压缩条目二次量化)",
+  "per_stage": [
+   {
+    "stage": "U_store(压缩条目二次量化)",
+    "a": 1.0,
+    "b": 0.02202128125789252,
+    "tier": "certified",
+    "e_in": 0.0,
+    "e_out": 0.02202128125789252,
+    "added": 0.02202128125789252,
+    "source": "p55.store_path: rel_int8_median × tight_int8_median(相对见证)"
+   },
+   {
+    "stage": "S(C4 页级 top-512)",
+    "a": 1.0,
+    "b": 0.002034037415661029,
+    "tier": "partial",
+    "e_in": 0.02202128125789252,
+    "e_out": 0.02405531867355355,
+    "added": 0.002034037415661029,
+    "source": "p55.select_path.b_S[0.001]"
+   }
+  ],
+  "caliber": "基线链条 = 存储 -> 选择(池化不在链上,见 math_spec §1.5);b_store 是相对残差而非 TV —— 折成 TV 需逐请求 q 范数,故本数字**不是** TV 界,不得称'端到端 certified'"
+ },
+ "findings": {
+  "1_two_pool_granularities": "V4 同模型内有两种池化粒度并存:注意力侧 block=4 共 21 层、block=128 共 20 层 —— 1/block 差 32 倍,裸 top1_share 跨层比较无意义,必须用归一化量",
+  "2_pooling_is_near_uniform": "池化整体接近均摊:注意力侧 block4 top1_norm 中位 0.1551(0=完全均摊)、有效 token 数 3.65/4;block128 中位 0.0039、有效 126.4/128",
+  "3_pooling_is_an_attenuator": "**池化是误差衰减器,不是认证断点**:a_pool=‖w‖_2 实测 block4 中位 0.5474(理论均摊下界 0.5000)、block128 中位 0.0907(下界 0.0884),均远小于 1 —— 块内 token 的量化误差经池化后按此系数收缩(Cauchy–Schwarz,sound)",
+  "4_two_pool_paths_comparable": "两条池化通路集中度基本一致:索引侧 block4 top1_norm 中位 0.1550,注意力侧 0.1551(差 -0.0001)",
+  "5_selection_contract": "Lemma S2:选择段契约 (a_S,b_S)=(1, ½(m_out+m_in)) —— **加性,不放大上游误差**;实测 b_S 中位 0.00203(η=1e-3)/ 0.0203(η=1e-2),m_out≈m_in(|I|=|Î|=k 故换出换入数量相同)",
+  "6_risk_split": "三路风险分层:存储侧相对残差 0.6103%(sound 上界,保守度 3.61×);选择侧 top-1 认证率 0.9934、严格集合认证率 0.0002(负结果);池化侧 sound 衰减系数 a_pool=0.5474(block4)/0.0907(block128)",
+  "7_end_to_end": "契约演算自动组合:端到端界 0.02406,档位 **partial**(取最弱段),主导段 U_store(压缩条目二次量化) —— 存储段贡献 0.02202 是选择段 0.00203 的 10.8 倍,故优化应优先动存储侧",
+  "8_self_check": "见证违约 0,认证内翻转 0,池化不变量违反 0 —— 全零"
+ }
+}

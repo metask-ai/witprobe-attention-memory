@@ -1,0 +1,50 @@
+{
+ "model": "DeepSeek-V2-Lite",
+ "S": 4096,
+ "nband": 8,
+ "delta_req": 0.01,
+ "sm": 0.07216878364870322,
+ "docs": 9,
+ "sampled_layers": [
+  0,
+  4,
+  8,
+  12,
+  16,
+  20,
+  24
+ ],
+ "head_stride": 2,
+ "schemes": {
+  "latent-rtn8": {
+   "n": 4032,
+   "viol_A": 0,
+   "viol_tanh": 0,
+   "tv_median": 0.0046023272829342175,
+   "bA_median": 0.20912851506969565,
+   "bA_informative_frac": 1.0
+  },
+  "latent-dither8": {
+   "n": 4032,
+   "viol_A": 0,
+   "viol_tanh": 0,
+   "tv_median": 0.004589984908599297,
+   "bA_median": 0.21024975991677242,
+   "bA_informative_frac": 1.0,
+   "viol_B": 0,
+   "bB_median": 0.09375109619202504,
+   "covB": {
+    "0.2": 0.9890873015873016,
+    "0.5": 1.0
+   }
+  },
+  "latent-rtn4": {
+   "n": 4032,
+   "viol_A": 0,
+   "viol_tanh": 0,
+   "tv_median": 0.02444508178475801,
+   "bA_median": 1.0,
+   "bA_informative_frac": 0.05233134920634921
+  }
+ }
+}

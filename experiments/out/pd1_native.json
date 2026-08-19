@@ -1,0 +1,73 @@
+{
+ "arm": "native",
+ "run_id": "pd1",
+ "acc": 1.0,
+ "n": 6,
+ "n_error": 0,
+ "valid": true,
+ "topology": "PD 单机双进程:prefill TP4(GPU0-3)+ decode TP4(GPU4-7)+ sglang-router mini-lb,mooncake 传输",
+ "manifest": {
+  "run_id": "pd1",
+  "code": "bcb28e0",
+  "tp": 4,
+  "workers": 2,
+  "ndoc": 6,
+  "seed": 42,
+  "model": "/workspace/models/DeepSeek-V4-Flash-FP8",
+  "context_len": 65536,
+  "arm": "native"
+ },
+ "witcert_env": {},
+ "snapshot": {},
+ "n_rank_files": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "gold": "417000",
+   "out": "417000\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "gold": "417013",
+   "out": "417013\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "gold": "417026",
+   "out": "417026\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "gold": "417039",
+   "out": "417039\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "gold": "417052",
+   "out": "417052",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "gold": "417065",
+   "out": "417065\n```\n\n\n## 3.2.",
+   "hit": true,
+   "error": null
+  }
+ ]
+}

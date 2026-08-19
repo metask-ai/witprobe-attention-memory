@@ -1,0 +1,36 @@
+% 槽状态机(账本执行语义;状态/转移与正文四不变量一一对应)
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize, node distance=9mm,
+  st/.style={draw, rounded corners=2pt, align=center, inner sep=4pt,
+             minimum height=7mm, minimum width=20mm},
+  un/.style={st, fill=gray!14, draw=gray!60},
+  mk/.style={st, fill=teal!18, draw=teal!55!black},
+  ke/.style={st, fill=blue!8, draw=blue!35!gray},
+  re/.style={st, fill=orange!22, draw=orange!70!black},
+  arr/.style={-{Stealth[length=2mm]}, semithick, gray!40!black},
+  lab/.style={font=\tiny, align=center, gray!20!black}]
+
+\node[un] (u) at (0, 0)      {unwritten};
+\node[mk] (m) at (4.3, 0.85) {masked\\[-2pt]\tiny $\delta_i$ spent by owner};
+\node[ke] (k) at (4.3, -0.85){kept-exact\\[-2pt]\tiny $\delta = 0$};
+\node[re] (r) at (9.9, 0.85) {restored-exact\\[-2pt]\tiny original bytes back};
+
+\draw[arr] (u.east) -- (m.west)
+  node[lab, midway, above, sloped]{certified write:\\policy accepts};
+\draw[arr] (u.east) -- (k.west)
+  node[lab, midway, below, sloped]{policy rejects /\\unattributable batch};
+\draw[arr] (m.east) -- (r.west)
+  node[lab, midway, below=0.5mm]{realized witness $>$ radius\\$\Rightarrow$ audit restores, in-hook};
+\draw[arr, dashed] (m.north) .. controls +(0,0.6) and +(0,0.6) .. (u.north)
+  node[lab, midway, above]{slot reuse $\Rightarrow$ rewrite through certified
+  writer\\(new owner UID, generation $+1$)};
+\end{tikzpicture}
+\caption{\textbf{The ledger's slot-state machine.} Admission into
+\emph{masked} is probabilistic (it spends the owner's $\delta_i$);
+enforcement is deterministic---a violating entry is restored to exact
+bytes in the same hook call, before any shared read. Reused slots
+re-enter only through the certified writer, with fresh owner and
+generation.}
+\label{fig:slotstate}
+\end{figure}

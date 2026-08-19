@@ -1,0 +1,41 @@
+{
+ "what": "Q2c ③ 终判:packed INT4 真实消费(验证档,参考路径)",
+ "machine": "hgx",
+ "caliber": [
+  "参考路径(torch fallback)性能非生产 kernel;fail-closed 到 FP8",
+  "输出等价按贪心重启地板口径,n=16 方向性",
+  "快照直取 /tmp 终态(out 旧拷贝残影已识别,launcher 拷贝时机待修)"
+ ],
+ "sm120_route": {
+  "forced": true,
+  "n_gather": 8222,
+  "n_packed_rows": 1400454,
+  "n_entry": 4209
+ },
+ "packshadow_check": {
+  "n_checked": 660,
+  "n_unwritten": 0,
+  "rel_sum": 49.43870875611901,
+  "rel_max": 0.11562252044677734,
+  "rel_mean": 0.0749071344789682
+ },
+ "outputs": {
+  "route_vs_fp8base": "11/16",
+  "packed_vs_route": "11/16"
+ },
+ "gate": {
+  "criteria": {
+   "route_forced": true,
+   "entry_gt0": true,
+   "packed_rows_gt0": true,
+   "err_none": true,
+   "route_vs_base_at_floor": true,
+   "packed_vs_route_at_floor": true,
+   "selfcheck_stable": true
+  },
+  "passed": true
+ },
+ "findings": {
+  "0_headline": "**packed INT4 真实消费 gate PASS**(7/7):sm120 参考 decode 入口 4,209 次、gather 8,222 次、attention 消费 packed 行 1,400,454;route vs FP8 基线 11/16;packed vs route 11/16;自洽 rel 7.5%;err=null"
+ }
+}

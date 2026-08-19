@@ -1,0 +1,71 @@
+# 论文2 公开仓库清单。论文2 的核心是**平台**,但平台代码是核心资产 ——
+# 因此公开的是"能复现论文数字"的那部分:实验脚本、产物、验收门与报告生成器,
+# 以及探针的**接口与契约说明**,而非完整实现。这条边界要在论文里写清楚。
+#
+#   python3 tools/make_release.py p2-attention-memory
+
+[repo]
+name    = "witprobe-attention-memory"
+title   = "Runtime Observability for Heterogeneous Attention Memory"
+license = "Apache-2.0"
+version = "v0.15"
+status = "正文 v0.5:E/F/G/H 四轮整改全部入文 —— 同物理对象闭环、真实生命周期请求身份、并发逐行归属(owner 守卫实战抓获键空间污染)、fail-closed 身份与违约恢复、shared_read_sound、全局 e-process 哨兵、67 条 Lean 定理(axioms 三条标准);machine-decidable gate 以退出码承载。作者栏已填(Fanzhe Wei, Metask Lab);投稿由用户本人执行 —— **不代填不代投**"
+
+[include]
+"/"            = ["LICENSE", "NOTICE", "papers/p2-attention-memory/release/README.md", "papers/p2-attention-memory/release/requirements.txt", "papers/p2-attention-memory/release/reproduce.sh"]
+"papers/p2-attention-memory/"       = ["papers/p2-attention-memory/**"]
+"experiments/" = ["experiments/p0_premises.py", "experiments/p5*.py", "experiments/p6*.py",
+                  "experiments/p7*.py", "experiments/p8*.py", "experiments/p9*.py",
+                  "experiments/q6_sixpath_build.py",
+                  "experiments/flagship_gate.py",
+                  "experiments/out/p5*.json", "experiments/out/p6*.json",
+                  "experiments/out/p7*.json", "experiments/out/p8*.json",
+                  "experiments/out/p9*.json",
+                  "experiments/out/p98_dither_rfinal.rank*",
+                  "experiments/out/p99_dither_rfinal.rank*",
+                  "experiments/out/wc_*.json.rank*",
+                  "@papers/p2-attention-memory/artifacts.list"]
+"tools/"       = ["tools/figprint.py", "tools/make_canon.py", "tools/lean_extract.py",
+                  "tools/p2_figs.py", "tools/adjudication_export.py",
+                  "tools/cited_artifacts.py"]
+"tests/"       = ["tests/test_paper_claims.py", "tests/test_flagship_gate.py",
+                  "tests/canon_unsourced_baseline.json"]
+"papers/p1-kv-certificates/" = ["papers/p1-kv-certificates/canon.json",
+                                "papers/p1-kv-certificates/CANON.md",
+                                "papers/p1-kv-certificates/theorems.json"]
+"formal/"      = ["formal/WitCert/**", "formal/WitCert.lean", "formal/Export.lean",
+                  "formal/lakefile.toml", "formal/lean-toolchain",
+                  "formal/lake-manifest.json",
+                  "formal/check_all.sh", "formal/check_standalone.sh",
+                  "formal/standalone/**", "formal/README.md"]
+
+[exclude]
+paths = [
+  "src/witcert/probe/extract.py",   # 各架构的具体 hook 与取数逻辑 = 核心资产
+  "src/witcert/probe/sites.py",     # 注入点注册表(锚点即 know-how)
+  "src/witcert/probe/inject.py",
+  "src/witcert/kernels/**", "src/witcert/operators/**",
+  "integration/**", "env/**",
+  "experiments/launchers/**", "experiments/campaigns/**",
+  "papers/p1-*/arxiv/**", "papers/p1-*/mlsys/**", "papers/p1-*/figs/**",
+  "papers/p1-*/release/**", "papers/p1-*/artifacts.list",
+  "papers/p3-*/**",
+]
+
+# 允许公开的平台子集:纯数学与验收门,不含架构 know-how。
+# 这两个文件本身就是论文的贡献陈述(尺子数学 + 验收契约),公开它们利大于弊。
+[include_extra]
+"witprobe/" = ["src/witcert/probe/meters.py", "src/witcert/probe/verify.py"]
+
+[reproduce]
+entry = "export WITCERT_RELEASE=1 && python3 tools/make_canon.py && python3 tools/p2_figs.py && python3 tests/test_paper_claims.py && (python3 experiments/flagship_gate.py --json || true) && WITCERT_P98_PREFIX=p99 python3 experiments/p98_concurrent_identity.py"
+note  = "meters.py 可独立复算所有尺子读数;verify.py 是验收门本体;formal/ 全量 Lean 可 lake build 复检(需 Mathlib 缓存);p98 并发 gate:WITCERT_P98_PREFIX=p98 python3 experiments/p98_concurrent_identity.py(退出码即判据)"
+
+# 随包代码引用、但按设计不随发布的文件(test_paper_claims 在 WITCERT_RELEASE=1
+# 下对缺席文档显式跳过;lean_extract 随包仅为透明、复现入口不调它)。
+# release_export 的承诺闭包不变量据此放行 —— 与 shell 侧 [ -f 守卫同一原则。
+[optional]
+refs = ["experiments/out_siteB/rrd_w2a_qwen7b.json",
+        "papers/p1-kv-certificates/THEOREMS.md",
+        "papers/p1-kv-certificates/draft_zh_v1.0.md",
+        "papers/p1-kv-certificates/abstract_en.md"]

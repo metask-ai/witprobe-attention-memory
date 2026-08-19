@@ -1,0 +1,188 @@
+{
+ "arm": "base",
+ "acc": 1.0,
+ "n": 20,
+ "n_error": 0,
+ "items": [
+  {
+   "doc": "needle_0.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417000",
+   "out": "417000\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_1.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417013",
+   "out": "417013",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_10.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417026",
+   "out": "417026\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_11.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417039",
+   "out": "417039\n```\n\n\n## 3.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_12.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417052",
+   "out": "417052",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_13.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417065",
+   "out": "417065\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_14.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417078",
+   "out": "417078\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_15.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417091",
+   "out": "417091",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_16.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417104",
+   "out": "417104",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_17.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417117",
+   "out": "417117",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_18.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417130",
+   "out": "417130",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_19.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417143",
+   "out": "417143",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_2.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417156",
+   "out": "417156",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_3.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417169",
+   "out": "417169\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_4.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417182",
+   "out": "417182",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_5.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417195",
+   "out": "417195\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_6.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417208",
+   "out": "417208\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_7.txt",
+   "depth": 0.85,
+   "n_words": 12056,
+   "gold": "417221",
+   "out": "417221\n```",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_8.txt",
+   "depth": 0.15,
+   "n_words": 12056,
+   "gold": "417234",
+   "out": "417234\n```\n\n\n## 2.2.",
+   "hit": true,
+   "error": null
+  },
+  {
+   "doc": "needle_9.txt",
+   "depth": 0.5,
+   "n_words": 12056,
+   "gold": "417247",
+   "out": "417247",
+   "hit": true,
+   "error": null
+  }
+ ]
+}

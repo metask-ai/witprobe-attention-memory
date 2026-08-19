@@ -1,0 +1,37 @@
+{
+ "verdict": "INVALIDATION_CONFIRMED",
+ "criteria": {
+  "V1_两臂无请求错误": {
+   "ok": true,
+   "value": "on n_error=0 / off n_error=0"
+  },
+  "V2_八rank齐全且err全空": {
+   "ok": true,
+   "value": "on rank=8 clean=True / off rank=8 clean=True"
+  },
+  "V3_失效开关双向证据": {
+   "ok": true,
+   "value": "on n_invalidate=26419544(须>0)/ off n_invalidate=0(须=0)"
+  },
+  "V4_解码侧c4保真度回本征": {
+   "ok": true,
+   "value": "on rel_mean=0.02461(本征 0.02448,容许 ≤0.03672)/ off rel_mean=0.88159(须 >5× on)"
+  },
+  "V5_失效开启后任务分恢复": {
+   "ok": true,
+   "value": "on acc=1.000(须 ≥0.95;串行 base 参考=1.000)"
+  },
+  "V6_两臂明显拉开": {
+   "ok": true,
+   "value": "on−off = 1.000 − 0.200 = 0.800(须 ≥0.5)"
+  }
+ },
+ "caliber": "两臂均并发 4(WORKERS=4)、PACK_EVERY_READ=0、radix off;两臂之间严格 matched;p118 base 为串行口径仅作参考锚。on 臂为 p124c 三跑(前两跑起服失败产物保留作 confounded)。",
+ "claim_scope": "六条全过 = 代际失效缺失是退化主因,写入站点失效是充分修法,且该结论在并发 4 口径下同样成立。**不覆盖**:abort/preemption、Radix 开启、HiCache/HiSparse、驱逐复用、MTP/PD;并发口径下 off 臂退化幅度与串行不同(0.200 vs 0.050,槽位复用时序差异),属预期内变异。",
+ "sources": {
+  "on": "p124c_conc_inval_on.json",
+  "off": "p124_conc_inval_off.json",
+  "base_ref": "p118_ruler_base_off.json"
+ },
+ "generated_by": "p124_verdict.py"
+}

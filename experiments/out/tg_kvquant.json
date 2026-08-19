@@ -1,0 +1,10 @@
+{
+ "task": "T-G kvquant4",
+ "harness": "needle 1.5B 24请求",
+ "result": {
+  "scheme": "kvquant4(逐通道4bit非对称+top1%离群稀疏,nuq以均匀档保守近似)",
+  "accuracy": 1.0,
+  "coverage": 0.00066,
+  "conclusion": "第二个真实方法复刻同样呈 均值好/可认证覆盖率≈0 —— 与KIVI互证:真实激进方法靠结构(离群稀疏/残差窗)保住均值,但逐步sound认证不可得;尾部风险需门控/backing兜底"
+ }
+}

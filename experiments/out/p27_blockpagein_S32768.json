@@ -1,0 +1,12 @@
+{
+ "S": 32768,
+ "heads": 8,
+ "tau": 0.2,
+ "total": 32,
+ "fb_cases": 9,
+ "blocks_needed_median": 1,
+ "nb": 128,
+ "full_traffic_mb": 72.0,
+ "block_traffic_mb": 0.5625,
+ "reduction": 128.0
+}
